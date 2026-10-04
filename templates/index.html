@@ -1,16 +1,18 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PurposeMap - Career Guidance</title>
 
     <style>
+
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
             font-family: Arial, sans-serif;
         }
 
@@ -29,23 +31,23 @@
             position: fixed;
             left: 0;
             top: 0;
-            padding: 22px;
+            padding: 25px 20px;
             display: flex;
             flex-direction: column;
         }
 
         .logo {
-            font-size: 25px;
+            font-size: 26px;
             font-weight: bold;
-            margin-bottom: 30px;
             color: #70e1c1;
+            margin-bottom: 35px;
         }
 
         .menu button {
             display: block;
             width: 100%;
-            padding: 13px;
-            margin-bottom: 8px;
+            padding: 14px;
+            margin-bottom: 9px;
             border: none;
             border-radius: 7px;
             background: transparent;
@@ -55,61 +57,16 @@
             cursor: pointer;
         }
 
-        .menu button:hover {
+        .menu button:hover,
+        .menu button.selected {
             background: #30425e;
-        }
-
-        /* CHATBOT */
-
-        .chatbox {
-            margin-top: auto;
-            background: #263650;
-            padding: 12px;
-            border-radius: 10px;
-        }
-
-        .chatbox h3 {
-            margin-bottom: 8px;
-            font-size: 16px;
-        }
-
-        #messages {
-            height: 120px;
-            overflow-y: auto;
-            font-size: 12px;
-            margin-bottom: 8px;
-        }
-
-        .chat-message {
-            background: #40536f;
-            padding: 7px;
-            border-radius: 6px;
-            margin-bottom: 6px;
-            overflow-wrap: anywhere;
-        }
-
-        .chatbox input {
-            width: 100%;
-            padding: 9px;
-            border: none;
-            border-radius: 5px;
-            margin-bottom: 7px;
-        }
-
-        .chatbox button {
-            width: 100%;
-            padding: 9px;
-            background: #70e1c1;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
         }
 
         /* MAIN CONTENT */
 
         .main {
             margin-left: 250px;
-            padding: 30px;
+            padding: 32px;
         }
 
         .page {
@@ -121,32 +78,70 @@
         }
 
         h1 {
-            margin-bottom: 10px;
             color: #18243a;
+            margin-bottom: 10px;
         }
 
         .subtitle {
             color: #666;
+            line-height: 1.6;
             margin-bottom: 25px;
         }
 
+        h2 {
+            color: #263b5e;
+            margin-bottom: 15px;
+        }
+
+        /* DASHBOARD BENEFITS */
+
         .card-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-            gap: 18px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
             margin-top: 20px;
         }
+
+        .benefit-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 3px 12px #00000010;
+        }
+
+        .benefit-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+
+        .benefit-info {
+            padding: 18px;
+        }
+
+        .benefit-info h3 {
+            color: #263b5e;
+            margin-bottom: 10px;
+        }
+
+        .benefit-info p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        /* GENERAL CARDS */
 
         .card {
             background: white;
             padding: 22px;
             border-radius: 12px;
-            box-shadow: 0 3px 12px #0000000d;
+            box-shadow: 0 3px 12px #00000010;
         }
 
         .card h3 {
-            margin-bottom: 12px;
             color: #263b5e;
+            margin-bottom: 12px;
         }
 
         .card p {
@@ -154,9 +149,12 @@
             line-height: 1.6;
         }
 
-        .card button, .primary-btn {
+        /* BUTTONS */
+
+        .primary-btn,
+        .card button {
+            padding: 11px 17px;
             margin-top: 15px;
-            padding: 10px 16px;
             background: #315fba;
             color: white;
             border: none;
@@ -164,61 +162,164 @@
             cursor: pointer;
         }
 
-        /* FORMS */
+        .primary-btn:hover,
+        .card button:hover {
+            background: #244a96;
+        }
+
+        /* PROFILE FORM */
 
         .form-box {
             background: white;
             padding: 25px;
             border-radius: 12px;
-            max-width: 600px;
+            max-width: 650px;
             margin-top: 20px;
+            box-shadow: 0 3px 12px #00000010;
         }
 
         .form-box label {
             display: block;
-            margin-top: 15px;
-            margin-bottom: 6px;
+            margin-top: 17px;
+            margin-bottom: 7px;
             font-weight: bold;
+            color: #263b5e;
         }
 
-        .form-box input, .form-box textarea {
+        .form-box input,
+        .form-box textarea {
             width: 100%;
-            padding: 11px;
+            padding: 12px;
             border: 1px solid #ccc;
             border-radius: 6px;
+            font-size: 14px;
         }
 
         .form-box textarea {
-            min-height: 75px;
+            min-height: 80px;
             resize: vertical;
+        }
+
+        #profileMessage {
+            color: #16865f;
+            margin-top: 12px;
+        }
+
+        /* CAREER DETAILS */
+
+        .career-detail {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 25px;
+            line-height: 1.7;
+            box-shadow: 0 3px 12px #00000010;
+        }
+
+        .career-detail h2 {
+            color: #315fba;
+        }
+
+        .career-detail h3 {
+            color: #315fba;
+            margin-top: 20px;
+            margin-bottom: 5px;
+        }
+
+        .career-detail p {
+            color: #555;
+        }
+
+        /* CAREER ASSISTANT */
+
+        .dashboard-assistant {
+            background: #18243a;
+            padding: 25px;
+            margin-top: 35px;
+            border-radius: 12px;
+            color: white;
+        }
+
+        .dashboard-assistant h2 {
+            color: #70e1c1;
+            margin-bottom: 10px;
+        }
+
+        .dashboard-assistant > p {
+            color: #d5deed;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        #dashboardMessages {
+            max-height: 230px;
+            overflow-y: auto;
+            margin-bottom: 15px;
+        }
+
+        .assistant-message {
+            background: #30425e;
+            padding: 12px;
+            margin-bottom: 9px;
+            border-radius: 7px;
+            line-height: 1.5;
+            overflow-wrap: anywhere;
+        }
+
+        .assistant-input {
+            display: flex;
+            gap: 10px;
+        }
+
+        .assistant-input input {
+            flex: 1;
+            min-width: 0;
+            padding: 13px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .assistant-input button {
+            padding: 12px 20px;
+            background: #70e1c1;
+            color: #18243a;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* PROGRESS */
+
+        .progress-bg {
+            width: 100%;
+            height: 15px;
+            background: #ddd;
+            border-radius: 20px;
+            margin-top: 15px;
+        }
+
+        .progress-fill {
+            width: 0%;
+            height: 15px;
+            background: #26ae83;
+            border-radius: 20px;
+            transition: width 0.3s;
         }
 
         .result-box {
             background: white;
-            padding: 20px;
+            padding: 22px;
             border-radius: 10px;
             margin-top: 20px;
             line-height: 1.8;
         }
 
-        .progress-bg {
-            width: 100%;
-            height: 14px;
-            background: #ddd;
-            border-radius: 10px;
-            margin-top: 10px;
-        }
-
-        .progress-fill {
-            width: 0%;
-            height: 14px;
-            background: #26ae83;
-            border-radius: 10px;
-        }
-
-        /* MOBILE VIEW */
+        /* MOBILE DESIGN */
 
         @media (max-width: 700px) {
+
             .sidebar {
                 position: relative;
                 width: 100%;
@@ -227,474 +328,1128 @@
 
             .main {
                 margin-left: 0;
-                padding: 18px;
+                padding: 20px;
             }
 
-            .chatbox {
-                margin-top: 20px;
+            .menu {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 5px;
             }
 
-            #messages {
-                height: 80px;
+            .menu button {
+                margin-bottom: 0;
             }
+
+            .assistant-input {
+                flex-direction: column;
+            }
+
         }
+
     </style>
 </head>
 
 <body>
 
-<!-- SIDEBAR -->
+    <!-- SIDEBAR -->
 
-<div class="sidebar">
+    <div class="sidebar">
 
-    <div class="logo">PurposeMap</div>
+        <div class="logo">PurposeMap</div>
 
-    <div class="menu">
-        <button onclick="showPage('dashboard')">Dashboard</button>
-        <button onclick="showPage('profile')">My Profile</button>
-        <button onclick="showPage('careers')">Career Pathways</button>
-        <button onclick="showPage('courses')">Courses</button>
-        <button onclick="showPage('roadmap')">My Roadmap</button>
-        <button onclick="showPage('progress')">My Progress</button>
+        <div class="menu">
+
+            <button class="selected" onclick="showPage('dashboard', this)">
+                Dashboard
+            </button>
+
+            <button onclick="showPage('profile', this)">
+                My Profile
+            </button>
+
+            <button onclick="showPage('careers', this)">
+                Career Pathways
+            </button>
+
+            <button onclick="showPage('courses', this)">
+                Courses
+            </button>
+
+            <button onclick="showPage('roadmap', this)">
+                My Roadmap
+            </button>
+
+            <button onclick="showPage('progress', this)">
+                My Progress
+            </button>
+
+        </div>
+
     </div>
 
-    <!-- CHATBOT AT BOTTOM -->
+    <!-- MAIN CONTENT -->
 
-    <div class="chatbox">
-        <h3>Career Assistant</h3>
+    <div class="main">
 
-        <div id="messages">
-            <div class="chat-message">
-                Hello! Ask me about careers and skills.
+        <!-- DASHBOARD -->
+
+        <section id="dashboard" class="page active">
+
+            <h1>Welcome to PurposeMap!</h1>
+
+            <p class="subtitle">
+                Discover your strengths, explore career opportunities
+                and create a successful future with PurposeMap.
+            </p>
+
+            <h2>Why Choose PurposeMap?</h2>
+
+            <p class="subtitle">
+                PurposeMap helps students understand themselves
+                and make better career decisions.
+            </p>
+
+            <!-- BENEFIT PICTURES -->
+
+            <div class="card-container">
+
+                <div class="benefit-card">
+
+                    <img
+                    src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=700"
+                    alt="Students working together">
+
+                    <div class="benefit-info">
+
+                        <h3>Discover Your Strengths</h3>
+
+                        <p>
+                            Identify your interests, skills and abilities
+                            to understand which career options may suit you.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="benefit-card">
+
+                    <img
+                    src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=700"
+                    alt="Online learning">
+
+                    <div class="benefit-info">
+
+                        <h3>Explore Career Options</h3>
+
+                        <p>
+                            Explore different career fields and understand
+                            the qualifications and skills required.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="benefit-card">
+
+                    <img
+                    src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=700"
+                    alt="Student planning">
+
+                    <div class="benefit-info">
+
+                        <h3>Personalised Roadmap</h3>
+
+                        <p>
+                            Follow a step-by-step learning plan
+                            to move towards your career goal.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="benefit-card">
+
+                    <img
+                    src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=700"
+                    alt="Students learning">
+
+                    <div class="benefit-info">
+
+                        <h3>Track Your Progress</h3>
+
+                        <p>
+                            Monitor completed courses, learning activities
+                            and achievements in one place.
+                        </p>
+
+                    </div>
+
+                </div>
+
             </div>
-        </div>
 
-        <input type="text" id="chatInput"
-               placeholder="Ask a question..."
-               onkeydown="if(event.key === 'Enter') sendMessage()">
+            <!-- QUICK LINKS -->
 
-        <button onclick="sendMessage()">Send</button>
+            <h2 style="margin-top:35px;">Start Your Journey</h2>
+
+            <div class="card-container">
+
+                <div class="card">
+
+                    <h3>My Profile</h3>
+
+                    <p>
+                        Add your education, skills and interests.
+                    </p>
+
+                    <button onclick="showPage('profile')">
+                        Create Profile
+                    </button>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>Career Pathways</h3>
+
+                    <p>
+                        Discover careers based on your profile.
+                    </p>
+
+                    <button onclick="showPage('careers')">
+                        Explore Careers
+                    </button>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>Learning Courses</h3>
+
+                    <p>
+                        Improve your knowledge with useful courses.
+                    </p>
+
+                    <button onclick="showPage('courses')">
+                        View Courses
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- CAREER ASSISTANT -->
+
+            <div class="dashboard-assistant">
+
+                <h2>Career Assistant</h2>
+
+                <p>
+                    Need help choosing a career?
+                    Ask questions about your skills, interests,
+                    courses and job opportunities.
+                    Your saved profile will be used to personalise responses.
+                </p>
+
+                <div id="dashboardMessages">
+
+                    <div class="assistant-message">
+                        Hello! Welcome to PurposeMap.
+                        Save your profile and ask me about your career.
+                    </div>
+
+                </div>
+
+                <div class="assistant-input">
+
+                    <input
+                    type="text"
+                    id="dashboardChatInput"
+                    placeholder="Ask about your career..."
+                    onkeydown="if(event.key === 'Enter') sendDashboardMessage()">
+
+                    <button onclick="sendDashboardMessage()">
+                        Send
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- MY PROFILE -->
+
+        <section id="profile" class="page">
+
+            <h1>My Profile</h1>
+
+            <p class="subtitle">
+                Enter your details to receive career suggestions
+                based on your education, skills and interests.
+            </p>
+
+            <div class="form-box">
+
+                <label>Full Name</label>
+
+                <input
+                type="text"
+                id="name"
+                placeholder="Enter your name">
+
+                <label>Education</label>
+
+                <input
+                type="text"
+                id="education"
+                placeholder="Example: B.Tech, B.Com, Degree">
+
+                <label>Skills</label>
+
+                <textarea
+                id="skills"
+                placeholder="Example: Excel, Python, Communication"></textarea>
+
+                <label>Interests</label>
+
+                <textarea
+                id="interests"
+                placeholder="Example: Technology, Business, Designing"></textarea>
+
+                <label>Career Goal</label>
+
+                <input
+                type="text"
+                id="goal"
+                placeholder="Example: Data Analyst">
+
+                <button class="primary-btn" onclick="saveProfile()">
+                    Save Profile
+                </button>
+
+                <p id="profileMessage"></p>
+
+            </div>
+
+        </section>
+
+        <!-- CAREER PATHWAYS -->
+
+        <section id="careers" class="page">
+
+            <h1>Career Pathways</h1>
+
+            <p class="subtitle">
+                Discover different career options and learn
+                about their skills, responsibilities and job opportunities.
+            </p>
+
+            <button class="primary-btn" onclick="loadRecommendedCareers()">
+                Recommend Careers Based on My Profile
+            </button>
+
+            <div id="careerCards" class="card-container">
+
+                <div class="card">
+
+                    <h3>Data Analyst</h3>
+
+                    <p>
+                        Collect and analyse information
+                        to help organisations make decisions.
+                    </p>
+
+                    <button onclick="careerDetails('Data Analyst')">
+                        Explore Details
+                    </button>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>Software Developer</h3>
+
+                    <p>
+                        Develop websites, applications
+                        and software systems.
+                    </p>
+
+                    <button onclick="careerDetails('Software Developer')">
+                        Explore Details
+                    </button>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>UI/UX Designer</h3>
+
+                    <p>
+                        Design attractive and user-friendly
+                        digital products.
+                    </p>
+
+                    <button onclick="careerDetails('UI/UX Designer')">
+                        Explore Details
+                    </button>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>Digital Marketing Specialist</h3>
+
+                    <p>
+                        Promote products and brands
+                        using online platforms.
+                    </p>
+
+                    <button onclick="careerDetails('Digital Marketing Specialist')">
+                        Explore Details
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- CAREER INFORMATION -->
+
+            <div id="careerResult" class="career-detail">
+
+                <h2>Explore a Career</h2>
+
+                <p>
+                    Select Explore Details to view complete career information.
+                </p>
+
+            </div>
+
+        </section>
+
+        <!-- COURSES -->
+
+        <section id="courses" class="page">
+
+            <h1>Courses</h1>
+
+            <p class="subtitle">
+                Learn useful skills to prepare for your future career.
+            </p>
+
+            <div class="card-container">
+
+                <div class="card">
+
+                    <h3>Excel Basics</h3>
+
+                    <p>
+                        Learn spreadsheets, formulas,
+                        tables and data handling.
+                    </p>
+
+                    <button onclick="completeCourse('Excel Basics')">
+                        Mark as Completed
+                    </button>
+
+                    <p id="Excel-Basics" style="margin-top:12px;">
+                        Not completed
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>Python Programming</h3>
+
+                    <p>
+                        Learn programming fundamentals,
+                        variables and problem solving.
+                    </p>
+
+                    <button onclick="completeCourse('Python Programming')">
+                        Mark as Completed
+                    </button>
+
+                    <p id="Python-Programming" style="margin-top:12px;">
+                        Not completed
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>UI/UX Fundamentals</h3>
+
+                    <p>
+                        Learn design principles,
+                        wireframes and user experience.
+                    </p>
+
+                    <button onclick="completeCourse('UI/UX Fundamentals')">
+                        Mark as Completed
+                    </button>
+
+                    <p id="UI-UX-Fundamentals" style="margin-top:12px;">
+                        Not completed
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>SQL for Beginners</h3>
+
+                    <p>
+                        Learn databases, queries
+                        and basic data management.
+                    </p>
+
+                    <button onclick="completeCourse('SQL for Beginners')">
+                        Mark as Completed
+                    </button>
+
+                    <p id="SQL-for-Beginners" style="margin-top:12px;">
+                        Not completed
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ROADMAP -->
+
+        <section id="roadmap" class="page">
+
+            <h1>My Roadmap</h1>
+
+            <p class="subtitle">
+                Follow these steps to achieve your career goal.
+            </p>
+
+            <div class="result-box">
+
+                <h3>Step 1: Discover Your Interests</h3>
+
+                <p>
+                    Understand your interests, strengths
+                    and the activities you enjoy.
+                </p>
+
+                <br>
+
+                <h3>Step 2: Choose Your Career</h3>
+
+                <p>
+                    Explore different career options
+                    and select a career goal.
+                </p>
+
+                <br>
+
+                <h3>Step 3: Learn Required Skills</h3>
+
+                <p>
+                    Identify the skills required
+                    and complete relevant courses.
+                </p>
+
+                <br>
+
+                <h3>Step 4: Build Practical Projects</h3>
+
+                <p>
+                    Apply your knowledge through
+                    projects and practical activities.
+                </p>
+
+                <br>
+
+                <h3>Step 5: Prepare for Opportunities</h3>
+
+                <p>
+                    Create a resume, practise interviews
+                    and apply for suitable jobs.
+                </p>
+
+            </div>
+
+        </section>
+
+        <!-- PROGRESS -->
+
+        <section id="progress" class="page">
+
+            <h1>My Progress</h1>
+
+            <p class="subtitle">
+                Track your learning activities and achievements.
+            </p>
+
+            <div class="card">
+
+                <h3>Course Completion</h3>
+
+                <p id="progressText">
+                    0 of 4 courses completed
+                </p>
+
+                <div class="progress-bg">
+
+                    <div class="progress-fill" id="progressFill"></div>
+
+                </div>
+
+                <h3 id="progressPercent" style="margin-top:15px;">
+                    0%
+                </h3>
+
+            </div>
+
+            <div class="result-box">
+
+                <h3>My Achievements</h3>
+
+                <p id="achievement">
+                    Start learning to earn your first achievement!
+                </p>
+
+            </div>
+
+        </section>
+
     </div>
 
-</div>
+    <!-- JAVASCRIPT -->
 
-<!-- MAIN CONTENT -->
+    <script>
 
-<div class="main">
+        // SHOW PAGES
 
-    <!-- DASHBOARD -->
+        function showPage(pageName, clickedButton) {
 
-    <section id="dashboard" class="page active">
+            let pages = document.querySelectorAll(".page");
 
-        <h1>Welcome to PurposeMap!</h1>
+            pages.forEach(function(page) {
+                page.classList.remove("active");
+            });
 
-        <p class="subtitle">
-            Discover your interests, explore careers and build your future.
-        </p>
+            document.getElementById(pageName).classList.add("active");
 
-        <div class="card-container">
+            let buttons = document.querySelectorAll(".menu button");
 
-            <div class="card">
-                <h3>My Profile</h3>
-                <p>Add your education, skills and interests.</p>
-                <button onclick="showPage('profile')">Create Profile</button>
-            </div>
+            buttons.forEach(function(button) {
+                button.classList.remove("selected");
+            });
 
-            <div class="card">
-                <h3>Career Pathways</h3>
-                <p>Explore different career opportunities.</p>
-                <button onclick="showPage('careers')">Explore Careers</button>
-            </div>
-
-            <div class="card">
-                <h3>Available Courses</h3>
-                <p>Learn new skills through courses.</p>
-                <button onclick="showPage('courses')">View Courses</button>
-            </div>
-
-            <div class="card">
-                <h3>My Progress</h3>
-                <p>Check your learning progress and achievements.</p>
-                <button onclick="showPage('progress')">View Progress</button>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- PROFILE -->
-
-    <section id="profile" class="page">
-
-        <h1>My Profile</h1>
-        <p class="subtitle">Enter your personal learning details.</p>
-
-        <div class="form-box">
-
-            <label>Name</label>
-            <input type="text" id="name" placeholder="Enter your name">
-
-            <label>Education</label>
-            <input type="text" id="education" placeholder="Example: B.Tech">
-
-            <label>Skills</label>
-            <textarea id="skills" placeholder="Example: Excel, Python, Communication"></textarea>
-
-            <label>Interests</label>
-            <textarea id="interests" placeholder="Example: Technology, Business, Design"></textarea>
-
-            <label>Career Goal</label>
-            <input type="text" id="goal" placeholder="Example: Data Analyst">
-
-            <button class="primary-btn" onclick="saveProfile()">Save Profile</button>
-
-            <p id="profileMessage"></p>
-
-        </div>
-    </section>
-
-    <!-- CAREER PATHWAYS -->
-
-    <section id="careers" class="page">
-
-        <h1>Career Pathways</h1>
-
-        <p class="subtitle">
-            Select a career to understand its required skills.
-        </p>
-
-        <div class="card-container">
-
-            <div class="card">
-                <h3>Data Analyst</h3>
-                <p>Work with data and create useful reports.</p>
-                <button onclick="careerDetails('Data Analyst')">Explore</button>
-            </div>
-
-            <div class="card">
-                <h3>Software Developer</h3>
-                <p>Build websites, applications and software.</p>
-                <button onclick="careerDetails('Software Developer')">Explore</button>
-            </div>
-
-            <div class="card">
-                <h3>UI/UX Designer</h3>
-                <p>Design user-friendly websites and applications.</p>
-                <button onclick="careerDetails('UI/UX Designer')">Explore</button>
-            </div>
-
-        </div>
-
-        <div id="careerResult" class="result-box">
-            Select a career to see its details.
-        </div>
-
-    </section>
-
-    <!-- COURSES -->
-
-    <section id="courses" class="page">
-
-        <h1>Courses</h1>
-        <p class="subtitle">Learn skills for your career.</p>
-
-        <div class="card-container">
-
-            <div class="card">
-                <h3>Excel Basics</h3>
-                <p>Learn spreadsheets, formulas and data handling.</p>
-                <button onclick="completeCourse('Excel Basics')">Mark as Completed</button>
-                <p id="Excel-Basics">Not completed</p>
-            </div>
-
-            <div class="card">
-                <h3>Python Programming</h3>
-                <p>Learn programming basics and problem solving.</p>
-                <button onclick="completeCourse('Python Programming')">Mark as Completed</button>
-                <p id="Python-Programming">Not completed</p>
-            </div>
-
-            <div class="card">
-                <h3>UI/UX Fundamentals</h3>
-                <p>Learn design principles and user experience.</p>
-                <button onclick="completeCourse('UI/UX Fundamentals')">Mark as Completed</button>
-                <p id="UI-UX-Fundamentals">Not completed</p>
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- ROADMAP -->
-
-    <section id="roadmap" class="page">
-
-        <h1>My Roadmap</h1>
-
-        <p class="subtitle">
-            Follow these simple steps to move towards your career goal.
-        </p>
-
-        <div class="result-box">
-            <h3>Step 1: Understand your interests</h3>
-            <p>Identify the subjects and activities you enjoy.</p>
-            <br>
-
-            <h3>Step 2: Choose a career</h3>
-            <p>Explore career options and select one goal.</p>
-            <br>
-
-            <h3>Step 3: Learn required skills</h3>
-            <p>Complete courses related to your career.</p>
-            <br>
-
-            <h3>Step 4: Build projects</h3>
-            <p>Apply your knowledge through practical projects.</p>
-            <br>
-
-            <h3>Step 5: Prepare for jobs</h3>
-            <p>Build your resume and practice interviews.</p>
-        </div>
-
-    </section>
-
-    <!-- PROGRESS -->
-
-    <section id="progress" class="page">
-
-        <h1>My Progress</h1>
-
-        <p class="subtitle">
-            Track your completed courses.
-        </p>
-
-        <div class="card">
-            <h3>Course Completion</h3>
-
-            <p id="progressText">0 of 3 courses completed</p>
-
-            <div class="progress-bg">
-                <div class="progress-fill" id="progressFill"></div>
-            </div>
-
-            <h3 id="progressPercent" style="margin-top:15px;">0%</h3>
-        </div>
-
-        <div class="result-box">
-            <h3>My Achievement</h3>
-            <p id="achievement">Start learning to earn your first achievement!</p>
-        </div>
-
-    </section>
-
-</div>
-
-<script>
-
-// SHOW SELECTED PAGE
-
-function showPage(pageName) {
-
-    let pages = document.querySelectorAll(".page");
-
-    pages.forEach(function(page) {
-        page.classList.remove("active");
-    });
-
-    document.getElementById(pageName).classList.add("active");
-
-    if (pageName === "progress") {
-        updateProgress();
-    }
-}
-
-// SAVE PROFILE
-
-function saveProfile() {
-
-    let profile = {
-        name: document.getElementById("name").value,
-        education: document.getElementById("education").value,
-        skills: document.getElementById("skills").value,
-        interests: document.getElementById("interests").value,
-        goal: document.getElementById("goal").value
-    };
-
-    localStorage.setItem("profile", JSON.stringify(profile));
-
-    document.getElementById("profileMessage").innerText =
-        "Profile saved successfully!";
-}
-
-// LOAD PROFILE
-
-function loadProfile() {
-
-    let profile = JSON.parse(localStorage.getItem("profile"));
-
-    if (profile) {
-        document.getElementById("name").value = profile.name || "";
-        document.getElementById("education").value = profile.education || "";
-        document.getElementById("skills").value = profile.skills || "";
-        document.getElementById("interests").value = profile.interests || "";
-        document.getElementById("goal").value = profile.goal || "";
-    }
-}
-
-// CAREER DETAILS
-
-function careerDetails(career) {
-
-    let result = "";
-
-    if (career === "Data Analyst") {
-
-        result = `
-            <h2>Data Analyst</h2>
-            <p><b>Required Skills:</b> Excel, SQL, Statistics and Power BI</p>
-            <p><b>Job Opportunities:</b> Data Analyst, Business Analyst and Reporting Analyst</p>
-        `;
-
-    } else if (career === "Software Developer") {
-
-        result = `
-            <h2>Software Developer</h2>
-            <p><b>Required Skills:</b> Python, Java, HTML, CSS and JavaScript</p>
-            <p><b>Job Opportunities:</b> Software Developer, Web Developer and Application Developer</p>
-        `;
-
-    } else {
-
-        result = `
-            <h2>UI/UX Designer</h2>
-            <p><b>Required Skills:</b> Figma, Creativity and Design Principles</p>
-            <p><b>Job Opportunities:</b> UI Designer, UX Designer and Product Designer</p>
-        `;
-    }
-
-    document.getElementById("careerResult").innerHTML = result;
-}
-
-// CHOOSE COURSE AS COMPLETED
-
-function completeCourse(courseName) {
-
-    let completed = JSON.parse(localStorage.getItem("completedCourses")) || [];
-
-    if (!completed.includes(courseName)) {
-        completed.push(courseName);
-    }
-
-    localStorage.setItem("completedCourses", JSON.stringify(completed));
-
-    updateProgress();
-}
-
-// UPDATE PROGRESS
-
-function updateProgress() {
-
-    let completed = JSON.parse(localStorage.getItem("completedCourses")) || [];
-
-    let total = 3;
-    let count = completed.length;
-    let percentage = Math.round((count / total) * 100);
-
-    document.getElementById("progressText").innerText =
-        count + " of " + total + " courses completed";
-
-    document.getElementById("progressFill").style.width =
-        percentage + "%";
-
-    document.getElementById("progressPercent").innerText =
-        percentage + "%";
-
-    if (count === 0) {
-        document.getElementById("achievement").innerText =
-            "Start learning to earn your first achievement!";
-    } else if (count === total) {
-        document.getElementById("achievement").innerText =
-            "Congratulations! All courses completed!";
-    } else {
-        document.getElementById("achievement").innerText =
-            "Good progress! Keep learning.";
-    }
-
-    // Show completed status on course cards
-
-    let courseIds = {
-        "Excel Basics": "Excel-Basics",
-        "Python Programming": "Python-Programming",
-        "UI/UX Fundamentals": "UI-UX-Fundamentals"
-    };
-
-    for (let course in courseIds) {
-        let element = document.getElementById(courseIds[course]);
-
-        if (element) {
-            if (completed.includes(course)) {
-                element.innerText = "Completed!";
-            } else {
-                element.innerText = "Not completed";
+            if (clickedButton) {
+                clickedButton.classList.add("selected");
             }
+
+            if (pageName === "progress") {
+                updateProgress();
+            }
+
         }
-    }
-}
 
-// CHATBOT
+        // SAVE PROFILE
 
-function addMessage(message) {
+        function saveProfile() {
 
-    let messages = document.getElementById("messages");
+            let profile = {
 
-    let newMessage = document.createElement("div");
-    newMessage.className = "chat-message";
-    newMessage.textContent = message;
+                name: document.getElementById("name").value,
 
-    messages.appendChild(newMessage);
-    messages.scrollTop = messages.scrollHeight;
-}
+                education: document.getElementById("education").value,
 
-async function sendMessage() {
+                skills: document.getElementById("skills").value,
 
-    let input = document.getElementById("chatInput");
-    let message = input.value.trim();
+                interests: document.getElementById("interests").value,
 
-    if (message === "") {
-        return;
-    }
+                goal: document.getElementById("goal").value
 
-    addMessage("You: " + message);
-    input.value = "";
+            };
 
-    try {
+            localStorage.setItem(
+                "profile",
+                JSON.stringify(profile)
+            );
 
-        let response = await fetch("/api/chat", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                message: message
-            })
-        });
+            document.getElementById("profileMessage").innerText =
+                "Profile saved successfully!";
 
-        let data = await response.json();
+            let messages = document.getElementById("dashboardMessages");
 
-        addMessage("Assistant: " + data.reply);
+            if (messages) {
+                messages.innerHTML = `
+                    <div class="assistant-message">
+                        Your profile has been saved.
+                        You can now ask questions about your career.
+                    </div>
+                `;
+            }
 
-    } catch (error) {
+        }
 
-        addMessage("Assistant: Sorry, something went wrong. Please try again.");
+        // LOAD PROFILE
 
-    }
-}
+        function loadProfile() {
 
-// LOAD SAVED DETAILS WHEN WEBSITE OPENS
+            let profile = JSON.parse(
+                localStorage.getItem("profile")
+            );
 
-loadProfile();
-updateProgress();
+            if (profile) {
 
-</script>
+                document.getElementById("name").value =
+                    profile.name || "";
+
+                document.getElementById("education").value =
+                    profile.education || "";
+
+                document.getElementById("skills").value =
+                    profile.skills || "";
+
+                document.getElementById("interests").value =
+                    profile.interests || "";
+
+                document.getElementById("goal").value =
+                    profile.goal || "";
+
+            }
+
+        }
+
+        // CAREER DETAILS
+
+        function careerDetails(career) {
+
+            let details = {
+
+                "Data Analyst": {
+
+                    description:
+                    "A Data Analyst collects, cleans and studies information to help organisations make better decisions.",
+
+                    skills:
+                    "Excel, SQL, Statistics, Power BI and Problem Solving",
+
+                    tools:
+                    "Microsoft Excel, SQL, Power BI and Python",
+
+                    responsibilities:
+                    "Clean data, prepare reports, create dashboards and explain findings.",
+
+                    jobs:
+                    "Junior Data Analyst, Business Analyst, Reporting Analyst and BI Analyst",
+
+                    growth:
+                    "Data Analyst → Senior Analyst → Analytics Lead → Data Manager"
+
+                },
+
+                "Software Developer": {
+
+                    description:
+                    "A Software Developer creates and maintains websites, mobile applications and software systems.",
+
+                    skills:
+                    "Python, Java, Programming, Databases and Problem Solving",
+
+                    tools:
+                    "VS Code, Git, GitHub and MySQL",
+
+                    responsibilities:
+                    "Write code, develop applications, test software and fix errors.",
+
+                    jobs:
+                    "Junior Developer, Python Developer, Java Developer and Web Developer",
+
+                    growth:
+                    "Junior Developer → Software Developer → Senior Developer → Tech Lead"
+
+                },
+
+                "UI/UX Designer": {
+
+                    description:
+                    "A UI/UX Designer creates attractive and easy-to-use websites and applications.",
+
+                    skills:
+                    "Creativity, Wireframing, User Research, Prototyping and Communication",
+
+                    tools:
+                    "Figma, Canva and Adobe XD",
+
+                    responsibilities:
+                    "Understand user needs, design screens, create prototypes and test usability.",
+
+                    jobs:
+                    "UI Designer, UX Designer, Product Designer and Interaction Designer",
+
+                    growth:
+                    "Junior Designer → UI/UX Designer → Senior Designer → Design Lead"
+
+                },
+
+                "Digital Marketing Specialist": {
+
+                    description:
+                    "A Digital Marketing Specialist promotes products and services through online platforms.",
+
+                    skills:
+                    "Communication, Content Writing, SEO, Social Media and Analytics",
+
+                    tools:
+                    "Google Analytics, Canva and Google Ads",
+
+                    responsibilities:
+                    "Plan campaigns, create content, study audiences and measure results.",
+
+                    jobs:
+                    "SEO Executive, Social Media Executive, Content Marketer and Marketing Analyst",
+
+                    growth:
+                    "Marketing Executive → Specialist → Marketing Manager → Head of Marketing"
+
+                }
+
+            };
+
+            let item = details[career];
+
+            if (!item) {
+                return;
+            }
+
+            document.getElementById("careerResult").innerHTML = `
+
+                <h2>${career}</h2>
+
+                <p>${item.description}</p>
+
+                <h3>Required Skills</h3>
+
+                <p>${item.skills}</p>
+
+                <h3>Tools to Learn</h3>
+
+                <p>${item.tools}</p>
+
+                <h3>Job Responsibilities</h3>
+
+                <p>${item.responsibilities}</p>
+
+                <h3>Job Opportunities</h3>
+
+                <p>${item.jobs}</p>
+
+                <h3>Career Growth</h3>
+
+                <p>${item.growth}</p>
+
+            `;
+
+        }
+
+        // RECOMMEND CAREERS USING USER PROFILE
+
+        async function loadRecommendedCareers() {
+
+            let profile = JSON.parse(
+                localStorage.getItem("profile")
+            ) || {};
+
+            if (
+                !profile.education &&
+                !profile.skills &&
+                !profile.interests &&
+                !profile.goal
+            ) {
+
+                alert("Please save your profile first!");
+
+                showPage("profile");
+
+                return;
+
+            }
+
+            try {
+
+                let response = await fetch("/api/pathways", {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    body: JSON.stringify(profile)
+
+                });
+
+                let data = await response.json();
+
+                let cards = document.getElementById("careerCards");
+
+                cards.innerHTML = "";
+
+                data.pathways.forEach(function(career) {
+
+                    let card = document.createElement("div");
+
+                    card.className = "card";
+
+                    let heading = document.createElement("h3");
+
+                    heading.textContent = career.name;
+
+                    let description = document.createElement("p");
+
+                    description.textContent = career.description;
+
+                    let skills = document.createElement("p");
+
+                    skills.style.marginTop = "12px";
+
+                    skills.textContent = "Required Skills: " + career.skills;
+
+                    let button = document.createElement("button");
+
+                    button.textContent = "Explore Details";
+
+                    button.onclick = function() {
+
+                        careerDetails(career.name);
+
+                    };
+
+                    card.appendChild(heading);
+
+                    card.appendChild(description);
+
+                    card.appendChild(skills);
+
+                    card.appendChild(button);
+
+                    cards.appendChild(card);
+
+                });
+
+            } catch (error) {
+
+                alert("Unable to load career recommendations. Please try again.");
+
+            }
+
+        }
+
+        // ADD CHAT MESSAGE
+
+        function addDashboardMessage(message) {
+
+            let messages = document.getElementById(
+                "dashboardMessages"
+            );
+
+            let newMessage = document.createElement("div");
+
+            newMessage.className = "assistant-message";
+
+            newMessage.textContent = message;
+
+            messages.appendChild(newMessage);
+
+            messages.scrollTop = messages.scrollHeight;
+
+        }
+
+        // CAREER ASSISTANT
+
+        async function sendDashboardMessage() {
+
+            let input = document.getElementById(
+                "dashboardChatInput"
+            );
+
+            let message = input.value.trim();
+
+            if (message === "") {
+                return;
+            }
+
+            addDashboardMessage("You: " + message);
+
+            input.value = "";
+
+            // Get user profile
+
+            let profile = JSON.parse(
+                localStorage.getItem("profile")
+            ) || {};
+
+            try {
+
+                let response = await fetch("/api/chat", {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    body: JSON.stringify({
+
+                        message: message,
+
+                        profile: profile
+
+                    })
+
+                });
+
+                let data = await response.json();
+
+                addDashboardMessage(
+                    "Career Assistant: " + data.reply
+                );
+
+            } catch (error) {
+
+                addDashboardMessage(
+                    "Career Assistant: Sorry, something went wrong. Please try again."
+                );
+
+            }
+
+        }
+
+        // COMPLETE COURSE
+
+        function completeCourse(courseName) {
+
+            let completed = JSON.parse(
+                localStorage.getItem("completedCourses")
+            ) || [];
+
+            if (!completed.includes(courseName)) {
+
+                completed.push(courseName);
+
+            }
+
+            localStorage.setItem(
+                "completedCourses",
+                JSON.stringify(completed)
+            );
+
+            updateProgress();
+
+        }
+
+        // UPDATE PROGRESS
+
+        function updateProgress() {
+
+            let completed = JSON.parse(
+                localStorage.getItem("completedCourses")
+            ) || [];
+
+            let total = 4;
+
+            let count = completed.length;
+
+            let percentage = Math.round(
+                (count / total) * 100
+            );
+
+            document.getElementById("progressText").innerText =
+                count + " of " + total + " courses completed";
+
+            document.getElementById("progressFill").style.width =
+                percentage + "%";
+
+            document.getElementById("progressPercent").innerText =
+                percentage + "%";
+
+            // ACHIEVEMENTS
+
+            if (count === 0) {
+
+                document.getElementById("achievement").innerText =
+                    "Start learning to earn your first achievement!";
+
+            }
+
+            else if (count === total) {
+
+                document.getElementById("achievement").innerText =
+                    "Congratulations! You completed all courses!";
+
+            }
+
+            else {
+
+                document.getElementById("achievement").innerText =
+                    "Great progress! Keep learning and improving.";
+
+            }
+
+            // SHOW COURSE COMPLETION STATUS
+
+            let courseIds = {
+
+                "Excel Basics": "Excel-Basics",
+
+                "Python Programming": "Python-Programming",
+
+                "UI/UX Fundamentals": "UI-UX-Fundamentals",
+
+                "SQL for Beginners": "SQL-for-Beginners"
+
+            };
+
+            for (let course in courseIds) {
+
+                let element = document.getElementById(
+                    courseIds[course]
+                );
+
+                if (element) {
+
+                    if (completed.includes(course)) {
+
+                        element.innerText = "Completed!";
+
+                    }
+
+                    else {
+
+                        element.innerText = "Not completed";
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        // LOAD SAVED DETAILS WHEN WEBSITE OPENS
+
+        loadProfile();
+
+        updateProgress();
+
+    </script>
 
 </body>
+
 </html>
