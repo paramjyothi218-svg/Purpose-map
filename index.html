@@ -1,698 +1,2855 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PurposeMap - Career Guidance</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
+<title>Career Compass</title>
 
-        body {
-            background: #f4f6fb;
-            color: #222;
-        }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
 
-        /* SIDEBAR */
+<style>
 
-        .sidebar {
-            width: 250px;
-            height: 100vh;
-            background: #18243a;
-            color: white;
-            position: fixed;
-            left: 0;
-            top: 0;
-            padding: 22px;
-            display: flex;
-            flex-direction: column;
-        }
+/* =========================================================
+   GLOBAL
+========================================================= */
 
-        .logo {
-            font-size: 25px;
-            font-weight: bold;
-            margin-bottom: 30px;
-            color: #70e1c1;
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        .menu button {
-            display: block;
-            width: 100%;
-            padding: 13px;
-            margin-bottom: 8px;
-            border: none;
-            border-radius: 7px;
-            background: transparent;
-            color: white;
-            text-align: left;
-            font-size: 15px;
-            cursor: pointer;
-        }
+html{
+    scroll-behavior:smooth;
+}
 
-        .menu button:hover {
-            background: #30425e;
-        }
+body{
+    font-family:'Inter',sans-serif;
+    background:#f5f7fb;
+    color:#172033;
+    min-height:100vh;
+}
 
-        /* CHATBOT */
+button,
+input,
+select,
+textarea{
+    font-family:inherit;
+}
 
-        .chatbox {
-            margin-top: auto;
-            background: #263650;
-            padding: 12px;
-            border-radius: 10px;
-        }
+button{
+    cursor:pointer;
+}
 
-        .chatbox h3 {
-            margin-bottom: 8px;
-            font-size: 16px;
-        }
+/* =========================================================
+   SIDEBAR
+========================================================= */
 
-        #messages {
-            height: 120px;
-            overflow-y: auto;
-            font-size: 12px;
-            margin-bottom: 8px;
-        }
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:245px;
+    height:100vh;
 
-        .chat-message {
-            background: #40536f;
-            padding: 7px;
-            border-radius: 6px;
-            margin-bottom: 6px;
-            overflow-wrap: anywhere;
-        }
+    background:
+        radial-gradient(circle at top left,rgba(89,110,255,.28),transparent 35%),
+        linear-gradient(180deg,#111a3a,#182650 55%,#101936);
 
-        .chatbox input {
-            width: 100%;
-            padding: 9px;
-            border: none;
-            border-radius: 5px;
-            margin-bottom: 7px;
-        }
+    color:white;
+    padding:28px 16px;
+    z-index:1000;
 
-        .chatbox button {
-            width: 100%;
-            padding: 9px;
-            background: #70e1c1;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+    box-shadow:10px 0 35px rgba(20,31,70,.18);
+}
 
-        /* MAIN CONTENT */
+.logo{
+    padding:5px 16px 35px;
+}
 
-        .main {
-            margin-left: 250px;
-            padding: 30px;
-        }
+.logo h1{
+    font-family:'Poppins',sans-serif;
+    font-size:27px;
+    font-weight:800;
+    letter-spacing:-1px;
+}
 
-        .page {
-            display: none;
-        }
+.logo span{
+    color:#8ea2ff;
+}
 
-        .page.active {
-            display: block;
-        }
+.logo small{
+    display:block;
+    margin-top:5px;
+    color:#aeb8d7;
+    font-size:11px;
+    letter-spacing:1px;
+}
 
-        h1 {
-            margin-bottom: 10px;
-            color: #18243a;
-        }
+.nav{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
 
-        .subtitle {
-            color: #666;
-            margin-bottom: 25px;
-        }
+.nav button{
+    border:0;
+    background:transparent;
+    color:#c4cbe0;
+    text-align:left;
 
-        .card-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-            gap: 18px;
-            margin-top: 20px;
-        }
+    padding:13px 15px;
+    border-radius:13px;
 
-        .card {
-            background: white;
-            padding: 22px;
-            border-radius: 12px;
-            box-shadow: 0 3px 12px #0000000d;
-        }
+    display:flex;
+    align-items:center;
+    gap:12px;
 
-        .card h3 {
-            margin-bottom: 12px;
-            color: #263b5e;
-        }
+    font-size:14px;
+    font-weight:600;
 
-        .card p {
-            color: #666;
-            line-height: 1.6;
-        }
+    transition:.25s;
+}
 
-        .card button, .primary-btn {
-            margin-top: 15px;
-            padding: 10px 16px;
-            background: #315fba;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-        }
+.nav button:hover{
+    background:rgba(255,255,255,.09);
+    color:white;
+    transform:translateX(4px);
+}
 
-        /* FORMS */
+.nav button.active{
+    background:linear-gradient(135deg,#6477ff,#4358db);
+    color:white;
+    box-shadow:0 8px 22px rgba(73,91,219,.32);
+}
 
-        .form-box {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            max-width: 600px;
-            margin-top: 20px;
-        }
+.nav-icon{
+    width:25px;
+    font-size:17px;
+    text-align:center;
+}
 
-        .form-box label {
-            display: block;
-            margin-top: 15px;
-            margin-bottom: 6px;
-            font-weight: bold;
-        }
+/* =========================================================
+   MAIN
+========================================================= */
 
-        .form-box input, .form-box textarea {
-            width: 100%;
-            padding: 11px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-        }
+.main{
+    margin-left:245px;
+    min-height:100vh;
+    padding:30px;
+}
 
-        .form-box textarea {
-            min-height: 75px;
-            resize: vertical;
-        }
+.page{
+    display:none;
+    animation:pageIn .45s ease;
+}
 
-        .result-box {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
-            line-height: 1.8;
-        }
+.page.active{
+    display:block;
+}
 
-        .progress-bg {
-            width: 100%;
-            height: 14px;
-            background: #ddd;
-            border-radius: 10px;
-            margin-top: 10px;
-        }
+@keyframes pageIn{
+    from{
+        opacity:0;
+        transform:translateY(12px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
 
-        .progress-fill {
-            width: 0%;
-            height: 14px;
-            background: #26ae83;
-            border-radius: 10px;
-        }
+/* =========================================================
+   PAGE HEADER
+========================================================= */
 
-        /* MOBILE VIEW */
+.page-header{
+    margin-bottom:22px;
+}
 
-        @media (max-width: 700px) {
-            .sidebar {
-                position: relative;
-                width: 100%;
-                height: auto;
-            }
+.page-header h2{
+    font-family:'Poppins',sans-serif;
+    font-size:30px;
+    margin-bottom:5px;
+    color:#151e37;
+}
 
-            .main {
-                margin-left: 0;
-                padding: 18px;
-            }
+.page-header p{
+    color:#727b91;
+}
 
-            .chatbox {
-                margin-top: 20px;
-            }
+/* =========================================================
+   HOME
+========================================================= */
 
-            #messages {
-                height: 80px;
-            }
-        }
-    </style>
+.home-hero{
+    min-height:400px;
+    border-radius:28px;
+    overflow:hidden;
+    position:relative;
+
+    display:flex;
+    align-items:center;
+
+    padding:55px;
+
+    background:
+        linear-gradient(110deg,rgba(15,27,65,.96),rgba(41,61,139,.82)),
+        url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80");
+
+    background-size:cover;
+    background-position:center;
+
+    box-shadow:0 18px 50px rgba(20,32,80,.18);
+}
+
+.home-hero::after{
+    content:"";
+    position:absolute;
+    width:300px;
+    height:300px;
+    right:-100px;
+    top:-100px;
+
+    border-radius:50%;
+    background:rgba(133,151,255,.20);
+    filter:blur(4px);
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+    max-width:700px;
+    color:white;
+}
+
+.hero-badge{
+    display:inline-flex;
+    padding:7px 13px;
+    border-radius:30px;
+
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.2);
+
+    font-size:12px;
+    margin-bottom:18px;
+}
+
+.hero-content h1{
+    font-family:'Poppins',sans-serif;
+    font-size:48px;
+    line-height:1.1;
+    margin-bottom:17px;
+}
+
+.hero-content h1 span{
+    color:#9eafff;
+}
+
+.hero-content p{
+    font-size:16px;
+    line-height:1.8;
+    color:#d9def1;
+    max-width:620px;
+}
+
+.home-info{
+    margin-top:25px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.info-card{
+    background:white;
+    border:1px solid #e7eaf2;
+    border-radius:20px;
+    padding:25px;
+
+    box-shadow:0 10px 30px rgba(28,39,77,.06);
+
+    transition:.3s;
+}
+
+.info-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 18px 35px rgba(28,39,77,.12);
+}
+
+.info-icon{
+    width:45px;
+    height:45px;
+    display:grid;
+    place-items:center;
+
+    border-radius:13px;
+    background:#eef1ff;
+    font-size:21px;
+    margin-bottom:15px;
+}
+
+.info-card h3{
+    font-size:17px;
+    margin-bottom:7px;
+}
+
+.info-card p{
+    color:#727b91;
+    line-height:1.6;
+    font-size:13px;
+}
+
+/* =========================================================
+   COMMON CARDS
+========================================================= */
+
+.card{
+    background:white;
+    border:1px solid #e6e9f1;
+    border-radius:22px;
+    padding:25px;
+
+    box-shadow:0 10px 30px rgba(24,36,75,.05);
+}
+
+.card:hover{
+    box-shadow:0 15px 35px rgba(24,36,75,.09);
+}
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+.profile-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.form-group{
+    margin-bottom:17px;
+}
+
+.form-group label{
+    display:block;
+    font-weight:700;
+    font-size:13px;
+    margin-bottom:7px;
+    color:#3a4359;
+}
+
+.form-control{
+    width:100%;
+    padding:13px 14px;
+
+    border:1px solid #dfe3ed;
+    border-radius:12px;
+
+    outline:none;
+    font-size:14px;
+    background:#fafbfe;
+
+    transition:.2s;
+}
+
+.form-control:focus{
+    border-color:#6075ef;
+    background:white;
+    box-shadow:0 0 0 4px rgba(96,117,239,.10);
+}
+
+textarea.form-control{
+    min-height:110px;
+    resize:vertical;
+}
+
+.primary-btn{
+    border:0;
+    background:linear-gradient(135deg,#566cf0,#374dc7);
+    color:white;
+
+    padding:13px 21px;
+    border-radius:12px;
+
+    font-weight:700;
+    transition:.25s;
+}
+
+.primary-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 20px rgba(63,82,208,.25);
+}
+
+.secondary-btn{
+    border:1px solid #dce1ec;
+    background:white;
+    color:#35405a;
+
+    padding:12px 18px;
+    border-radius:11px;
+    font-weight:700;
+}
+
+/* =========================================================
+   CAREER MATCH
+========================================================= */
+
+.match-intro{
+    background:
+        linear-gradient(135deg,#141f48,#354bb4);
+    color:white;
+
+    border-radius:23px;
+    padding:28px;
+    margin-bottom:20px;
+
+    position:relative;
+    overflow:hidden;
+}
+
+.match-intro::after{
+    content:"";
+    position:absolute;
+    width:230px;
+    height:230px;
+    border-radius:50%;
+    background:rgba(255,255,255,.07);
+    right:-70px;
+    top:-90px;
+}
+
+.match-intro h3{
+    font-family:'Poppins',sans-serif;
+    font-size:23px;
+    margin-bottom:7px;
+}
+
+.match-intro p{
+    color:#d8ddf4;
+    font-size:14px;
+}
+
+.match-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+.match-card{
+    background:white;
+    border:1px solid #e4e7f0;
+    border-radius:20px;
+    padding:22px;
+    transition:.3s;
+}
+
+.match-card:hover{
+    transform:translateY(-5px);
+}
+
+.match-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:13px;
+}
+
+.match-top h3{
+    font-size:18px;
+}
+
+.score{
+    font-size:20px;
+    font-weight:800;
+    color:#5066e6;
+}
+
+.progress-bar{
+    height:9px;
+    border-radius:20px;
+    background:#edf0f6;
+    overflow:hidden;
+    margin:10px 0;
+}
+
+.progress-fill{
+    height:100%;
+    background:linear-gradient(90deg,#566cf0,#8b9bff);
+    border-radius:20px;
+}
+
+.match-card p{
+    color:#737c90;
+    font-size:13px;
+    line-height:1.6;
+}
+
+/* =========================================================
+   ACADEMIC CAREER MAP
+========================================================= */
+
+.academic-selector{
+    display:flex;
+    gap:12px;
+    margin-bottom:22px;
+    flex-wrap:wrap;
+}
+
+.academic-selector select{
+    min-width:300px;
+}
+
+.academic-result{
+    display:none;
+}
+
+.academic-result.show{
+    display:block;
+    animation:pageIn .4s ease;
+}
+
+.academic-hero{
+    background:
+        linear-gradient(120deg,rgba(18,31,72,.94),rgba(65,82,185,.86)),
+        url("https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1400&q=80");
+
+    background-size:cover;
+    background-position:center;
+
+    color:white;
+    border-radius:24px;
+    padding:30px;
+    margin-bottom:20px;
+}
+
+.academic-hero h3{
+    font-family:'Poppins',sans-serif;
+    font-size:26px;
+    margin-bottom:7px;
+}
+
+.academic-hero p{
+    color:#dce2f7;
+}
+
+.career-options{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+}
+
+.career-option{
+    background:white;
+    border:1px solid #e5e8f0;
+    border-radius:18px;
+    padding:21px;
+
+    transition:.3s;
+}
+
+.career-option:hover{
+    transform:translateY(-6px);
+    border-color:#8290e9;
+    box-shadow:0 14px 30px rgba(38,53,120,.10);
+}
+
+.career-option .career-icon{
+    font-size:27px;
+    margin-bottom:10px;
+}
+
+.career-option h4{
+    margin-bottom:7px;
+}
+
+.career-option p{
+    font-size:13px;
+    color:#737b90;
+    line-height:1.6;
+}
+
+/* =========================================================
+   COURSES
+========================================================= */
+
+.course-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.course-card{
+    background:white;
+    border-radius:20px;
+    border:1px solid #e5e8f0;
+    overflow:hidden;
+
+    transition:.3s;
+}
+
+.course-card:hover{
+    transform:translateY(-7px);
+    box-shadow:0 16px 35px rgba(26,39,84,.12);
+}
+
+.course-image{
+    height:145px;
+    background-size:cover;
+    background-position:center;
+}
+
+.course-content{
+    padding:20px;
+}
+
+.course-content h3{
+    margin-bottom:8px;
+}
+
+.course-content p{
+    color:#737c90;
+    font-size:13px;
+    line-height:1.6;
+    margin-bottom:15px;
+}
+
+.course-actions{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+}
+
+.learn-btn{
+    display:inline-block;
+    text-decoration:none;
+    background:#edf0ff;
+    color:#4258d2;
+    padding:10px 13px;
+    border-radius:9px;
+    font-size:12px;
+    font-weight:700;
+}
+
+.complete-btn{
+    border:0;
+    background:#f0f2f7;
+    color:#4b5365;
+    padding:10px 13px;
+    border-radius:9px;
+    font-size:12px;
+    font-weight:700;
+}
+
+.complete-btn.completed{
+    background:#dff7eb;
+    color:#168451;
+}
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+.progress-dashboard{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+    margin-bottom:22px;
+}
+
+.stat-card{
+    background:white;
+    border:1px solid #e5e8f0;
+    border-radius:20px;
+    padding:25px;
+}
+
+.stat-number{
+    font-size:34px;
+    font-weight:800;
+    color:#4358d3;
+    margin-bottom:5px;
+}
+
+.stat-label{
+    color:#7a8294;
+    font-size:13px;
+}
+
+.progress-big{
+    background:white;
+    border-radius:23px;
+    border:1px solid #e5e8f0;
+    padding:28px;
+}
+
+.big-progress{
+    height:17px;
+    background:#edf0f6;
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:17px;
+}
+
+.big-progress-fill{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg,#5269ed,#8292ff);
+    transition:1s;
+}
+
+/* =========================================================
+   ROUTE MAP
+========================================================= */
+
+.route-intro{
+    background:linear-gradient(135deg,#151f47,#3349ad);
+    color:white;
+
+    border-radius:23px;
+    padding:28px;
+    margin-bottom:22px;
+}
+
+.route-intro h3{
+    font-family:'Poppins',sans-serif;
+    font-size:23px;
+    margin-bottom:7px;
+}
+
+.route-intro p{
+    color:#dce1f5;
+}
+
+.route-map{
+    background:white;
+    border:1px solid #e5e8f0;
+    border-radius:24px;
+    padding:35px 25px;
+    overflow-x:auto;
+}
+
+.route-line{
+    min-width:900px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.route-node{
+    min-width:125px;
+    text-align:center;
+    position:relative;
+}
+
+.route-circle{
+    width:65px;
+    height:65px;
+    margin:auto;
+
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+
+    background:linear-gradient(135deg,#5369ec,#344bc5);
+    color:white;
+
+    font-size:23px;
+
+    box-shadow:0 10px 25px rgba(55,74,195,.25);
+}
+
+.route-node h4{
+    margin-top:12px;
+    font-size:13px;
+}
+
+.route-node p{
+    margin-top:4px;
+    color:#858da0;
+    font-size:11px;
+}
+
+.route-connector{
+    width:70px;
+    height:3px;
+    background:linear-gradient(90deg,#5369ec,#9ca9ed);
+    position:relative;
+}
+
+.route-connector::after{
+    content:"";
+    position:absolute;
+    right:-1px;
+    top:-4px;
+
+    border-left:9px solid #7485e9;
+    border-top:5px solid transparent;
+    border-bottom:5px solid transparent;
+}
+
+/* =========================================================
+   CHAT
+========================================================= */
+
+.chat-button{
+    position:fixed;
+    right:25px;
+    bottom:25px;
+
+    width:58px;
+    height:58px;
+
+    border:0;
+    border-radius:50%;
+
+    background:linear-gradient(135deg,#566cf0,#354bc7);
+    color:white;
+
+    font-size:23px;
+
+    box-shadow:0 12px 30px rgba(49,66,184,.35);
+
+    z-index:1200;
+
+    animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-7px);
+    }
+}
+
+.chat-box{
+    position:fixed;
+    right:25px;
+    bottom:95px;
+
+    width:350px;
+    height:480px;
+
+    background:white;
+    border-radius:22px;
+
+    box-shadow:0 20px 55px rgba(17,27,65,.25);
+
+    border:1px solid #e3e6ef;
+
+    display:none;
+    flex-direction:column;
+
+    z-index:1199;
+
+    overflow:hidden;
+}
+
+.chat-box.open{
+    display:flex;
+    animation:chatIn .3s ease;
+}
+
+@keyframes chatIn{
+    from{
+        opacity:0;
+        transform:translateY(15px) scale(.97);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+.chat-header{
+    background:linear-gradient(135deg,#151f47,#4d62df);
+    color:white;
+    padding:17px;
+}
+
+.chat-header h3{
+    font-size:16px;
+}
+
+.chat-header p{
+    font-size:11px;
+    color:#dce2fa;
+    margin-top:4px;
+}
+
+.chat-messages{
+    flex:1;
+    padding:15px;
+    overflow-y:auto;
+    background:#f8f9fc;
+}
+
+.message{
+    background:white;
+    border:1px solid #e6e8ef;
+    border-radius:12px;
+    padding:10px;
+    margin-bottom:9px;
+    font-size:12px;
+    line-height:1.5;
+}
+
+.message.user{
+    background:#edf0ff;
+    border-color:#dce2ff;
+}
+
+.chat-input{
+    display:flex;
+    padding:11px;
+    border-top:1px solid #e6e8ef;
+    gap:7px;
+}
+
+.chat-input input{
+    flex:1;
+    border:1px solid #dfe3ec;
+    border-radius:10px;
+    padding:11px;
+    outline:none;
+}
+
+.chat-input button{
+    width:45px;
+    border:0;
+    border-radius:10px;
+    background:#5066df;
+    color:white;
+}
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast{
+    position:fixed;
+    left:50%;
+    bottom:25px;
+
+    transform:translate(-50%,100px);
+
+    background:#172143;
+    color:white;
+
+    padding:12px 20px;
+    border-radius:12px;
+
+    font-size:13px;
+
+    opacity:0;
+    transition:.3s;
+
+    z-index:2000;
+}
+
+.toast.show{
+    opacity:1;
+    transform:translate(-50%,0);
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1000px){
+
+    .sidebar{
+        width:210px;
+    }
+
+    .main{
+        margin-left:210px;
+    }
+
+    .career-options,
+    .course-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .home-info{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:760px){
+
+    .sidebar{
+        position:relative;
+        width:100%;
+        height:auto;
+        padding:15px;
+    }
+
+    .logo{
+        padding:5px 10px 15px;
+    }
+
+    .nav{
+        display:grid;
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .main{
+        margin-left:0;
+        padding:18px;
+    }
+
+    .hero-content h1{
+        font-size:35px;
+    }
+
+    .home-hero{
+        padding:35px 25px;
+    }
+
+    .profile-grid,
+    .match-grid,
+    .career-options,
+    .course-grid,
+    .progress-dashboard{
+        grid-template-columns:1fr;
+    }
+
+    .chat-box{
+        right:12px;
+        left:12px;
+        width:auto;
+    }
+
+    .chat-button{
+        right:15px;
+        bottom:15px;
+    }
+
+}
+
+</style>
 </head>
 
 <body>
 
-<!-- SIDEBAR -->
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
 
-<div class="sidebar">
+<aside class="sidebar">
 
-    <div class="logo">PurposeMap</div>
-
-    <div class="menu">
-        <button onclick="showPage('dashboard')">Dashboard</button>
-        <button onclick="showPage('profile')">My Profile</button>
-        <button onclick="showPage('careers')">Career Pathways</button>
-        <button onclick="showPage('courses')">Courses</button>
-        <button onclick="showPage('roadmap')">My Roadmap</button>
-        <button onclick="showPage('progress')">My Progress</button>
+    <div class="logo">
+        <h1>Career <span>Compass</span></h1>
+        <small>YOUR FUTURE. YOUR DIRECTION.</small>
     </div>
 
-    <!-- CHATBOT AT BOTTOM -->
+    <nav class="nav">
 
-    <div class="chatbox">
-        <h3>Career Assistant</h3>
+        <button class="active" onclick="showPage('home',this)">
+            <span class="nav-icon">🏠</span>
+            Home
+        </button>
 
-        <div id="messages">
-            <div class="chat-message">
-                Hello! Ask me about careers and skills.
+        <button onclick="showPage('profile',this)">
+            <span class="nav-icon">👤</span>
+            My Profile
+        </button>
+
+        <button onclick="showPage('match',this)">
+            <span class="nav-icon">🎯</span>
+            My Career Match
+        </button>
+
+        <button onclick="showPage('academic',this)">
+            <span class="nav-icon">🎓</span>
+            Academic Career Map
+        </button>
+
+        <button onclick="showPage('courses',this)">
+            <span class="nav-icon">📚</span>
+            Courses
+        </button>
+
+        <button onclick="showPage('progress',this)">
+            <span class="nav-icon">📈</span>
+            My Progress
+        </button>
+
+        <button onclick="showPage('route',this)">
+            <span class="nav-icon">🗺️</span>
+            Career Route Map
+        </button>
+
+    </nav>
+
+</aside>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="main">
+
+
+<!-- =====================================================
+     HOME
+===================================================== -->
+
+<section id="home" class="page active">
+
+    <div class="page-header">
+        <h2>Home</h2>
+        <p>Your starting point for smarter career decisions.</p>
+    </div>
+
+    <div class="home-hero">
+
+        <div class="hero-content">
+
+            <div class="hero-badge">
+                ✨ Personalized Career Guidance Platform
             </div>
+
+            <h1>
+                Find Your Direction with
+                <span>Career Compass</span>
+            </h1>
+
+            <p>
+                Career Compass helps students explore career options,
+                understand suitable career paths, discover useful courses,
+                and build a clear roadmap from education to employment.
+            </p>
+
         </div>
 
-        <input type="text" id="chatInput"
-               placeholder="Ask a question..."
-               onkeydown="if(event.key === 'Enter') sendMessage()">
+    </div>
 
-        <button onclick="sendMessage()">Send</button>
+
+    <div class="home-info">
+
+        <div class="info-card">
+
+            <div class="info-icon">🎯</div>
+
+            <h3>Why Career Compass?</h3>
+
+            <p>
+                It helps students understand which careers can match
+                their education, skills, interests and goals.
+            </p>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <div class="info-icon">🧭</div>
+
+            <h3>Explore Your Direction</h3>
+
+            <p>
+                Explore career possibilities based on your academic
+                background or your personal strengths.
+            </p>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <div class="info-icon">🚀</div>
+
+            <h3>Build Your Future</h3>
+
+            <p>
+                Follow a step-by-step route from learning skills
+                to projects and career opportunities.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     PROFILE
+===================================================== -->
+
+<section id="profile" class="page">
+
+    <div class="page-header">
+        <h2>My Profile</h2>
+        <p>Tell Career Compass about yourself.</p>
+    </div>
+
+    <div class="card">
+
+        <div class="profile-grid">
+
+            <div>
+
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input id="profileName"
+                           class="form-control"
+                           placeholder="Enter your name">
+                </div>
+
+                <div class="form-group">
+                    <label>Education / Branch</label>
+
+                    <select id="profileEducation" class="form-control">
+
+                        <option value="">Select your course</option>
+
+                        <option>CSE</option>
+                        <option>IT</option>
+                        <option>ECE</option>
+                        <option>EEE</option>
+                        <option>Mechanical</option>
+                        <option>Civil</option>
+                        <option>Architecture</option>
+                        <option>B.Com</option>
+                        <option>BBA</option>
+                        <option>BCA</option>
+                        <option>BA</option>
+                        <option>B.Sc</option>
+                        <option>MCA</option>
+                        <option>MBA</option>
+                        <option>Other</option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+                    <label>Career Goal</label>
+
+                    <input id="profileGoal"
+                           class="form-control"
+                           placeholder="Example: Data Analyst">
+                </div>
+
+            </div>
+
+
+            <div>
+
+                <div class="form-group">
+
+                    <label>Skills</label>
+
+                    <textarea id="profileSkills"
+                              class="form-control"
+                              placeholder="Example: Python, Excel, SQL, Communication"></textarea>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Interests</label>
+
+                    <textarea id="profileInterests"
+                              class="form-control"
+                              placeholder="Example: Data, Technology, Design, Business"></textarea>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <button class="primary-btn" onclick="saveProfile()">
+            💾 Save My Profile
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     PERSONAL CAREER MATCH
+===================================================== -->
+
+<section id="match" class="page">
+
+    <div class="page-header">
+        <h2>My Career Match</h2>
+        <p>Find careers that match your profile.</p>
+    </div>
+
+    <div class="match-intro">
+
+        <h3>🎯 Personal Career Match</h3>
+
+        <p>
+            Your education, skills, interests and career goal are
+            considered to find suitable career options.
+        </p>
+
+        <br>
+
+        <button class="primary-btn"
+                style="background:white;color:#3f54cb;"
+                onclick="recommendCareers()">
+            Find My Career Matches
+        </button>
+
+    </div>
+
+    <div id="matchResults" class="match-grid"></div>
+
+</section>
+
+
+<!-- =====================================================
+     ACADEMIC CAREER MAP
+===================================================== -->
+
+<section id="academic" class="page">
+
+    <div class="page-header">
+        <h2>Academic Career Map</h2>
+        <p>
+            Explore careers based on your course or academic background.
+        </p>
+    </div>
+
+
+    <div class="card">
+
+        <div class="academic-selector">
+
+            <select id="academicSelect"
+                    class="form-control">
+
+                <option value="">Select your academic background</option>
+
+                <option value="CSE">CSE</option>
+                <option value="IT">IT</option>
+                <option value="ECE">ECE</option>
+                <option value="EEE">EEE</option>
+                <option value="Mechanical">Mechanical</option>
+                <option value="Civil">Civil</option>
+                <option value="Architecture">Architecture</option>
+                <option value="B.Com">B.Com</option>
+                <option value="BBA">BBA</option>
+                <option value="BCA">BCA / Computers</option>
+                <option value="BA">BA</option>
+                <option value="B.Sc">B.Sc</option>
+                <option value="MCA">MCA</option>
+                <option value="MBA">MBA</option>
+
+            </select>
+
+            <button class="primary-btn"
+                    onclick="showAcademicCareers()">
+                Explore Careers
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div id="academicResult" class="academic-result"></div>
+
+</section>
+
+
+<!-- =====================================================
+     COURSES
+===================================================== -->
+
+<section id="courses" class="page">
+
+    <div class="page-header">
+        <h2>Courses</h2>
+        <p>Learn important skills using freely available online resources.</p>
+    </div>
+
+    <div id="courseGrid" class="course-grid"></div>
+
+</section>
+
+
+<!-- =====================================================
+     PROGRESS
+===================================================== -->
+
+<section id="progress" class="page">
+
+    <div class="page-header">
+        <h2>My Progress</h2>
+        <p>Track your learning journey.</p>
+    </div>
+
+
+    <div class="progress-dashboard">
+
+        <div class="stat-card">
+
+            <div id="completedCount"
+                 class="stat-number">
+                0
+            </div>
+
+            <div class="stat-label">
+                Courses Completed
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div id="progressPercent"
+                 class="stat-number">
+                0%
+            </div>
+
+            <div class="stat-label">
+                Learning Progress
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-number">
+                14+
+            </div>
+
+            <div class="stat-label">
+                Academic Backgrounds
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="progress-big">
+
+        <h3>Learning Progress</h3>
+
+        <p style="color:#7a8294;margin-top:6px;">
+            Complete courses to increase your progress.
+        </p>
+
+        <div class="big-progress">
+
+            <div id="bigProgressFill"
+                 class="big-progress-fill">
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CAREER ROUTE MAP
+===================================================== -->
+
+<section id="route" class="page">
+
+    <div class="page-header">
+        <h2>Career Route Map</h2>
+        <p>Understand the journey from education to your career.</p>
+    </div>
+
+
+    <div class="route-intro">
+
+        <h3>🗺️ Your Career Journey</h3>
+
+        <p>
+            Career development becomes easier when you can see
+            the steps clearly.
+        </p>
+
+    </div>
+
+
+    <div class="route-map">
+
+        <div class="route-line">
+
+            <div class="route-node">
+
+                <div class="route-circle">🎓</div>
+
+                <h4>Education</h4>
+
+                <p>Your Degree</p>
+
+            </div>
+
+
+            <div class="route-connector"></div>
+
+
+            <div class="route-node">
+
+                <div class="route-circle">🔎</div>
+
+                <h4>Explore</h4>
+
+                <p>Career Options</p>
+
+            </div>
+
+
+            <div class="route-connector"></div>
+
+
+            <div class="route-node">
+
+                <div class="route-circle">🧠</div>
+
+                <h4>Skills</h4>
+
+                <p>Build Skills</p>
+
+            </div>
+
+
+            <div class="route-connector"></div>
+
+
+            <div class="route-node">
+
+                <div class="route-circle">📚</div>
+
+                <h4>Learn</h4>
+
+                <p>Courses</p>
+
+            </div>
+
+
+            <div class="route-connector"></div>
+
+
+            <div class="route-node">
+
+                <div class="route-circle">💻</div>
+
+                <h4>Projects</h4>
+
+                <p>Gain Experience</p>
+
+            </div>
+
+
+            <div class="route-connector"></div>
+
+
+            <div class="route-node">
+
+                <div class="route-circle">🚀</div>
+
+                <h4>Career</h4>
+
+                <p>Get Job Ready</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- =====================================================
+     CHAT BUTTON
+===================================================== -->
+
+<button class="chat-button"
+        onclick="toggleChat()">
+    💬
+</button>
+
+
+<!-- =====================================================
+     CHAT BOX
+===================================================== -->
+
+<div id="chatBox" class="chat-box">
+
+    <div class="chat-header">
+
+        <h3>🤖 Career Assistant</h3>
+
+        <p>
+            Ask me about careers, skills or courses.
+        </p>
+
+    </div>
+
+
+    <div id="chatMessages"
+         class="chat-messages">
+
+        <div class="message">
+            Hello! 👋 I am your Career Assistant.
+            Ask me anything about your career.
+        </div>
+
+    </div>
+
+
+    <div class="chat-input">
+
+        <input id="globalChatInput"
+               placeholder="Ask something..."
+               onkeydown="if(event.key==='Enter') sendGlobalMessage()">
+
+        <button onclick="sendGlobalMessage()">
+            ➤
+        </button>
+
     </div>
 
 </div>
 
-<!-- MAIN CONTENT -->
 
-<div class="main">
+<!-- =====================================================
+     TOAST
+===================================================== -->
 
-    <!-- DASHBOARD -->
-
-    <section id="dashboard" class="page active">
-
-        <h1>Welcome to PurposeMap!</h1>
-
-        <p class="subtitle">
-            Discover your interests, explore careers and build your future.
-        </p>
-
-        <div class="card-container">
-
-            <div class="card">
-                <h3>My Profile</h3>
-                <p>Add your education, skills and interests.</p>
-                <button onclick="showPage('profile')">Create Profile</button>
-            </div>
-
-            <div class="card">
-                <h3>Career Pathways</h3>
-                <p>Explore different career opportunities.</p>
-                <button onclick="showPage('careers')">Explore Careers</button>
-            </div>
-
-            <div class="card">
-                <h3>Available Courses</h3>
-                <p>Learn new skills through courses.</p>
-                <button onclick="showPage('courses')">View Courses</button>
-            </div>
-
-            <div class="card">
-                <h3>My Progress</h3>
-                <p>Check your learning progress and achievements.</p>
-                <button onclick="showPage('progress')">View Progress</button>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- PROFILE -->
-
-    <section id="profile" class="page">
-
-        <h1>My Profile</h1>
-        <p class="subtitle">Enter your personal learning details.</p>
-
-        <div class="form-box">
-
-            <label>Name</label>
-            <input type="text" id="name" placeholder="Enter your name">
-
-            <label>Education</label>
-            <input type="text" id="education" placeholder="Example: B.Tech">
-
-            <label>Skills</label>
-            <textarea id="skills" placeholder="Example: Excel, Python, Communication"></textarea>
-
-            <label>Interests</label>
-            <textarea id="interests" placeholder="Example: Technology, Business, Design"></textarea>
-
-            <label>Career Goal</label>
-            <input type="text" id="goal" placeholder="Example: Data Analyst">
-
-            <button class="primary-btn" onclick="saveProfile()">Save Profile</button>
-
-            <p id="profileMessage"></p>
-
-        </div>
-    </section>
-
-    <!-- CAREER PATHWAYS -->
-
-    <section id="careers" class="page">
-
-        <h1>Career Pathways</h1>
-
-        <p class="subtitle">
-            Select a career to understand its required skills.
-        </p>
-
-        <div class="card-container">
-
-            <div class="card">
-                <h3>Data Analyst</h3>
-                <p>Work with data and create useful reports.</p>
-                <button onclick="careerDetails('Data Analyst')">Explore</button>
-            </div>
-
-            <div class="card">
-                <h3>Software Developer</h3>
-                <p>Build websites, applications and software.</p>
-                <button onclick="careerDetails('Software Developer')">Explore</button>
-            </div>
-
-            <div class="card">
-                <h3>UI/UX Designer</h3>
-                <p>Design user-friendly websites and applications.</p>
-                <button onclick="careerDetails('UI/UX Designer')">Explore</button>
-            </div>
-
-        </div>
-
-        <div id="careerResult" class="result-box">
-            Select a career to see its details.
-        </div>
-
-    </section>
-
-    <!-- COURSES -->
-
-    <section id="courses" class="page">
-
-        <h1>Courses</h1>
-        <p class="subtitle">Learn skills for your career.</p>
-
-        <div class="card-container">
-
-            <div class="card">
-                <h3>Excel Basics</h3>
-                <p>Learn spreadsheets, formulas and data handling.</p>
-                <button onclick="completeCourse('Excel Basics')">Mark as Completed</button>
-                <p id="Excel-Basics">Not completed</p>
-            </div>
-
-            <div class="card">
-                <h3>Python Programming</h3>
-                <p>Learn programming basics and problem solving.</p>
-                <button onclick="completeCourse('Python Programming')">Mark as Completed</button>
-                <p id="Python-Programming">Not completed</p>
-            </div>
-
-            <div class="card">
-                <h3>UI/UX Fundamentals</h3>
-                <p>Learn design principles and user experience.</p>
-                <button onclick="completeCourse('UI/UX Fundamentals')">Mark as Completed</button>
-                <p id="UI-UX-Fundamentals">Not completed</p>
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- ROADMAP -->
-
-    <section id="roadmap" class="page">
-
-        <h1>My Roadmap</h1>
-
-        <p class="subtitle">
-            Follow these simple steps to move towards your career goal.
-        </p>
-
-        <div class="result-box">
-            <h3>Step 1: Understand your interests</h3>
-            <p>Identify the subjects and activities you enjoy.</p>
-            <br>
-
-            <h3>Step 2: Choose a career</h3>
-            <p>Explore career options and select one goal.</p>
-            <br>
-
-            <h3>Step 3: Learn required skills</h3>
-            <p>Complete courses related to your career.</p>
-            <br>
-
-            <h3>Step 4: Build projects</h3>
-            <p>Apply your knowledge through practical projects.</p>
-            <br>
-
-            <h3>Step 5: Prepare for jobs</h3>
-            <p>Build your resume and practice interviews.</p>
-        </div>
-
-    </section>
-
-    <!-- PROGRESS -->
-
-    <section id="progress" class="page">
-
-        <h1>My Progress</h1>
-
-        <p class="subtitle">
-            Track your completed courses.
-        </p>
-
-        <div class="card">
-            <h3>Course Completion</h3>
-
-            <p id="progressText">0 of 3 courses completed</p>
-
-            <div class="progress-bg">
-                <div class="progress-fill" id="progressFill"></div>
-            </div>
-
-            <h3 id="progressPercent" style="margin-top:15px;">0%</h3>
-        </div>
-
-        <div class="result-box">
-            <h3>My Achievement</h3>
-            <p id="achievement">Start learning to earn your first achievement!</p>
-        </div>
-
-    </section>
-
+<div id="toast" class="toast">
+    Saved successfully!
 </div>
+
 
 <script>
 
-// SHOW SELECTED PAGE
+/* =========================================================
+   PAGE NAVIGATION
+========================================================= */
 
-function showPage(pageName) {
+function showPage(pageName, clickedButton){
 
-    let pages = document.querySelectorAll(".page");
-
-    pages.forEach(function(page) {
+    document.querySelectorAll(".page").forEach(function(page){
         page.classList.remove("active");
     });
 
-    document.getElementById(pageName).classList.add("active");
+    const target = document.getElementById(pageName);
 
-    if (pageName === "progress") {
+    if(target){
+        target.classList.add("active");
+    }
+
+    document.querySelectorAll(".nav button").forEach(function(button){
+        button.classList.remove("active");
+    });
+
+    if(clickedButton){
+        clickedButton.classList.add("active");
+    }
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+    if(pageName === "courses"){
+        renderCourses();
+    }
+
+    if(pageName === "progress"){
         updateProgress();
     }
 }
 
-// SAVE PROFILE
 
-function saveProfile() {
+/* =========================================================
+   PROFILE
+========================================================= */
 
-    let profile = {
-        name: document.getElementById("name").value,
-        education: document.getElementById("education").value,
-        skills: document.getElementById("skills").value,
-        interests: document.getElementById("interests").value,
-        goal: document.getElementById("goal").value
+function saveProfile(){
+
+    const profile = {
+
+        name:document.getElementById("profileName").value,
+
+        education:document.getElementById("profileEducation").value,
+
+        skills:document.getElementById("profileSkills").value,
+
+        interests:document.getElementById("profileInterests").value,
+
+        goal:document.getElementById("profileGoal").value
+
     };
 
-    localStorage.setItem("profile", JSON.stringify(profile));
+    localStorage.setItem(
+        "profile",
+        JSON.stringify(profile)
+    );
 
-    document.getElementById("profileMessage").innerText =
-        "Profile saved successfully!";
+    showToast("Profile saved successfully!");
+
 }
 
-// LOAD PROFILE
 
-function loadProfile() {
+/* =========================================================
+   LOAD PROFILE
+========================================================= */
 
-    let profile = JSON.parse(localStorage.getItem("profile"));
+function loadProfile(){
 
-    if (profile) {
-        document.getElementById("name").value = profile.name || "";
-        document.getElementById("education").value = profile.education || "";
-        document.getElementById("skills").value = profile.skills || "";
-        document.getElementById("interests").value = profile.interests || "";
-        document.getElementById("goal").value = profile.goal || "";
-    }
+    const saved =
+        JSON.parse(localStorage.getItem("profile")) || {};
+
+    document.getElementById("profileName").value =
+        saved.name || "";
+
+    document.getElementById("profileEducation").value =
+        saved.education || "";
+
+    document.getElementById("profileSkills").value =
+        saved.skills || "";
+
+    document.getElementById("profileInterests").value =
+        saved.interests || "";
+
+    document.getElementById("profileGoal").value =
+        saved.goal || "";
 }
 
-// CAREER DETAILS
 
-function careerDetails(career) {
+/* =========================================================
+   PERSONAL CAREER MATCH
+========================================================= */
 
-    let result = "";
+async function recommendCareers(){
 
-    if (career === "Data Analyst") {
+    const profile =
+        JSON.parse(localStorage.getItem("profile")) || {};
 
-        result = `
-            <h2>Data Analyst</h2>
-            <p><b>Required Skills:</b> Excel, SQL, Statistics and Power BI</p>
-            <p><b>Job Opportunities:</b> Data Analyst, Business Analyst and Reporting Analyst</p>
-        `;
+    if(!profile.education &&
+       !profile.skills &&
+       !profile.interests &&
+       !profile.goal){
 
-    } else if (career === "Software Developer") {
+        showToast("Please complete your profile first.");
 
-        result = `
-            <h2>Software Developer</h2>
-            <p><b>Required Skills:</b> Python, Java, HTML, CSS and JavaScript</p>
-            <p><b>Job Opportunities:</b> Software Developer, Web Developer and Application Developer</p>
-        `;
+        showPage(
+            "profile",
+            document.querySelectorAll(".nav button")[1]
+        );
 
-    } else {
-
-        result = `
-            <h2>UI/UX Designer</h2>
-            <p><b>Required Skills:</b> Figma, Creativity and Design Principles</p>
-            <p><b>Job Opportunities:</b> UI Designer, UX Designer and Product Designer</p>
-        `;
-    }
-
-    document.getElementById("careerResult").innerHTML = result;
-}
-
-// CHOOSE COURSE AS COMPLETED
-
-function completeCourse(courseName) {
-
-    let completed = JSON.parse(localStorage.getItem("completedCourses")) || [];
-
-    if (!completed.includes(courseName)) {
-        completed.push(courseName);
-    }
-
-    localStorage.setItem("completedCourses", JSON.stringify(completed));
-
-    updateProgress();
-}
-
-// UPDATE PROGRESS
-
-function updateProgress() {
-
-    let completed = JSON.parse(localStorage.getItem("completedCourses")) || [];
-
-    let total = 3;
-    let count = completed.length;
-    let percentage = Math.round((count / total) * 100);
-
-    document.getElementById("progressText").innerText =
-        count + " of " + total + " courses completed";
-
-    document.getElementById("progressFill").style.width =
-        percentage + "%";
-
-    document.getElementById("progressPercent").innerText =
-        percentage + "%";
-
-    if (count === 0) {
-        document.getElementById("achievement").innerText =
-            "Start learning to earn your first achievement!";
-    } else if (count === total) {
-        document.getElementById("achievement").innerText =
-            "Congratulations! All courses completed!";
-    } else {
-        document.getElementById("achievement").innerText =
-            "Good progress! Keep learning.";
-    }
-
-    // Show completed status on course cards
-
-    let courseIds = {
-        "Excel Basics": "Excel-Basics",
-        "Python Programming": "Python-Programming",
-        "UI/UX Fundamentals": "UI-UX-Fundamentals"
-    };
-
-    for (let course in courseIds) {
-        let element = document.getElementById(courseIds[course]);
-
-        if (element) {
-            if (completed.includes(course)) {
-                element.innerText = "Completed!";
-            } else {
-                element.innerText = "Not completed";
-            }
-        }
-    }
-}
-
-// CHATBOT
-
-function addMessage(message) {
-
-    let messages = document.getElementById("messages");
-
-    let newMessage = document.createElement("div");
-    newMessage.className = "chat-message";
-    newMessage.textContent = message;
-
-    messages.appendChild(newMessage);
-    messages.scrollTop = messages.scrollHeight;
-}
-
-async function sendMessage() {
-
-    let input = document.getElementById("chatInput");
-    let message = input.value.trim();
-
-    if (message === "") {
         return;
     }
 
-    addMessage("You: " + message);
-    input.value = "";
 
-    try {
+    const results =
+        document.getElementById("matchResults");
 
-        let response = await fetch("/api/chat", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
+    results.innerHTML =
+        `<div class="card">
+            🔄 Finding your career matches...
+        </div>`;
+
+
+    try{
+
+        const response = await fetch("/api/pathways",{
+
+            method:"POST",
+
+            headers:{
+                "Content-Type":"application/json"
             },
-            body: JSON.stringify({
-                message: message
-            })
+
+            body:JSON.stringify(profile)
+
         });
 
-        let data = await response.json();
 
-        addMessage("Assistant: " + data.reply);
+        if(!response.ok){
+            throw new Error("API error");
+        }
 
-    } catch (error) {
 
-        addMessage("Assistant: Sorry, something went wrong. Please try again.");
+        const data = await response.json();
+
+        displayMatches(
+            data
+        );
+
+
+    }catch(error){
+
+        /*
+           Fallback matching is used if the backend
+           endpoint is not available.
+        */
+
+        const fallback =
+            calculateLocalMatches(profile);
+
+        displayMatches(fallback);
 
     }
+
 }
 
-// LOAD SAVED DETAILS WHEN WEBSITE OPENS
 
-loadProfile();
-updateProgress();
+/* =========================================================
+   LOCAL MATCHING FALLBACK
+========================================================= */
+
+function calculateLocalMatches(profile){
+
+    const text = (
+
+        (profile.education || "") + " " +
+        (profile.skills || "") + " " +
+        (profile.interests || "") + " " +
+        (profile.goal || "")
+
+    ).toLowerCase();
+
+
+    const careers = [
+
+        {
+            name:"Data Analyst",
+            keywords:[
+                "cse","it","bca","mca",
+                "python","excel","sql",
+                "data","statistics",
+                "analytics","math"
+            ]
+        },
+
+        {
+            name:"Software Developer",
+            keywords:[
+                "cse","it","bca","mca",
+                "java","python","coding",
+                "programming","software",
+                "developer","web"
+            ]
+        },
+
+        {
+            name:"UI/UX Designer",
+            keywords:[
+                "design","figma","creative",
+                "ui","ux","architecture",
+                "art","frontend"
+            ]
+        },
+
+        {
+            name:"Embedded Systems Engineer",
+            keywords:[
+                "ece","eee","embedded",
+                "electronics","microcontroller",
+                "iot","arduino"
+            ]
+        },
+
+        {
+            name:"Electrical Engineer",
+            keywords:[
+                "eee","electrical",
+                "power","energy",
+                "ev","automation"
+            ]
+        },
+
+        {
+            name:"Mechanical Design Engineer",
+            keywords:[
+                "mechanical","cad","cam",
+                "design","automotive",
+                "manufacturing"
+            ]
+        },
+
+        {
+            name:"Civil Engineer",
+            keywords:[
+                "civil","construction",
+                "structural","bim",
+                "architecture"
+            ]
+        },
+
+        {
+            name:"Business Analyst",
+            keywords:[
+                "bba","mba","b.com",
+                "business","management",
+                "analytics","finance"
+            ]
+        },
+
+        {
+            name:"Digital Marketing Specialist",
+            keywords:[
+                "bba","ba","marketing",
+                "social media","content",
+                "seo","creative"
+            ]
+        },
+
+        {
+            name:"HR Specialist",
+            keywords:[
+                "bba","mba","ba",
+                "hr","human resources",
+                "communication"
+            ]
+        }
+
+    ];
+
+
+    let matches = careers.map(function(career){
+
+        let score = 25;
+
+        career.keywords.forEach(function(keyword){
+
+            if(text.includes(keyword)){
+                score += 9;
+            }
+
+        });
+
+        score = Math.min(score,96);
+
+        return {
+            name:career.name,
+            score:score,
+            description:
+                "This career matches some of the education, skills or interests in your profile."
+        };
+
+    });
+
+
+    matches.sort(function(a,b){
+        return b.score-a.score;
+    });
+
+
+    return matches.slice(0,6);
+}
+
+
+/* =========================================================
+   DISPLAY MATCHES
+========================================================= */
+
+function displayMatches(data){
+
+    const results =
+        document.getElementById("matchResults");
+
+
+    let list = data;
+
+
+    /*
+       Supports either:
+       {matches:[...]}
+       or
+       [...]
+    */
+
+    if(data && data.matches){
+        list = data.matches;
+    }
+
+
+    if(!Array.isArray(list) || list.length === 0){
+
+        results.innerHTML =
+            `<div class="card">
+                No career matches found.
+                Try adding more skills and interests.
+            </div>`;
+
+        return;
+    }
+
+
+    results.innerHTML =
+        list.map(function(item,index){
+
+            const name =
+                item.name ||
+                item.career ||
+                "Career Option";
+
+            const score =
+                Number(
+                    item.score ||
+                    item.match ||
+                    item.percentage ||
+                    (90-index*7)
+                );
+
+            const description =
+                item.description ||
+                "A possible career direction based on your profile.";
+
+
+            return `
+
+            <div class="match-card">
+
+                <div class="match-top">
+
+                    <h3>
+                        ${getCareerIcon(name)}
+                        ${name}
+                    </h3>
+
+                    <div class="score">
+                        ${score}%
+                    </div>
+
+                </div>
+
+                <div class="progress-bar">
+
+                    <div class="progress-fill"
+                         style="width:${score}%">
+                    </div>
+
+                </div>
+
+                <p>
+                    ${description}
+                </p>
+
+            </div>
+
+            `;
+
+        }).join("");
+
+}
+
+
+/* =========================================================
+   ACADEMIC CAREER DATA
+========================================================= */
+
+const academicData = {
+
+    "CSE":{
+        title:"Computer Science & Engineering",
+        description:
+            "CSE students can choose from software, data, AI, cloud, cybersecurity and technology careers.",
+        careers:[
+            ["💻","Software Developer","Programming, Java, Python, Web Development"],
+            ["📊","Data Analyst","Excel, SQL, Python, Power BI"],
+            ["🤖","AI / ML Engineer","Python, Mathematics, Machine Learning"],
+            ["☁️","Cloud Engineer","Cloud platforms, Linux, Networking"],
+            ["🔐","Cybersecurity Analyst","Networks, Security, Ethical Hacking"],
+            ["🌐","Web Developer","HTML, CSS, JavaScript, Backend"]
+        ]
+    },
+
+    "IT":{
+        title:"Information Technology",
+        description:
+            "IT students can build careers in software, cloud, networking, data and cybersecurity.",
+        careers:[
+            ["💻","Software Developer","Programming and application development"],
+            ["☁️","Cloud Engineer","Cloud, Linux and DevOps"],
+            ["📊","Data Analyst","SQL, Excel, Python and visualization"],
+            ["🔐","Cybersecurity","Network and information security"],
+            ["🌐","Full Stack Developer","Frontend and backend development"],
+            ["⚙️","DevOps Engineer","Automation, CI/CD and cloud"]
+        ]
+    },
+
+    "ECE":{
+        title:"Electronics & Communication Engineering",
+        description:
+            "ECE opens opportunities in electronics, embedded systems, VLSI, IoT and communication.",
+        careers:[
+            ["🔌","Embedded Engineer","Microcontrollers, C and Embedded Systems"],
+            ["💾","VLSI Engineer","Digital design and semiconductor technology"],
+            ["🌐","IoT Engineer","Sensors, microcontrollers and IoT"],
+            ["🤖","Robotics Engineer","Electronics, programming and automation"],
+            ["📡","Telecom Engineer","Communication and networking"],
+            ["⚙️","Electronics Design Engineer","Circuit and hardware design"]
+        ]
+    },
+
+    "EEE":{
+        title:"Electrical & Electronics Engineering",
+        description:
+            "EEE students can explore power, renewable energy, EV, automation and electrical design.",
+        careers:[
+            ["⚡","Electrical Engineer","Power systems and electrical design"],
+            ["🔋","Renewable Energy Engineer","Solar, wind and energy systems"],
+            ["🚗","EV Engineer","Electric vehicles and battery systems"],
+            ["🤖","Automation Engineer","PLC, control and automation"],
+            ["🏭","Power Systems Engineer","Generation, transmission and distribution"],
+            ["🔧","Electrical Design Engineer","Electrical systems and design"]
+        ]
+    },
+
+    "Mechanical":{
+        title:"Mechanical Engineering",
+        description:
+            "Mechanical students can build careers in design, manufacturing, automotive, robotics and CAD.",
+        careers:[
+            ["⚙️","Mechanical Design Engineer","CAD, SolidWorks and engineering design"],
+            ["🏭","Manufacturing Engineer","Production and manufacturing"],
+            ["🚗","Automotive Engineer","Automobile systems and technology"],
+            ["🤖","Robotics Engineer","Mechanical systems and automation"],
+            ["📐","CAD Engineer","AutoCAD, SolidWorks and 3D design"],
+            ["🔧","Maintenance Engineer","Industrial equipment and maintenance"]
+        ]
+    },
+
+    "Civil":{
+        title:"Civil Engineering",
+        description:
+            "Civil engineering offers careers in construction, structures, infrastructure and BIM.",
+        careers:[
+            ["🏗️","Structural Engineer","Structural analysis and design"],
+            ["🏢","Construction Manager","Construction planning and management"],
+            ["📐","BIM Engineer","Building Information Modelling"],
+            ["🛣️","Infrastructure Engineer","Roads, bridges and infrastructure"],
+            ["🌆","Urban Planner","Cities, infrastructure and planning"],
+            ["💧","Environmental Engineer","Water and environmental projects"]
+        ]
+    },
+
+    "Architecture":{
+        title:"Architecture",
+        description:
+            "Architecture students can combine creativity and technology through design, BIM, interiors and planning.",
+        careers:[
+            ["🏛️","Architect","Building and architectural design"],
+            ["🎨","Interior Designer","Interior spaces and visual design"],
+            ["📐","BIM Specialist","BIM software and building models"],
+            ["🌆","Urban Planner","Urban development and planning"],
+            ["🌳","Landscape Designer","Outdoor and environmental design"],
+            ["🖥️","3D Visualization Artist","3D modelling and architectural visualization"]
+        ]
+    },
+
+    "B.Com":{
+        title:"Bachelor of Commerce",
+        description:
+            "Commerce students can explore accounting, finance, banking, taxation and business analytics.",
+        careers:[
+            ["💰","Accountant","Accounting, Tally and financial records"],
+            ["📊","Financial Analyst","Finance, Excel and analysis"],
+            ["🏦","Banking Professional","Banking and financial services"],
+            ["📈","Business Analyst","Business data and decision making"],
+            ["🧾","Tax Consultant","Taxation and compliance"],
+            ["💼","Investment Analyst","Investments and financial markets"]
+        ]
+    },
+
+    "BBA":{
+        title:"Bachelor of Business Administration",
+        description:
+            "BBA students can explore management, marketing, HR, finance, analytics and operations.",
+        careers:[
+            ["📊","Business Analyst","Business analysis and decision making"],
+            ["📢","Marketing Specialist","Marketing, branding and campaigns"],
+            ["👥","HR Specialist","Recruitment and people management"],
+            ["💰","Finance Executive","Finance and business operations"],
+            ["⚙️","Operations Manager","Process and operations management"],
+            ["🚀","Entrepreneur","Business planning and entrepreneurship"]
+        ]
+    },
+
+    "BCA":{
+        title:"Bachelor of Computer Applications",
+        description:
+            "BCA provides strong opportunities in software, web development, data, cloud and cybersecurity.",
+        careers:[
+            ["💻","Software Developer","Programming and applications"],
+            ["🌐","Web Developer","Frontend and backend development"],
+            ["📊","Data Analyst","SQL, Excel and Python"],
+            ["☁️","Cloud Engineer","Cloud computing and Linux"],
+            ["🔐","Cybersecurity Analyst","Network and system security"],
+            ["📱","App Developer","Mobile application development"]
+        ]
+    },
+
+    "BA":{
+        title:"Bachelor of Arts",
+        description:
+            "BA students can develop careers in communication, content, HR, media, research and public relations.",
+        careers:[
+            ["✍️","Content Writer","Writing and digital content"],
+            ["📢","Digital Marketing","SEO, social media and marketing"],
+            ["👥","HR Specialist","Recruitment and communication"],
+            ["📰","Media Professional","Media, communication and journalism"],
+            ["🔎","Research Assistant","Research and analysis"],
+            ["🏛️","Administration","Administration and public services"]
+        ]
+    },
+
+    "B.Sc":{
+        title:"Bachelor of Science",
+        description:
+            "B.Sc students can explore analytics, research, technology, teaching and specialization-based careers.",
+        careers:[
+            ["📊","Data Analyst","Statistics, Excel, SQL and Python"],
+            ["🔬","Research Assistant","Research and scientific analysis"],
+            ["💻","IT Professional","Programming and technology"],
+            ["👨‍🏫","Teaching Professional","Education and subject expertise"],
+            ["🧪","Laboratory Professional","Laboratory and scientific work"],
+            ["📈","Business Analyst","Analysis and business decision making"]
+        ]
+    },
+
+    "MCA":{
+        title:"Master of Computer Applications",
+        description:
+            "MCA graduates can target advanced technology careers across software, data, cloud and security.",
+        careers:[
+            ["💻","Software Engineer","Advanced programming and development"],
+            ["📊","Data Scientist","Python, statistics and machine learning"],
+            ["☁️","Cloud Engineer","Cloud architecture and DevOps"],
+            ["🔐","Cybersecurity Engineer","Security and network systems"],
+            ["🌐","Full Stack Developer","Modern web applications"],
+            ["🤖","AI Engineer","Artificial intelligence and ML"]
+        ]
+    },
+
+    "MBA":{
+        title:"Master of Business Administration",
+        description:
+            "MBA graduates can specialize in business analytics, finance, HR, marketing, operations and product management.",
+        careers:[
+            ["📊","Business Analyst","Business analysis and strategy"],
+            ["💰","Finance Manager","Financial planning and analysis"],
+            ["👥","HR Manager","People and talent management"],
+            ["📢","Marketing Manager","Marketing and brand strategy"],
+            ["⚙️","Operations Manager","Operations and process improvement"],
+            ["🚀","Product Manager","Products, users and business strategy"]
+        ]
+    }
+
+};
+
+
+/* =========================================================
+   SHOW ACADEMIC CAREERS
+========================================================= */
+
+function showAcademicCareers(){
+
+    const selected =
+        document.getElementById("academicSelect").value;
+
+    const result =
+        document.getElementById("academicResult");
+
+
+    if(!selected){
+
+        showToast("Please select your academic background.");
+
+        result.classList.remove("show");
+
+        return;
+    }
+
+
+    const data =
+        academicData[selected];
+
+
+    result.innerHTML = `
+
+        <div class="academic-hero">
+
+            <h3>
+                🎓 ${data.title}
+            </h3>
+
+            <p>
+                ${data.description}
+            </p>
+
+        </div>
+
+
+        <div class="career-options">
+
+            ${data.careers.map(function(career){
+
+                return `
+
+                <div class="career-option">
+
+                    <div class="career-icon">
+                        ${career[0]}
+                    </div>
+
+                    <h4>
+                        ${career[1]}
+                    </h4>
+
+                    <p>
+                        <strong>Useful Skills:</strong>
+                        ${career[2]}
+                    </p>
+
+                    <br>
+
+                    <button
+                        class="secondary-btn"
+                        onclick="openRouteForCareer('${career[1]}')">
+
+                        View Route →
+
+                    </button>
+
+                </div>
+
+                `;
+
+            }).join("")}
+
+        </div>
+
+    `;
+
+
+    result.classList.add("show");
+
+}
+
+
+/* =========================================================
+   OPEN CAREER ROUTE
+========================================================= */
+
+function openRouteForCareer(career){
+
+    const buttons =
+        document.querySelectorAll(".nav button");
+
+    showPage(
+        "route",
+        buttons[6]
+    );
+
+    showToast(
+        career + " route selected"
+    );
+
+}
+
+
+/* =========================================================
+   COURSE DATA
+========================================================= */
+
+const courses = [
+
+    {
+        name:"Python Programming",
+        description:
+            "Learn Python basics, variables, functions, loops and problem solving.",
+        image:
+            "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=900&q=80",
+        search:
+            "Python programming course for beginners"
+    },
+
+    {
+        name:"SQL for Beginners",
+        description:
+            "Learn databases, SELECT queries, filtering, joins and data analysis.",
+        image:
+            "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&w=900&q=80",
+        search:
+            "SQL course for beginners"
+    },
+
+    {
+        name:"Excel for Data Analysis",
+        description:
+            "Learn formulas, functions, charts, pivot tables and data analysis.",
+        image:
+            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80",
+        search:
+            "Excel data analysis course"
+    },
+
+    {
+        name:"Web Development",
+        description:
+            "Learn HTML, CSS and JavaScript to create modern websites.",
+        image:
+            "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80",
+        search:
+            "Web development HTML CSS JavaScript course"
+    },
+
+    {
+        name:"UI/UX Design",
+        description:
+            "Learn design principles, user experience, wireframes and Figma.",
+        image:
+            "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=900&q=80",
+        search:
+            "UI UX design Figma course"
+    },
+
+    {
+        name:"Digital Marketing",
+        description:
+            "Learn SEO, social media, content marketing and digital campaigns.",
+        image:
+            "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80",
+        search:
+            "Digital marketing course for beginners"
+    },
+
+    {
+        name:"Power BI",
+        description:
+            "Learn dashboards, reports, data visualization and business intelligence.",
+        image:
+            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80",
+        search:
+            "Power BI course for beginners"
+    },
+
+    {
+        name:"Communication Skills",
+        description:
+            "Improve communication, presentations, interviews and workplace confidence.",
+        image:
+            "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=80",
+        search:
+            "communication skills course for students"
+    },
+
+    {
+        name:"Data Structures",
+        description:
+            "Learn arrays, linked lists, stacks, queues, trees and algorithms.",
+        image:
+            "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80",
+        search:
+            "data structures algorithms course"
+    }
+
+];
+
+
+/* =========================================================
+   RENDER COURSES
+========================================================= */
+
+function renderCourses(){
+
+    const grid =
+        document.getElementById("courseGrid");
+
+
+    const completed =
+        JSON.parse(
+            localStorage.getItem("completedCourses") || "[]"
+        );
+
+
+    grid.innerHTML =
+        courses.map(function(course,index){
+
+            const isCompleted =
+                completed.includes(index);
+
+
+            const googleURL =
+                "https://www.google.com/search?q=" +
+                encodeURIComponent(
+                    course.search
+                );
+
+
+            return `
+
+            <div class="course-card">
+
+                <div class="course-image"
+                     style="background-image:url('${course.image}')">
+                </div>
+
+
+                <div class="course-content">
+
+                    <h3>
+                        ${course.name}
+                    </h3>
+
+                    <p>
+                        ${course.description}
+                    </p>
+
+
+                    <div class="course-actions">
+
+                        <a
+                            class="learn-btn"
+                            href="${googleURL}"
+                            target="_blank">
+
+                            🔎 Learn on Google
+
+                        </a>
+
+
+                        <button
+                            class="complete-btn ${isCompleted ? "completed":""}"
+                            onclick="toggleCourse(${index})">
+
+                            ${isCompleted
+                                ? "✓ Completed"
+                                : "Mark Complete"}
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            `;
+
+        }).join("");
+
+}
+
+
+/* =========================================================
+   COURSE COMPLETE
+========================================================= */
+
+function toggleCourse(index){
+
+    let completed =
+        JSON.parse(
+            localStorage.getItem("completedCourses") || "[]"
+        );
+
+
+    if(completed.includes(index)){
+
+        completed =
+            completed.filter(function(item){
+                return item !== index;
+            });
+
+    }else{
+
+        completed.push(index);
+
+    }
+
+
+    localStorage.setItem(
+        "completedCourses",
+        JSON.stringify(completed)
+    );
+
+
+    renderCourses();
+
+    updateProgress();
+
+    showToast(
+        completed.includes(index)
+            ? "Course marked as completed!"
+            : "Course removed from progress."
+    );
+
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+function updateProgress(){
+
+    const completed =
+        JSON.parse(
+            localStorage.getItem("completedCourses") || "[]"
+        );
+
+
+    const count =
+        completed.length;
+
+
+    const percentage =
+        Math.round(
+            (count / courses.length) * 100
+        );
+
+
+    document.getElementById(
+        "completedCount"
+    ).innerText = count;
+
+
+    document.getElementById(
+        "progressPercent"
+    ).innerText = percentage + "%";
+
+
+    document.getElementById(
+        "bigProgressFill"
+    ).style.width = percentage + "%";
+
+}
+
+
+/* =========================================================
+   CAREER ICON
+========================================================= */
+
+function getCareerIcon(name){
+
+    const n =
+        name.toLowerCase();
+
+
+    if(n.includes("data"))
+        return "📊";
+
+    if(n.includes("software") ||
+       n.includes("developer"))
+        return "💻";
+
+    if(n.includes("design"))
+        return "🎨";
+
+    if(n.includes("marketing"))
+        return "📢";
+
+    if(n.includes("engineer"))
+        return "⚙️";
+
+    if(n.includes("finance"))
+        return "💰";
+
+    if(n.includes("hr"))
+        return "👥";
+
+    if(n.includes("business"))
+        return "📈";
+
+    return "🎯";
+
+}
+
+
+/* =========================================================
+   CHAT
+========================================================= */
+
+function toggleChat(){
+
+    document
+        .getElementById("chatBox")
+        .classList.toggle("open");
+
+}
+
+
+function addChatMessage(text,type){
+
+    const container =
+        document.getElementById(
+            "chatMessages"
+        );
+
+
+    const div =
+        document.createElement("div");
+
+
+    div.className =
+        "message " +
+        (type || "");
+
+
+    div.innerText =
+        text;
+
+
+    container.appendChild(div);
+
+
+    container.scrollTop =
+        container.scrollHeight;
+
+}
+
+
+async function sendGlobalMessage(){
+
+    const input =
+        document.getElementById(
+            "globalChatInput"
+        );
+
+
+    const message =
+        input.value.trim();
+
+
+    if(!message)
+        return;
+
+
+    addChatMessage(
+        "You: " + message,
+        "user"
+    );
+
+
+    input.value = "";
+
+
+    const profile =
+        JSON.parse(
+            localStorage.getItem("profile") || "{}"
+        );
+
+
+    try{
+
+        const response =
+            await fetch("/api/chat",{
+
+                method:"POST",
+
+                headers:{
+                    "Content-Type":
+                    "application/json"
+                },
+
+                body:JSON.stringify({
+
+                    message:message,
+
+                    profile:profile
+
+                })
+
+            });
+
+
+        if(!response.ok){
+            throw new Error("Chat API unavailable");
+        }
+
+
+        const data =
+            await response.json();
+
+
+        addChatMessage(
+            "Career Assistant: " +
+            (data.reply ||
+             "I am here to help with your career.")
+        );
+
+
+    }catch(error){
+
+        addChatMessage(
+
+            "Career Assistant: " +
+            "I can help you explore careers, skills, courses and career paths. Try asking about a specific career."
+
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+
+    toast.innerText =
+        message;
+
+
+    toast.classList.add("show");
+
+
+    setTimeout(function(){
+
+        toast.classList.remove("show");
+
+    },2500);
+
+}
+
+
+/* =========================================================
+   INITIAL LOAD
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        loadProfile();
+
+        renderCourses();
+
+        updateProgress();
+
+    }
+);
 
 </script>
 
