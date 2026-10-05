@@ -7,345 +7,159 @@
 <title>Career Compass</title>
 
 <style>
-
-/* =========================================================
-   CAREER COMPASS - COMPLETE FRONTEND
-   ========================================================= */
-
 *{
+    box-sizing:border-box;
     margin:0;
     padding:0;
-    box-sizing:border-box;
 }
 
 :root{
-    --navy:#071536;
-    --blue:#2563eb;
-    --purple:#7c3aed;
-    --cyan:#06b6d4;
-    --pink:#ec4899;
-    --orange:#f97316;
-    --green:#10b981;
-    --yellow:#f59e0b;
-    --cream:#fff7ed;
-    --white:#ffffff;
-    --text:#172033;
-    --muted:#667085;
-    --glass:rgba(255,255,255,.72);
-    --shadow:0 20px 60px rgba(20,30,80,.12);
+    --navy:#101a3a;
+    --blue:#2457e6;
+    --purple:#7548e8;
+    --pink:#ef4f91;
+    --orange:#ff9d52;
+    --bg:#fff5ee;
+    --card:#ffffff;
+    --text:#20243a;
+    --muted:#777b91;
+    --green:#20b486;
+    --shadow:0 15px 40px rgba(30,35,80,.12);
 }
 
 body{
-    font-family:
-        Inter,
-        Segoe UI,
-        Arial,
-        sans-serif;
-
+    font-family:Inter,Segoe UI,Arial,sans-serif;
     background:
-        radial-gradient(circle at 10% 10%,rgba(37,99,235,.16),transparent 28%),
-        radial-gradient(circle at 90% 10%,rgba(236,72,153,.12),transparent 25%),
-        radial-gradient(circle at 80% 90%,rgba(6,182,212,.12),transparent 30%),
-        #fff8f1;
-
+        radial-gradient(circle at 10% 10%,rgba(255,160,110,.25),transparent 25%),
+        radial-gradient(circle at 90% 20%,rgba(93,103,255,.20),transparent 25%),
+        var(--bg);
     color:var(--text);
     min-height:100vh;
-    overflow-x:hidden;
 }
 
-
-/* =========================================================
-   ANIMATED BACKGROUND
-   ========================================================= */
-
-.background{
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    overflow:hidden;
-    z-index:-1;
+button{
+    font-family:inherit;
 }
 
-.blob{
-    position:absolute;
-    border-radius:50%;
-    filter:blur(4px);
-    opacity:.35;
-    animation:float 12s ease-in-out infinite;
+.app{
+    display:flex;
+    min-height:100vh;
 }
 
-.blob.one{
-    width:280px;
-    height:280px;
-    background:#60a5fa;
-    left:-100px;
-    top:100px;
-}
-
-.blob.two{
-    width:220px;
-    height:220px;
-    background:#f472b6;
-    right:-70px;
-    top:300px;
-    animation-delay:2s;
-}
-
-.blob.three{
-    width:260px;
-    height:260px;
-    background:#22d3ee;
-    left:40%;
-    bottom:-150px;
-    animation-delay:4s;
-}
-
-@keyframes float{
-    0%,100%{
-        transform:translate(0,0) scale(1);
-    }
-
-    50%{
-        transform:translate(35px,-30px) scale(1.08);
-    }
-}
-
-
-/* =========================================================
-   SIDEBAR
-   ========================================================= */
+/* ================= SIDEBAR ================= */
 
 .sidebar{
+    width:255px;
+    background:
+        radial-gradient(circle at 20% 10%,rgba(255,94,154,.15),transparent 25%),
+        linear-gradient(180deg,#101b3d,#17275b);
+    color:white;
     position:fixed;
-    left:0;
     top:0;
     bottom:0;
-
-    width:255px;
-
+    left:0;
     padding:28px 18px;
-
-    background:
-        linear-gradient(
-            160deg,
-            #061332,
-            #101f55 48%,
-            #27115d
-        );
-
-    color:white;
-
     z-index:100;
-
-    box-shadow:
-        12px 0 40px rgba(0,0,0,.12);
-
     overflow-y:auto;
 }
 
-.brand{
-    padding:8px 12px 30px;
-}
-
-.brand-title{
+.logo{
+    padding:8px 14px 35px;
     font-size:27px;
     font-weight:900;
     letter-spacing:-1px;
 }
 
-.brand-title span{
-    display:block;
-    color:#60a5fa;
+.logo span{
+    color:#6d8cff;
 }
 
-.brand-sub{
+.logo small{
+    display:block;
+    color:#8e9bc5;
     font-size:10px;
     letter-spacing:2px;
-    color:#cbd5e1;
     margin-top:6px;
-}
-
-.compass-logo{
-    width:50px;
-    height:50px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    border-radius:16px;
-
-    background:
-        linear-gradient(135deg,#3b82f6,#9333ea);
-
-    font-size:25px;
-
-    margin-bottom:15px;
-
-    box-shadow:
-        0 10px 25px rgba(59,130,246,.35);
 }
 
 .nav{
     display:flex;
     flex-direction:column;
-    gap:8px;
+    gap:7px;
 }
 
 .nav button{
-    width:100%;
     border:0;
     background:transparent;
-
-    color:#dbeafe;
-
-    padding:13px 14px;
-
-    border-radius:14px;
-
-    display:flex;
-    align-items:center;
-    gap:12px;
-
-    font-size:14px;
-    font-weight:700;
-
-    cursor:pointer;
-
+    color:#c5cee9;
+    padding:14px 15px;
+    border-radius:13px;
     text-align:left;
-
-    transition:
-        .25s ease;
+    cursor:pointer;
+    font-size:14px;
+    font-weight:600;
+    transition:.25s;
 }
 
 .nav button:hover{
     background:rgba(255,255,255,.10);
-    transform:translateX(4px);
+    color:white;
+    transform:translateX(3px);
 }
 
 .nav button.active{
-    background:
-        linear-gradient(
-            135deg,
-            #2563eb,
-            #7c3aed
-        );
-
+    background:linear-gradient(90deg,#2d68ee,#514be1);
     color:white;
-
-    box-shadow:
-        0 10px 25px rgba(37,99,235,.28);
-
-    transform:translateX(4px);
+    box-shadow:0 8px 20px rgba(36,87,230,.35);
 }
 
-.nav-icon{
-    width:25px;
-    text-align:center;
-    font-size:18px;
+.sidebar-bottom{
+    position:absolute;
+    bottom:25px;
+    left:25px;
+    right:25px;
+    color:#8390b7;
+    font-size:11px;
+    line-height:1.5;
 }
 
-
-/* =========================================================
-   SIDEBAR BOTTOM
-   ========================================================= */
-
-.sidebar-card{
-    margin-top:35px;
-    padding:18px;
-
-    border-radius:20px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(59,130,246,.25),
-            rgba(147,51,234,.25)
-        );
-
-    border:1px solid rgba(255,255,255,.12);
-}
-
-.sidebar-card strong{
-    display:block;
-    font-size:14px;
-    margin-bottom:8px;
-}
-
-.sidebar-card p{
-    font-size:12px;
-    color:#cbd5e1;
-    line-height:1.6;
-}
-
-
-/* =========================================================
-   MAIN AREA
-   ========================================================= */
+/* ================= MAIN ================= */
 
 .main{
     margin-left:255px;
-    min-height:100vh;
-    padding:28px 35px 60px;
+    width:calc(100% - 255px);
+    padding:30px;
 }
 
-
-/* =========================================================
-   TOP BAR
-   ========================================================= */
-
 .topbar{
-    height:60px;
-
     display:flex;
-    align-items:center;
     justify-content:space-between;
-
+    align-items:center;
     margin-bottom:25px;
 }
 
-.page-label{
-    font-size:14px;
+.topbar h1{
+    font-size:31px;
+}
+
+.topbar p{
     color:var(--muted);
+    margin-top:5px;
 }
 
-.user-pill{
-    display:flex;
-    align-items:center;
-    gap:10px;
-
-    background:rgba(255,255,255,.65);
-
-    border:1px solid rgba(255,255,255,.9);
-
-    padding:8px 14px;
-
-    border-radius:50px;
-
-    box-shadow:0 8px 25px rgba(0,0,0,.05);
-}
-
-.avatar{
-    width:34px;
-    height:34px;
-
+.user-circle{
+    width:45px;
+    height:45px;
     border-radius:50%;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    background:
-        linear-gradient(135deg,#2563eb,#9333ea);
-
+    display:grid;
+    place-items:center;
     color:white;
     font-weight:800;
+    background:linear-gradient(135deg,#ff6c91,#6849e8);
+    box-shadow:0 8px 20px rgba(104,73,232,.25);
 }
 
-
-/* =========================================================
-   PAGES
-   ========================================================= */
+/* ================= PAGES ================= */
 
 .page{
     display:none;
@@ -359,1810 +173,890 @@ body{
 @keyframes pageIn{
     from{
         opacity:0;
-        transform:translateY(15px);
+        transform:translateY(12px);
     }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-
-/* =========================================================
-   COMMON
-   ========================================================= */
-
-.page-title{
-    font-size:38px;
-    line-height:1.05;
-    font-weight:900;
-    letter-spacing:-1.5px;
-}
-
-.page-subtitle{
-    color:var(--muted);
-    margin-top:10px;
-    margin-bottom:25px;
-}
-
-.gradient-text{
-    background:
-        linear-gradient(
-            90deg,
-            #2563eb,
-            #7c3aed,
-            #ec4899
-        );
-
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
-}
-
-.glass{
-    background:rgba(255,255,255,.72);
-
-    border:1px solid rgba(255,255,255,.95);
-
-    box-shadow:var(--shadow);
-
-    backdrop-filter:blur(18px);
-}
-
-.card{
-    background:rgba(255,255,255,.72);
-
-    border:1px solid rgba(255,255,255,.95);
-
-    border-radius:24px;
-
-    padding:24px;
-
-    box-shadow:0 15px 45px rgba(25,35,80,.09);
-
-    transition:.3s ease;
-}
-
-.card:hover{
-    transform:translateY(-7px);
-
-    box-shadow:
-        0 25px 55px rgba(25,35,80,.14);
-}
-
-.section-heading{
-    font-size:22px;
-    font-weight:900;
-    margin-bottom:16px;
-}
-
-
-/* =========================================================
-   HOME
-   ========================================================= */
-
-.home-hero{
-    min-height:430px;
-
-    border-radius:35px;
-
-    padding:55px;
-
-    position:relative;
-    overflow:hidden;
-
-    background:
-        linear-gradient(
-            120deg,
-            #081638,
-            #172b69 45%,
-            #47228c
-        );
-
-    color:white;
-
-    box-shadow:
-        0 30px 80px rgba(17,35,90,.25);
-}
-
-.home-hero:before{
-    content:"";
-    position:absolute;
-
-    width:450px;
-    height:450px;
-
-    border-radius:50%;
-
-    right:-150px;
-    top:-170px;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(96,165,250,.7),
-            transparent 65%
-        );
-
-    animation:pulse 6s ease-in-out infinite;
-}
-
-.home-hero:after{
-    content:"";
-    position:absolute;
-
-    width:350px;
-    height:350px;
-
-    border-radius:50%;
-
-    right:150px;
-    bottom:-250px;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(236,72,153,.6),
-            transparent 65%
-        );
-}
-
-@keyframes pulse{
-    0%,100%{
-        transform:scale(1);
-    }
-
-    50%{
-        transform:scale(1.2);
-    }
-}
-
-.hero-content{
-    position:relative;
-    z-index:2;
-
-    max-width:750px;
-}
-
-.hero-tag{
-    display:inline-flex;
-
-    padding:8px 14px;
-
-    border-radius:50px;
-
-    background:rgba(255,255,255,.1);
-
-    border:1px solid rgba(255,255,255,.15);
-
-    font-size:12px;
-    font-weight:800;
-
-    letter-spacing:1px;
-
-    margin-bottom:22px;
-}
-
-.hero-title{
-    font-size:58px;
-    line-height:1.02;
-
-    font-weight:950;
-
-    letter-spacing:-3px;
-
-    margin-bottom:20px;
-}
-
-.hero-description{
-    max-width:650px;
-
-    font-size:17px;
-
-    color:#dbeafe;
-
-    line-height:1.8;
-}
-
-
-/* =========================================================
-   HOME FLOATING VISUAL
-   ========================================================= */
-
-.hero-orbit{
-    position:absolute;
-
-    right:70px;
-    top:85px;
-
-    width:300px;
-    height:300px;
-
-    border:1px dashed rgba(255,255,255,.3);
-
-    border-radius:50%;
-
-    animation:spin 20s linear infinite;
-}
-
-@keyframes spin{
-    to{
-        transform:rotate(360deg);
-    }
-}
-
-.orbit-dot{
-    position:absolute;
-
-    width:58px;
-    height:58px;
-
-    border-radius:50%;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    background:white;
-
-    color:#172554;
-
-    font-size:23px;
-
-    box-shadow:
-        0 15px 35px rgba(0,0,0,.2);
-}
-
-.dot1{
-    top:-25px;
-    left:120px;
-}
-
-.dot2{
-    right:-20px;
-    top:120px;
-}
-
-.dot3{
-    bottom:-20px;
-    left:120px;
-}
-
-.dot4{
-    left:-20px;
-    top:120px;
-}
-
-.hero-compass{
-    position:absolute;
-
-    width:120px;
-    height:120px;
-
-    left:90px;
-    top:90px;
-
-    border-radius:35px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #60a5fa,
-            #a78bfa
-        );
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-size:55px;
-
-    box-shadow:
-        0 25px 60px rgba(0,0,0,.25);
-}
-
-
-/* =========================================================
-   HOME INFORMATION
-   ========================================================= */
-
-.info-section{
-    margin-top:30px;
-}
-
-.info-grid{
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:20px;
-}
-
-.info-card{
-    min-height:210px;
-}
-
-.info-icon{
-    width:52px;
-    height:52px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    border-radius:17px;
-
-    font-size:25px;
-
-    margin-bottom:18px;
-
-    background:#eef2ff;
-}
-
-.info-card h3{
-    font-size:18px;
-    margin-bottom:10px;
-}
-
-.info-card p{
-    color:var(--muted);
-    line-height:1.7;
-    font-size:14px;
-}
-
-
-/* =========================================================
-   PROFILE
-   ========================================================= */
-
-.profile-layout{
-    display:grid;
-
-    grid-template-columns:
-        1.1fr .9fr;
-
-    gap:25px;
-}
-
-.profile-form{
-    display:grid;
-
-    grid-template-columns:
-        repeat(2,1fr);
-
-    gap:18px;
-}
-
-.field{
-    display:flex;
-    flex-direction:column;
-    gap:8px;
-}
-
-.field.full{
-    grid-column:1/-1;
-}
-
-.field label{
-    font-size:13px;
-    font-weight:800;
-}
-
-.field input,
-.field textarea,
-.field select{
-    width:100%;
-
-    border:1px solid #e2e8f0;
-
-    background:white;
-
-    padding:13px 15px;
-
-    border-radius:13px;
-
-    outline:none;
-
-    font-size:14px;
-
-    transition:.2s;
-}
-
-.field textarea{
-    min-height:110px;
-    resize:vertical;
-}
-
-.field input:focus,
-.field textarea:focus,
-.field select:focus{
-    border-color:#6366f1;
-
-    box-shadow:
-        0 0 0 4px rgba(99,102,241,.1);
-}
-
-.primary-btn{
-    border:0;
-
-    padding:14px 20px;
-
-    border-radius:14px;
-
-    color:white;
-
-    font-weight:800;
-
-    cursor:pointer;
-
-    background:
-        linear-gradient(
-            135deg,
-            #2563eb,
-            #7c3aed
-        );
-
-    box-shadow:
-        0 12px 25px rgba(37,99,235,.25);
-
-    transition:.25s;
-}
-
-.primary-btn:hover{
-    transform:translateY(-3px);
-}
-
-
-/* =========================================================
-   PROFILE VISUAL
-   ========================================================= */
-
-.profile-visual{
-    min-height:450px;
-
-    position:relative;
-
-    overflow:hidden;
-
-    background:
-        linear-gradient(
-            145deg,
-            #101d49,
-            #43208b
-        );
-
-    color:white;
-}
-
-.profile-circle{
-    width:150px;
-    height:150px;
-
-    border-radius:50%;
-
-    margin:20px auto;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-size:65px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #60a5fa,
-            #c084fc
-        );
-
-    box-shadow:
-        0 25px 50px rgba(0,0,0,.25);
-
-    animation:bob 4s ease-in-out infinite;
-}
-
-@keyframes bob{
-    0%,100%{
-        transform:translateY(0);
-    }
-
-    50%{
-        transform:translateY(-10px);
-    }
-}
-
-.profile-name{
-    text-align:center;
-    font-size:27px;
-    font-weight:900;
-}
-
-.profile-role{
-    text-align:center;
-    color:#cbd5e1;
-    margin-top:6px;
-}
-
-.profile-stats{
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:10px;
-
-    margin-top:30px;
-}
-
-.profile-stat{
-    padding:15px;
-
-    background:rgba(255,255,255,.08);
-
-    border-radius:15px;
-
-    text-align:center;
-}
-
-.profile-stat strong{
-    display:block;
-    font-size:22px;
-}
-
-.profile-stat span{
-    font-size:11px;
-    color:#cbd5e1;
-}
-
-
-/* =========================================================
-   CAREER MATCH
-   ========================================================= */
-
-.match-hero{
-    padding:30px;
-
-    border-radius:28px;
-
-    color:white;
-
-    background:
-        linear-gradient(
-            135deg,
-            #0b1739,
-            #243b8f,
-            #6d28d9
-        );
-
-    margin-bottom:25px;
-
-    position:relative;
-    overflow:hidden;
-}
-
-.match-hero:after{
-    content:"";
-
-    position:absolute;
-
-    width:250px;
-    height:250px;
-
-    border-radius:50%;
-
-    right:-60px;
-    top:-100px;
-
-    background:
-        rgba(236,72,153,.25);
-
-    filter:blur(5px);
-}
-
-.match-hero h2{
-    font-size:30px;
-    margin-bottom:8px;
-}
-
-.match-hero p{
-    color:#dbeafe;
-}
-
-.match-grid{
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:20px;
-}
-
-.match-card{
-    position:relative;
-
-    overflow:hidden;
-}
-
-.match-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.match-icon{
-    width:50px;
-    height:50px;
-
-    border-radius:16px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-size:24px;
-
-    background:#eef2ff;
-}
-
-.match-score{
-    font-size:25px;
-    font-weight:950;
-
-    color:#2563eb;
-}
-
-.match-card h3{
-    margin-top:17px;
-    font-size:19px;
-}
-
-.match-card p{
-    color:var(--muted);
-    font-size:13px;
-    line-height:1.6;
-    margin-top:8px;
-}
-
-.score-track{
-    height:8px;
-
-    background:#e5e7eb;
-
-    border-radius:20px;
-
-    margin-top:17px;
-
-    overflow:hidden;
-}
-
-.score-fill{
-    height:100%;
-
-    border-radius:20px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #2563eb,
-            #7c3aed,
-            #ec4899
-        );
-
-    animation:grow 1.2s ease;
-}
-
-@keyframes grow{
-    from{
-        width:0!important;
-    }
-}
-
-
-/* =========================================================
-   ACADEMIC MAP
-   ========================================================= */
-
-.academic-select{
-    margin-bottom:25px;
-
-    display:flex;
-
-    gap:12px;
-}
-
-.academic-select select{
-    flex:1;
-
-    border:1px solid #e2e8f0;
-
-    border-radius:15px;
-
-    padding:14px;
-
-    background:white;
-
-    font-weight:700;
-}
-
-.academic-banner{
-    padding:30px;
-
-    border-radius:27px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #08203e,
-            #075985,
-            #164e63
-        );
-
-    color:white;
-
-    margin-bottom:25px;
-}
-
-.academic-banner h2{
-    font-size:30px;
-    margin-bottom:8px;
-}
-
-.career-grid{
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:18px;
-}
-
-.career-card{
-    position:relative;
-}
-
-.career-card .career-symbol{
-    font-size:30px;
-    margin-bottom:15px;
-}
-
-.career-card h3{
-    font-size:17px;
-}
-
-.career-card p{
-    font-size:13px;
-
-    color:var(--muted);
-
-    line-height:1.6;
-
-    margin-top:8px;
-}
-
-.skill-tags{
-    display:flex;
-
-    flex-wrap:wrap;
-
-    gap:6px;
-
-    margin-top:14px;
-}
-
-.skill-tag{
-    padding:5px 9px;
-
-    border-radius:20px;
-
-    background:#eef2ff;
-
-    color:#4338ca;
-
-    font-size:10px;
-
-    font-weight:800;
-}
-
-
-/* =========================================================
-   COURSES
-   ========================================================= */
-
-.course-grid{
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:20px;
-}
-
-.course-card{
-    position:relative;
-    overflow:hidden;
-}
-
-.course-card:before{
-    content:"";
-
-    position:absolute;
-
-    width:100px;
-    height:100px;
-
-    border-radius:50%;
-
-    right:-40px;
-    top:-40px;
-
-    background:#dbeafe;
-}
-
-.course-number{
-    font-size:12px;
-
-    color:#6366f1;
-
-    font-weight:900;
-}
-
-.course-card h3{
-    margin-top:12px;
-    font-size:20px;
-}
-
-.course-card p{
-    margin-top:8px;
-
-    color:var(--muted);
-
-    line-height:1.6;
-
-    font-size:13px;
-}
-
-.course-progress{
-    margin-top:20px;
-}
-
-.course-progress-top{
-    display:flex;
-    justify-content:space-between;
-
-    font-size:12px;
-    font-weight:800;
-}
-
-.course-track{
-    height:7px;
-
-    margin-top:8px;
-
-    background:#e5e7eb;
-
-    border-radius:20px;
-}
-
-.course-fill{
-    height:100%;
-
-    border-radius:20px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #06b6d4,
-            #2563eb
-        );
-}
-
-
-/* =========================================================
-   PROGRESS
-   ========================================================= */
-
-.progress-layout{
-    display:grid;
-
-    grid-template-columns:
-        1.3fr .7fr;
-
-    gap:22px;
-}
-
-.progress-cards{
-    display:grid;
-
-    grid-template-columns:
-        repeat(2,1fr);
-
-    gap:18px;
-}
-
-.progress-card{
-    min-height:160px;
-}
-
-.progress-card .big{
-    font-size:40px;
-
-    font-weight:950;
-
-    margin:8px 0;
-}
-
-.progress-line{
-    height:9px;
-
-    background:#e5e7eb;
-
-    border-radius:20px;
-
-    overflow:hidden;
-}
-
-.progress-line div{
-    height:100%;
-
-    border-radius:20px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #2563eb,
-            #9333ea
-        );
-}
-
-.chart{
-    height:330px;
-
-    display:flex;
-
-    align-items:flex-end;
-
-    gap:15px;
-
-    padding:25px;
-
-    margin-top:20px;
-}
-
-.bar-column{
-    flex:1;
-
-    height:100%;
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:flex-end;
-
-    align-items:center;
-
-    gap:8px;
-}
-
-.bar{
-    width:100%;
-
-    max-width:50px;
-
-    border-radius:
-        12px 12px 5px 5px;
-
-    background:
-        linear-gradient(
-            180deg,
-            #60a5fa,
-            #7c3aed
-        );
-
-    min-height:15px;
-
-    animation:barGrow 1s ease;
-}
-
-@keyframes barGrow{
-    from{
-        height:0;
-    }
-}
-
-.bar-label{
-    font-size:11px;
-
-    color:var(--muted);
-}
-
-.bar-value{
-    font-size:11px;
-    font-weight:900;
-}
-
-
-/* =========================================================
-   ROUTE MAP
-   ========================================================= */
-
-.route-hero{
-    padding:30px;
-
-    border-radius:28px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #0f172a,
-            #312e81,
-            #581c87
-        );
-
-    color:white;
-
-    margin-bottom:28px;
-
-    position:relative;
-
-    overflow:hidden;
-}
-
-.route-hero h2{
-    font-size:32px;
-}
-
-.route-hero p{
-    margin-top:8px;
-    color:#ddd6fe;
-}
-
-.route{
-    position:relative;
-
-    padding:20px 0 20px;
-}
-
-.route-line{
-    position:absolute;
-
-    top:72px;
-    left:8%;
-
-    right:8%;
-
-    height:5px;
-
-    border-radius:10px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #2563eb,
-            #06b6d4,
-            #7c3aed,
-            #ec4899
-        );
-
-    animation:routeGlow 3s infinite;
-}
-
-@keyframes routeGlow{
-    0%,100%{
-        opacity:.65;
-    }
-
-    50%{
-        opacity:1;
-    }
-}
-
-.route-steps{
-    display:grid;
-
-    grid-template-columns:
-        repeat(6,1fr);
-
-    position:relative;
-
-    z-index:2;
-}
-
-.route-step{
-    text-align:center;
-}
-
-.route-icon{
-    width:72px;
-    height:72px;
-
-    margin:auto;
-
-    border-radius:50%;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-size:27px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #2563eb,
-            #7c3aed
-        );
-
-    color:white;
-
-    border:7px solid #fff8f1;
-
-    box-shadow:
-        0 12px 30px rgba(37,99,235,.25);
-
-    animation:stepFloat 3s ease-in-out infinite;
-}
-
-.route-step:nth-child(2) .route-icon{
-    animation-delay:.3s;
-}
-
-.route-step:nth-child(3) .route-icon{
-    animation-delay:.6s;
-}
-
-.route-step:nth-child(4) .route-icon{
-    animation-delay:.9s;
-}
-
-.route-step:nth-child(5) .route-icon{
-    animation-delay:1.2s;
-}
-
-.route-step:nth-child(6) .route-icon{
-    animation-delay:1.5s;
-}
-
-@keyframes stepFloat{
-    0%,100%{
-        transform:translateY(0);
-    }
-
-    50%{
-        transform:translateY(-8px);
-    }
-}
-
-.route-step h4{
-    margin-top:13px;
-
-    font-size:14px;
-}
-
-.route-step p{
-    font-size:11px;
-
-    color:var(--muted);
-
-    margin-top:5px;
-
-    padding:0 7px;
-}
-
-
-/* =========================================================
-   ROUTE DETAILS
-   ========================================================= */
-
-.route-details{
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:18px;
-
-    margin-top:25px;
-}
-
-.route-detail{
-    border-left:5px solid #6366f1;
-}
-
-
-/* =========================================================
-   CHAT
-   ========================================================= */
-
-.chat-button{
-    position:fixed;
-
-    right:28px;
-    bottom:28px;
-
-    width:62px;
-    height:62px;
-
-    border:0;
-
-    border-radius:50%;
-
-    background:
-        linear-gradient(
-            135deg,
-            #2563eb,
-            #9333ea
-        );
-
-    color:white;
-
-    font-size:25px;
-
-    cursor:pointer;
-
-    box-shadow:
-        0 15px 35px rgba(37,99,235,.35);
-
-    z-index:300;
-
-    animation:chatPulse 2.5s infinite;
-}
-
-@keyframes chatPulse{
-    0%,100%{
-        box-shadow:
-            0 15px 35px rgba(37,99,235,.35);
-    }
-
-    50%{
-        box-shadow:
-            0 15px 45px rgba(147,51,234,.55);
-    }
-}
-
-.chat{
-    position:fixed;
-
-    right:28px;
-    bottom:105px;
-
-    width:340px;
-
-    background:white;
-
-    border-radius:22px;
-
-    box-shadow:
-        0 25px 70px rgba(0,0,0,.2);
-
-    overflow:hidden;
-
-    z-index:299;
-
-    display:none;
-}
-
-.chat.open{
-    display:block;
-
-    animation:chatIn .3s ease;
-}
-
-@keyframes chatIn{
-    from{
-        opacity:0;
-        transform:translateY(15px) scale(.95);
-    }
-
     to{
         opacity:1;
         transform:none;
     }
 }
 
-.chat-head{
-    padding:17px;
+/* ================= HOME ================= */
 
+.hero{
+    min-height:310px;
+    border-radius:28px;
+    padding:42px;
+    color:white;
+    position:relative;
+    overflow:hidden;
     background:
-        linear-gradient(
-            135deg,
-            #172554,
-            #6d28d9
-        );
-
-    color:white;
-
-    display:flex;
-
-    justify-content:space-between;
+        radial-gradient(circle at 90% 20%,rgba(255,255,255,.20),transparent 20%),
+        radial-gradient(circle at 10% 100%,rgba(255,108,145,.35),transparent 30%),
+        linear-gradient(135deg,#17295f,#432b9b 55%,#e04f8e);
+    box-shadow:var(--shadow);
 }
 
-.chat-body{
+.hero:before,
+.hero:after{
+    content:"";
+    position:absolute;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,.15);
+    animation:float 7s infinite ease-in-out;
+}
+
+.hero:before{
+    width:260px;
     height:260px;
-
-    overflow-y:auto;
-
-    padding:15px;
-
-    background:#f8fafc;
+    right:-60px;
+    top:-80px;
 }
 
-.message{
-    padding:10px 12px;
-
-    border-radius:13px;
-
-    margin-bottom:10px;
-
-    font-size:13px;
-
-    line-height:1.5;
-
-    max-width:85%;
+.hero:after{
+    width:170px;
+    height:170px;
+    right:120px;
+    bottom:-100px;
+    animation-delay:1s;
 }
 
-.bot{
+@keyframes float{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-15px)}
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+    max-width:700px;
+}
+
+.hero h2{
+    font-size:42px;
+    line-height:1.1;
+    margin-bottom:15px;
+}
+
+.hero p{
+    line-height:1.7;
+    color:#eeeaff;
+    max-width:650px;
+}
+
+.hero-tag{
+    display:inline-block;
+    background:rgba(255,255,255,.14);
+    padding:7px 12px;
+    border-radius:20px;
+    font-size:12px;
+    margin-bottom:18px;
+}
+
+.info-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+    margin-top:20px;
+}
+
+.info-card{
     background:white;
-    border:1px solid #e2e8f0;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:var(--shadow);
+    border:1px solid #eee8e4;
+    transition:.25s;
 }
 
-.user{
-    background:#2563eb;
-    color:white;
-    margin-left:auto;
+.info-card:hover{
+    transform:translateY(-5px);
 }
 
-.chat-input{
-    display:flex;
-
-    padding:10px;
-
-    border-top:1px solid #e2e8f0;
+.info-icon{
+    width:48px;
+    height:48px;
+    border-radius:15px;
+    display:grid;
+    place-items:center;
+    font-size:23px;
+    background:#f0edff;
+    margin-bottom:15px;
 }
 
-.chat-input input{
-    flex:1;
+.info-card h3{
+    margin-bottom:8px;
+}
 
+.info-card p{
+    color:var(--muted);
+    line-height:1.6;
+    font-size:14px;
+}
+
+/* ================= COMMON ================= */
+
+.section-card{
+    background:white;
+    border:1px solid #eee7e2;
+    border-radius:22px;
+    padding:25px;
+    box-shadow:var(--shadow);
+    margin-bottom:20px;
+}
+
+.section-title{
+    margin-bottom:6px;
+}
+
+.section-sub{
+    color:var(--muted);
+    margin-bottom:22px;
+}
+
+.grid-2{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+}
+
+.grid-3{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+/* ================= PROFILE ================= */
+
+.field{
+    margin-bottom:15px;
+}
+
+.field label{
+    display:block;
+    font-weight:700;
+    margin-bottom:7px;
+}
+
+.field input,
+.field textarea,
+.field select{
+    width:100%;
+    border:1px solid #dddfea;
+    background:#fafbff;
+    border-radius:12px;
+    padding:13px;
+    outline:none;
+    color:var(--text);
+}
+
+.field textarea{
+    min-height:100px;
+    resize:vertical;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus{
+    border-color:var(--blue);
+    box-shadow:0 0 0 3px rgba(36,87,230,.08);
+}
+
+.primary-btn,
+.secondary-btn,
+.learn-btn,
+.complete-btn{
     border:0;
-
-    outline:0;
-
-    padding:10px;
-}
-
-.chat-input button{
-    border:0;
-
-    border-radius:10px;
-
-    padding:10px 15px;
-
-    background:#2563eb;
-
-    color:white;
-
-    font-weight:800;
-
+    border-radius:11px;
+    padding:12px 18px;
     cursor:pointer;
+    font-weight:700;
+    transition:.2s;
 }
 
+.primary-btn{
+    background:linear-gradient(135deg,#2457e6,#7548e8);
+    color:white;
+}
 
-/* =========================================================
-   MOBILE
-   ========================================================= */
+.secondary-btn{
+    background:#f0edff;
+    color:#6045c8;
+}
 
-@media(max-width:1100px){
+.primary-btn:hover,
+.secondary-btn:hover,
+.learn-btn:hover,
+.complete-btn:hover{
+    transform:translateY(-2px);
+}
+
+.actions{
+    display:flex;
+    gap:10px;
+    margin-top:15px;
+}
+
+/* ================= CAREER MATCH ================= */
+
+.match-hero{
+    border-radius:23px;
+    padding:28px;
+    background:
+        radial-gradient(circle at 90% 20%,rgba(255,255,255,.20),transparent 20%),
+        linear-gradient(135deg,#101b3d,#284fae,#7548e8);
+    color:white;
+    margin-bottom:20px;
+}
+
+.match-hero h2{
+    font-size:28px;
+    margin-bottom:8px;
+}
+
+.match-hero p{
+    color:#dce5ff;
+}
+
+.match-card{
+    background:white;
+    border:1px solid #eee;
+    border-radius:20px;
+    padding:22px;
+    box-shadow:var(--shadow);
+    transition:.3s;
+}
+
+.match-card:hover{
+    transform:translateY(-5px);
+}
+
+.match-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+}
+
+.match-score{
+    font-size:25px;
+    font-weight:900;
+    color:var(--blue);
+}
+
+.match-bar{
+    height:9px;
+    background:#edf0f7;
+    border-radius:20px;
+    overflow:hidden;
+    margin:12px 0;
+}
+
+.match-bar i{
+    display:block;
+    height:100%;
+    background:linear-gradient(90deg,#2457e6,#7548e8,#ef4f91);
+    border-radius:20px;
+}
+
+.match-card p{
+    color:var(--muted);
+    line-height:1.6;
+    margin:8px 0;
+}
+
+.chip{
+    display:inline-block;
+    padding:6px 9px;
+    border-radius:8px;
+    background:#f0edff;
+    color:#6045c8;
+    font-size:12px;
+    margin:3px;
+}
+
+/* ================= ACADEMIC MAP ================= */
+
+.academic-selector{
+    display:flex;
+    gap:12px;
+    margin-bottom:20px;
+}
+
+.academic-selector select{
+    flex:1;
+    padding:14px;
+    border:1px solid #dddfea;
+    border-radius:12px;
+    background:white;
+}
+
+.career-banner{
+    background:
+        radial-gradient(circle at 95% 20%,rgba(255,255,255,.20),transparent 25%),
+        linear-gradient(135deg,#162454,#2f4ec3,#7749e7);
+    color:white;
+    padding:30px;
+    border-radius:22px;
+    margin-bottom:20px;
+}
+
+.career-banner h2{
+    font-size:29px;
+    margin-bottom:8px;
+}
+
+.career-banner p{
+    color:#dce4ff;
+}
+
+.path-section{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+}
+
+.requirement-card{
+    background:white;
+    border-radius:20px;
+    padding:22px;
+    box-shadow:var(--shadow);
+}
+
+.requirement-card h3{
+    margin-bottom:14px;
+}
+
+.skill-list{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+}
+
+.skill{
+    background:#edf3ff;
+    color:#2457e6;
+    padding:8px 11px;
+    border-radius:9px;
+    font-size:13px;
+    font-weight:600;
+}
+
+.project-item{
+    padding:14px;
+    border:1px solid #eee;
+    border-radius:12px;
+    margin-bottom:10px;
+    background:#fffafa;
+}
+
+.project-item b{
+    display:block;
+    margin-bottom:5px;
+}
+
+.project-item span{
+    color:var(--muted);
+    font-size:13px;
+}
+
+/* ================= COURSES ================= */
+
+.course-card{
+    background:white;
+    border:1px solid #eee8e4;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+    transition:.3s;
+}
+
+.course-card:hover{
+    transform:translateY(-5px);
+}
+
+.course-head{
+    padding:20px;
+    color:white;
+    background:linear-gradient(135deg,#2457e6,#7548e8);
+}
+
+.course-head h3{
+    margin-bottom:5px;
+}
+
+.course-body{
+    padding:20px;
+}
+
+.course-body p{
+    color:var(--muted);
+    line-height:1.5;
+    font-size:14px;
+    margin-bottom:12px;
+}
+
+.course-meta{
+    display:flex;
+    gap:7px;
+    flex-wrap:wrap;
+    margin-bottom:15px;
+}
+
+.course-tag{
+    background:#f2efff;
+    color:#6045c8;
+    padding:5px 8px;
+    border-radius:7px;
+    font-size:11px;
+}
+
+.course-buttons{
+    display:flex;
+    gap:8px;
+}
+
+.learn-btn{
+    background:#eef4ff;
+    color:#2457e6;
+    text-decoration:none;
+    display:inline-block;
+}
+
+.complete-btn{
+    background:#20b486;
+    color:white;
+}
+
+.complete-btn.done{
+    background:#dff7ee;
+    color:#168b68;
+}
+
+/* ================= PROGRESS ================= */
+
+.progress-layout{
+    display:grid;
+    grid-template-columns:.8fr 1.2fr;
+    gap:20px;
+}
+
+.progress-circle{
+    width:190px;
+    height:190px;
+    border-radius:50%;
+    margin:15px auto;
+    display:grid;
+    place-items:center;
+    background:conic-gradient(#2457e6 0deg,#7548e8 0deg,#eceef5 0deg);
+    position:relative;
+}
+
+.progress-circle:after{
+    content:"";
+    position:absolute;
+    width:145px;
+    height:145px;
+    border-radius:50%;
+    background:white;
+}
+
+.progress-number{
+    position:relative;
+    z-index:2;
+    font-size:35px;
+    font-weight:900;
+}
+
+.bar-row{
+    margin-bottom:18px;
+}
+
+.bar-label{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:6px;
+    font-size:13px;
+}
+
+.progress-bar{
+    height:11px;
+    background:#eceef5;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress-bar i{
+    display:block;
+    height:100%;
+    border-radius:20px;
+    background:linear-gradient(90deg,#2457e6,#7548e8,#ef4f91);
+}
+
+/* ================= ROUTE MAP ================= */
+
+.route{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    padding:35px 15px;
+    overflow-x:auto;
+}
+
+.route-step{
+    min-width:125px;
+    text-align:center;
+}
+
+.route-circle{
+    width:65px;
+    height:65px;
+    margin:auto;
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    color:white;
+    font-size:25px;
+    background:linear-gradient(135deg,#2457e6,#7548e8);
+    box-shadow:0 10px 22px rgba(36,87,230,.25);
+}
+
+.route-step h4{
+    margin-top:10px;
+}
+
+.route-step p{
+    color:var(--muted);
+    font-size:12px;
+    margin-top:4px;
+}
+
+.route-arrow{
+    color:#7548e8;
+    font-size:27px;
+}
+
+/* ================= EMPTY ================= */
+
+.empty{
+    text-align:center;
+    padding:45px;
+    background:white;
+    border-radius:20px;
+    color:var(--muted);
+}
+
+/* ================= TOAST ================= */
+
+.toast{
+    position:fixed;
+    bottom:25px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#16203d;
+    color:white;
+    padding:12px 18px;
+    border-radius:10px;
+    display:none;
+    z-index:999;
+    box-shadow:var(--shadow);
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1050px){
+    .grid-3,
+    .info-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .path-section,
+    .progress-layout{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:750px){
 
     .sidebar{
-        width:220px;
+        width:70px;
+        padding:20px 8px;
+    }
+
+    .logo{
+        font-size:0;
+        text-align:center;
+        padding:8px 0 25px;
+    }
+
+    .logo span{
+        font-size:25px;
+    }
+
+    .logo small{
+        display:none;
+    }
+
+    .nav button{
+        font-size:0;
+        text-align:center;
+        padding:14px 5px;
+    }
+
+    .nav button:first-letter{
+        font-size:20px;
+    }
+
+    .sidebar-bottom{
+        display:none;
     }
 
     .main{
-        margin-left:220px;
+        margin-left:70px;
+        width:calc(100% - 70px);
+        padding:18px;
     }
 
-    .hero-orbit{
-        opacity:.35;
-        right:-50px;
-    }
-
-    .match-grid,
-    .career-grid,
-    .course-grid{
-        grid-template-columns:
-            repeat(2,1fr);
-    }
-
-    .route-steps{
-        grid-template-columns:
-            repeat(3,1fr);
-
-        gap:30px;
-    }
-
-    .route-line{
-        display:none;
-    }
-
-}
-
-@media(max-width:800px){
-
-    .sidebar{
-        position:relative;
-
-        width:100%;
-
-        min-height:auto;
-
-        padding:15px;
-    }
-
-    .brand{
-        padding-bottom:15px;
-    }
-
-    .nav{
-        display:grid;
-
-        grid-template-columns:
-            repeat(2,1fr);
-    }
-
-    .sidebar-card{
-        display:none;
-    }
-
-    .main{
-        margin-left:0;
-
-        padding:20px;
-    }
-
-    .hero-title{
-        font-size:42px;
-    }
-
-    .home-hero{
-        padding:35px;
-    }
-
-    .hero-orbit{
-        display:none;
-    }
-
-    .info-grid,
-    .profile-layout,
-    .progress-layout,
-    .route-details{
-        grid-template-columns:1fr;
-    }
-
-    .match-grid,
-    .career-grid,
-    .course-grid{
-        grid-template-columns:1fr;
-    }
-
-}
-
-@media(max-width:520px){
-
-    .nav{
-        grid-template-columns:1fr;
-    }
-
-    .profile-form{
-        grid-template-columns:1fr;
-    }
-
-    .field.full{
-        grid-column:auto;
-    }
-
-    .profile-stats{
-        grid-template-columns:1fr;
-    }
-
-    .hero-title{
-        font-size:34px;
-    }
-
-    .page-title{
+    .hero h2{
         font-size:30px;
     }
 
-    .chat{
-        left:15px;
-        right:15px;
-        width:auto;
+    .grid-2,
+    .grid-3,
+    .info-grid{
+        grid-template-columns:1fr;
+    }
+
+    .topbar h1{
+        font-size:25px;
+    }
+
+    .route{
+        justify-content:flex-start;
     }
 }
-
 </style>
 </head>
 
-
 <body>
 
-<!-- Animated background -->
-<div class="background">
-    <div class="blob one"></div>
-    <div class="blob two"></div>
-    <div class="blob three"></div>
-</div>
+<div class="app">
 
-
-<!-- =====================================================
-     SIDEBAR
-     ===================================================== -->
+<!-- ================= SIDEBAR ================= -->
 
 <aside class="sidebar">
 
-    <div class="brand">
-
-        <div class="compass-logo">
-            🧭
-        </div>
-
-        <div class="brand-title">
-            Career
-            <span>Compass</span>
-        </div>
-
-        <div class="brand-sub">
-            FIND YOUR DIRECTION
-        </div>
-
+    <div class="logo">
+        Career<span>Compass</span>
+        <small>DISCOVER YOUR DIRECTION</small>
     </div>
-
 
     <nav class="nav">
 
-        <button class="active" onclick="showPage('home',this)">
-            <span class="nav-icon">🏠</span>
-            Home
+        <button class="active"
+        onclick="showPage('home',this)">
+            🏠 Home
         </button>
 
-        <button onclick="showPage('profile',this)">
-            <span class="nav-icon">👤</span>
-            My Profile
+        <button
+        onclick="showPage('profile',this)">
+            👤 My Profile
         </button>
 
-        <button onclick="showPage('match',this)">
-            <span class="nav-icon">🎯</span>
-            My Career Match
+        <button
+        onclick="showPage('match',this)">
+            🎯 My Career Match
         </button>
 
-        <button onclick="showPage('academic',this)">
-            <span class="nav-icon">🎓</span>
-            Academic Career Map
+        <button
+        onclick="showPage('academic',this)">
+            🎓 Academic Career Map
         </button>
 
-        <button onclick="showPage('courses',this)">
-            <span class="nav-icon">📚</span>
-            Courses
+        <button
+        onclick="showPage('courses',this)">
+            📚 Courses
         </button>
 
-        <button onclick="showPage('progress',this)">
-            <span class="nav-icon">📊</span>
-            My Progress
+        <button
+        onclick="showPage('progress',this)">
+            📊 My Progress
         </button>
 
-        <button onclick="showPage('route',this)">
-            <span class="nav-icon">🗺️</span>
-            Career Route Map
+        <button
+        onclick="showPage('route',this)">
+            🗺️ Career Route Map
         </button>
 
     </nav>
 
-
-    <div class="sidebar-card">
-
-        <strong>✨ Your journey starts here</strong>
-
-        <p>
-            Explore your strengths, discover careers,
-            learn useful skills and build your future
-            step by step.
-        </p>
-
+    <div class="sidebar-bottom">
+        Career Compass helps you explore skills, careers and learning paths step by step.
     </div>
 
 </aside>
 
 
-
-<!-- =====================================================
-     MAIN
-     ===================================================== -->
+<!-- ================= MAIN ================= -->
 
 <main class="main">
 
-    <div class="topbar">
+<header class="topbar">
 
-        <div class="page-label" id="pageLabel">
-            Your personalized career journey
-        </div>
+    <div>
+        <h1 id="pageTitle">Home</h1>
+        <p id="pageSubtitle">
+            Explore your future with clarity.
+        </p>
+    </div>
 
-        <div class="user-pill">
-            <div class="avatar">P</div>
-            <span id="topName">Student</span>
+    <div class="user-circle">
+        CC
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+HOME
+===================================================== -->
+
+<section id="home" class="page active">
+
+    <div class="hero">
+
+        <div class="hero-content">
+
+            <span class="hero-tag">
+                ✨ YOUR PERSONAL CAREER COMPASS
+            </span>
+
+            <h2>
+                Find a direction.<br>
+                Build your future.
+            </h2>
+
+            <p>
+                Career Compass connects your education, skills,
+                interests and goals with realistic career paths.
+                Explore careers, discover the skills you need,
+                learn online and track your progress.
+            </p>
+
         </div>
 
     </div>
 
 
+    <div class="info-grid">
 
-<!-- =====================================================
-     HOME
-     INFORMATION ONLY
-     ===================================================== -->
+        <div class="info-card">
 
-<section id="home" class="page active">
-
-    <div class="home-hero">
-
-        <div class="hero-content">
-
-            <div class="hero-tag">
-                🧭 SMART CAREER GUIDANCE PLATFORM
+            <div class="info-icon">
+                🎯
             </div>
 
-            <h1 class="hero-title">
-                Discover the career
-                <span class="gradient-text">
-                    that fits you.
-                </span>
-            </h1>
+            <h3>Discover Your Match</h3>
 
-            <p class="hero-description">
-                Career Compass helps students understand
-                their strengths, explore career possibilities,
-                discover academic pathways, learn useful skills
-                and create a clear journey from education
-                to their future career.
+            <p>
+                Understand which careers match your
+                interests, education and strengths.
             </p>
 
         </div>
 
 
-        <div class="hero-orbit">
+        <div class="info-card">
 
-            <div class="orbit-dot dot1">🎓</div>
-            <div class="orbit-dot dot2">💡</div>
-            <div class="orbit-dot dot3">🚀</div>
-            <div class="orbit-dot dot4">📊</div>
-
-            <div class="hero-compass">
+            <div class="info-icon">
                 🧭
             </div>
+
+            <h3>Explore Career Paths</h3>
+
+            <p>
+                See the skills, projects and learning
+                required for different career options.
+            </p>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <div class="info-icon">
+                🚀
+            </div>
+
+            <h3>Learn & Track</h3>
+
+            <p>
+                Learn through online courses and mark
+                completed courses to build your progress.
+            </p>
 
         </div>
 
     </div>
 
 
-    <div class="info-section">
+    <div class="section-card" style="margin-top:20px">
 
-        <h2 class="section-heading">
-            What Career Compass helps you do
+        <h2 class="section-title">
+            How Career Compass Works
         </h2>
 
-        <div class="info-grid">
+        <p class="section-sub">
+            Your journey from education to career.
+        </p>
 
-            <div class="card info-card">
+        <div class="route">
 
-                <div class="info-icon">
-                    🎯
-                </div>
-
-                <h3>
-                    Discover Your Direction
-                </h3>
-
-                <p>
-                    Understand your interests, strengths,
-                    skills and academic background to identify
-                    career possibilities that match you.
-                </p>
-
+            <div class="route-step">
+                <div class="route-circle">🎓</div>
+                <h4>Education</h4>
+                <p>Your course</p>
             </div>
 
+            <div class="route-arrow">→</div>
 
-            <div class="card info-card">
-
-                <div class="info-icon">
-                    🧠
-                </div>
-
-                <h3>
-                    Understand Your Strengths
-                </h3>
-
-                <p>
-                    Build a profile around your skills,
-                    interests, education and goals so your
-                    career exploration becomes more personal.
-                </p>
-
+            <div class="route-step">
+                <div class="route-circle">🎯</div>
+                <h4>Match</h4>
+                <p>Find careers</p>
             </div>
 
+            <div class="route-arrow">→</div>
 
-            <div class="card info-card">
-
-                <div class="info-icon">
-                    🗺️
-                </div>
-
-                <h3>
-                    Build Your Career Journey
-                </h3>
-
-                <p>
-                    Move from education to exploration,
-                    skills, learning, projects and finally
-                    towards your chosen career.
-                </p>
-
+            <div class="route-step">
+                <div class="route-circle">🧠</div>
+                <h4>Skills</h4>
+                <p>Build skills</p>
             </div>
 
+            <div class="route-arrow">→</div>
 
-            <div class="card info-card">
-
-                <div class="info-icon">
-                    📚
-                </div>
-
-                <h3>
-                    Learn Relevant Skills
-                </h3>
-
-                <p>
-                    Explore courses and skill areas connected
-                    with different careers so you know what
-                    to learn next.
-                </p>
-
+            <div class="route-step">
+                <div class="route-circle">📚</div>
+                <h4>Learn</h4>
+                <p>Take courses</p>
             </div>
 
+            <div class="route-arrow">→</div>
 
-            <div class="card info-card">
-
-                <div class="info-icon">
-                    📈
-                </div>
-
-                <h3>
-                    Track Your Progress
-                </h3>
-
-                <p>
-                    See your learning progress through visual
-                    progress bars, statistics and graphs.
-                </p>
-
+            <div class="route-step">
+                <div class="route-circle">💻</div>
+                <h4>Projects</h4>
+                <p>Build proof</p>
             </div>
 
+            <div class="route-arrow">→</div>
 
-            <div class="card info-card">
-
-                <div class="info-icon">
-                    🚀
-                </div>
-
-                <h3>
-                    Prepare For Your Future
-                </h3>
-
-                <p>
-                    Turn career ideas into practical steps
-                    through skills, projects, learning and
-                    career planning.
-                </p>
-
+            <div class="route-step">
+                <div class="route-circle">🚀</div>
+                <h4>Career</h4>
+                <p>Get started</p>
             </div>
 
         </div>
@@ -2172,906 +1066,315 @@ body{
 </section>
 
 
-
 <!-- =====================================================
-     PROFILE
-     ===================================================== -->
+PROFILE
+===================================================== -->
 
 <section id="profile" class="page">
 
-    <h1 class="page-title">
-        My <span class="gradient-text">Profile</span>
-    </h1>
+    <div class="section-card">
 
-    <p class="page-subtitle">
-        Tell Career Compass about yourself so your career
-        recommendations become more personalized.
-    </p>
+        <h2 class="section-title">
+            👤 My Profile
+        </h2>
 
-
-    <div class="profile-layout">
-
-        <div class="card">
-
-            <h2 class="section-heading">
-                Your Career Profile
-            </h2>
-
-            <div class="profile-form">
-
-                <div class="field">
-
-                    <label>Your Name</label>
-
-                    <input
-                        id="name"
-                        placeholder="Enter your name"
-                    >
-
-                </div>
+        <p class="section-sub">
+            Tell Career Compass about yourself to get better career matches.
+        </p>
 
 
-                <div class="field">
+        <div class="grid-2">
 
-                    <label>Current Course</label>
+            <div class="field">
+                <label>Current Course / Degree</label>
 
-                    <input
-                        id="course"
-                        placeholder="Example: B.Tech ECE"
-                    >
-
-                </div>
-
-
-                <div class="field full">
-
-                    <label>Your Skills</label>
-
-                    <input
-                        id="skills"
-                        placeholder="Example: Python, Excel, communication, IoT"
-                    >
-
-                </div>
+                <input
+                    id="profileCourse"
+                    placeholder="Example: B.Tech ECE">
+            </div>
 
 
-                <div class="field full">
+            <div class="field">
+                <label>Skills</label>
 
-                    <label>Your Interests</label>
-
-                    <input
-                        id="interests"
-                        placeholder="Example: technology, analytics, design"
-                    >
-
-                </div>
+                <input
+                    id="profileSkills"
+                    placeholder="Example: C, Python, Communication">
+            </div>
 
 
-                <div class="field">
+            <div class="field">
+                <label>Interests</label>
 
-                    <label>Career Goal</label>
-
-                    <input
-                        id="goal"
-                        placeholder="Example: Software Engineer"
-                    >
-
-                </div>
+                <input
+                    id="profileInterests"
+                    placeholder="Example: Technology, IoT, Data">
+            </div>
 
 
-                <div class="field">
+            <div class="field">
+                <label>Career Goal</label>
 
-                    <label>Preferred Work Style</label>
-
-                    <select id="workstyle">
-
-                        <option value="">
-                            Select
-                        </option>
-
-                        <option>
-                            Creative
-                        </option>
-
-                        <option>
-                            Technical
-                        </option>
-
-                        <option>
-                            Analytical
-                        </option>
-
-                        <option>
-                            People Oriented
-                        </option>
-
-                        <option>
-                            Leadership
-                        </option>
-
-                    </select>
-
-                </div>
+                <input
+                    id="profileGoal"
+                    placeholder="Example: Software Developer">
+            </div>
 
 
-                <div class="field full">
+            <div class="field">
 
-                    <label>About Your Career Interests</label>
+                <label>Projects / Activities</label>
 
-                    <textarea
-                        id="about"
-                        placeholder="Tell us what kind of career or future you imagine..."
-                    ></textarea>
-
-                </div>
+                <textarea
+                    id="profileProjects"
+                    placeholder="Mention your projects, internships, clubs or activities">
+                </textarea>
 
             </div>
 
 
-            <br>
+            <div class="field">
 
-            <button
-                class="primary-btn"
-                onclick="saveProfile()"
-            >
-                ✨ Save My Profile
+                <label>Preferred Work Style</label>
+
+                <textarea
+                    id="profileLifestyle"
+                    placeholder="Example: Creative work, teamwork, remote work, leadership">
+                </textarea>
+
+            </div>
+
+        </div>
+
+
+        <div class="actions">
+
+            <button class="primary-btn"
+            onclick="saveProfile()">
+                Save My Profile
+            </button>
+
+            <button class="secondary-btn"
+            onclick="generateMatches()">
+                Generate Career Match
             </button>
 
         </div>
 
-
-
-        <div class="card profile-visual">
-
-            <div class="profile-circle">
-                👩‍🎓
-            </div>
-
-            <div class="profile-name" id="profileName">
-                Student
-            </div>
-
-            <div class="profile-role" id="profileCourse">
-                Future Career Explorer
-            </div>
-
-
-            <div class="profile-stats">
-
-                <div class="profile-stat">
-                    <strong id="skillCount">0</strong>
-                    <span>Skills</span>
-                </div>
-
-                <div class="profile-stat">
-                    <strong id="interestCount">0</strong>
-                    <span>Interests</span>
-                </div>
-
-                <div class="profile-stat">
-                    <strong>7</strong>
-                    <span>Career Areas</span>
-                </div>
-
-            </div>
-
-        </div>
-
     </div>
 
 </section>
 
 
-
 <!-- =====================================================
-     CAREER MATCH
-     ===================================================== -->
+CAREER MATCH
+===================================================== -->
 
 <section id="match" class="page">
-
-    <h1 class="page-title">
-        My Career <span class="gradient-text">Match</span>
-    </h1>
-
-    <p class="page-subtitle">
-        Career possibilities based on your profile.
-    </p>
-
 
     <div class="match-hero">
 
         <h2>
-            🎯 Your Career Possibilities
+            🎯 My Career Match
         </h2>
 
         <p>
-            Your matches are calculated from your course,
-            skills, interests and career goals.
+            Career suggestions based on your profile,
+            education, skills and interests.
         </p>
 
     </div>
 
-
-    <div
-        id="matchGrid"
-        class="match-grid"
-    ></div>
+    <div id="matchContainer"></div>
 
 </section>
 
 
-
 <!-- =====================================================
-     ACADEMIC CAREER MAP
-     ===================================================== -->
+ACADEMIC CAREER MAP
+===================================================== -->
 
 <section id="academic" class="page">
 
-    <h1 class="page-title">
-        Academic <span class="gradient-text">Career Map</span>
-    </h1>
+    <div class="section-card">
 
-    <p class="page-subtitle">
-        Explore career opportunities connected with your academic background.
-    </p>
+        <h2 class="section-title">
+            🎓 Academic Career Map
+        </h2>
+
+        <p class="section-sub">
+            Select a career to see the skills, projects and learning path required.
+        </p>
 
 
-    <div class="card academic-select">
+        <div class="academic-selector">
 
-        <select id="academicSelect"
-                onchange="renderAcademic()">
+            <select id="careerSelect"
+            onchange="showAcademicCareer()">
 
-            <option value="ECE">
-                Electronics & Communication Engineering
-            </option>
+                <option value="software">
+                    Software Developer
+                </option>
 
-            <option value="CSE">
-                Computer Science Engineering
-            </option>
+                <option value="data">
+                    Data Analyst
+                </option>
 
-            <option value="EEE">
-                Electrical & Electronics Engineering
-            </option>
+                <option value="embedded">
+                    Embedded Engineer
+                </option>
 
-            <option value="CIVIL">
-                Civil Engineering
-            </option>
+                <option value="vlsi">
+                    VLSI Engineer
+                </option>
 
-            <option value="BSC">
-                B.Sc / Science
-            </option>
+                <option value="iot">
+                    IoT Engineer
+                </option>
 
-            <option value="BCOM">
-                B.Com / Commerce
-            </option>
+                <option value="web">
+                    Full Stack Developer
+                </option>
 
-            <option value="BBA">
-                BBA / Management
-            </option>
+                <option value="business">
+                    Business Analyst
+                </option>
 
-        </select>
+                <option value="uiux">
+                    UI/UX Designer
+                </option>
+
+            </select>
+
+            <button class="primary-btn"
+            onclick="showAcademicCareer()">
+                Explore Career
+            </button>
+
+        </div>
 
     </div>
 
 
-    <div
-        id="academicBanner"
-        class="academic-banner"
-    ></div>
-
-
-    <div
-        id="careerGrid"
-        class="career-grid"
-    ></div>
+    <div id="academicContent"></div>
 
 </section>
 
 
-
 <!-- =====================================================
-     COURSES
-     ===================================================== -->
+COURSES
+===================================================== -->
 
 <section id="courses" class="page">
 
-    <h1 class="page-title">
-        Explore <span class="gradient-text">Courses</span>
-    </h1>
+    <div class="section-card">
 
-    <p class="page-subtitle">
-        Build the skills that move you closer to your career.
-    </p>
-
-
-    <div class="course-grid">
-
-
-        <div class="card course-card">
-
-            <span class="course-number">
-                01 / TECH
-            </span>
-
-            <h3>
-                Python Programming
-            </h3>
-
-            <p>
-                Learn programming fundamentals and build
-                a strong base for software, automation and
-                data-related careers.
-            </p>
-
-            <div class="course-progress">
-
-                <div class="course-progress-top">
-                    <span>Learning path</span>
-                    <span>75%</span>
-                </div>
-
-                <div class="course-track">
-                    <div
-                        class="course-fill"
-                        style="width:75%"
-                    ></div>
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-        <div class="card course-card">
-
-            <span class="course-number">
-                02 / DATA
-            </span>
-
-            <h3>
-                Data Analytics
-            </h3>
-
-            <p>
-                Explore Excel, SQL, statistics,
-                dashboards and analytical thinking.
-            </p>
-
-            <div class="course-progress">
-
-                <div class="course-progress-top">
-                    <span>Learning path</span>
-                    <span>60%</span>
-                </div>
-
-                <div class="course-track">
-                    <div
-                        class="course-fill"
-                        style="width:60%"
-                    ></div>
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-        <div class="card course-card">
-
-            <span class="course-number">
-                03 / DIGITAL
-            </span>
-
-            <h3>
-                Web Development
-            </h3>
-
-            <p>
-                Learn HTML, CSS, JavaScript and build
-                interactive websites and applications.
-            </p>
-
-            <div class="course-progress">
-
-                <div class="course-progress-top">
-                    <span>Learning path</span>
-                    <span>50%</span>
-                </div>
-
-                <div class="course-track">
-                    <div
-                        class="course-fill"
-                        style="width:50%"
-                    ></div>
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-        <div class="card course-card">
-
-            <span class="course-number">
-                04 / BUSINESS
-            </span>
-
-            <h3>
-                Business Analysis
-            </h3>
-
-            <p>
-                Understand business problems, requirements,
-                data and decision-making.
-            </p>
-
-            <div class="course-progress">
-
-                <div class="course-progress-top">
-                    <span>Learning path</span>
-                    <span>45%</span>
-                </div>
-
-                <div class="course-track">
-                    <div
-                        class="course-fill"
-                        style="width:45%"
-                    ></div>
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-        <div class="card course-card">
-
-            <span class="course-number">
-                05 / ECE
-            </span>
-
-            <h3>
-                Embedded Systems
-            </h3>
-
-            <p>
-                Explore microcontrollers, C programming,
-                sensors, IoT and embedded technologies.
-            </p>
-
-            <div class="course-progress">
-
-                <div class="course-progress-top">
-                    <span>Learning path</span>
-                    <span>70%</span>
-                </div>
-
-                <div class="course-track">
-                    <div
-                        class="course-fill"
-                        style="width:70%"
-                    ></div>
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-        <div class="card course-card">
-
-            <span class="course-number">
-                06 / SOFT SKILLS
-            </span>
-
-            <h3>
-                Communication & Leadership
-            </h3>
-
-            <p>
-                Improve presentation, teamwork, communication
-                and leadership abilities.
-            </p>
-
-            <div class="course-progress">
-
-                <div class="course-progress-top">
-                    <span>Learning path</span>
-                    <span>80%</span>
-                </div>
-
-                <div class="course-track">
-                    <div
-                        class="course-fill"
-                        style="width:80%"
-                    ></div>
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     PROGRESS
-     ===================================================== -->
-
-<section id="progress" class="page">
-
-    <h1 class="page-title">
-        My <span class="gradient-text">Progress</span>
-    </h1>
-
-    <p class="page-subtitle">
-        Visualize your learning and career preparation journey.
-    </p>
-
-
-    <div class="progress-layout">
-
-        <div>
-
-            <div class="progress-cards">
-
-                <div class="card progress-card">
-
-                    <span>
-                        🎓 Courses
-                    </span>
-
-                    <div class="big">
-                        4
-                    </div>
-
-                    <div class="progress-line">
-                        <div style="width:68%"></div>
-                    </div>
-
-                    <small>
-                        68% learning progress
-                    </small>
-
-                </div>
-
-
-                <div class="card progress-card">
-
-                    <span>
-                        🧠 Skills
-                    </span>
-
-                    <div class="big">
-                        7
-                    </div>
-
-                    <div class="progress-line">
-                        <div style="width:75%"></div>
-                    </div>
-
-                    <small>
-                        75% skill development
-                    </small>
-
-                </div>
-
-
-                <div class="card progress-card">
-
-                    <span>
-                        💻 Projects
-                    </span>
-
-                    <div class="big">
-                        3
-                    </div>
-
-                    <div class="progress-line">
-                        <div style="width:55%"></div>
-                    </div>
-
-                    <small>
-                        55% project journey
-                    </small>
-
-                </div>
-
-
-                <div class="card progress-card">
-
-                    <span>
-                        🚀 Career Ready
-                    </span>
-
-                    <div class="big">
-                        64%
-                    </div>
-
-                    <div class="progress-line">
-                        <div style="width:64%"></div>
-                    </div>
-
-                    <small>
-                        Overall preparation
-                    </small>
-
-                </div>
-
-            </div>
-
-
-            <div class="card">
-
-                <h2 class="section-heading">
-                    📊 Skill Growth
-                </h2>
-
-                <div class="chart">
-
-                    <div class="bar-column">
-                        <div class="bar-value">75%</div>
-                        <div
-                            class="bar"
-                            style="height:75%"
-                        ></div>
-                        <div class="bar-label">
-                            Tech
-                        </div>
-                    </div>
-
-
-                    <div class="bar-column">
-                        <div class="bar-value">65%</div>
-                        <div
-                            class="bar"
-                            style="height:65%"
-                        ></div>
-                        <div class="bar-label">
-                            Data
-                        </div>
-                    </div>
-
-
-                    <div class="bar-column">
-                        <div class="bar-value">80%</div>
-                        <div
-                            class="bar"
-                            style="height:80%"
-                        ></div>
-                        <div class="bar-label">
-                            Communication
-                        </div>
-                    </div>
-
-
-                    <div class="bar-column">
-                        <div class="bar-value">55%</div>
-                        <div
-                            class="bar"
-                            style="height:55%"
-                        ></div>
-                        <div class="bar-label">
-                            Projects
-                        </div>
-                    </div>
-
-
-                    <div class="bar-column">
-                        <div class="bar-value">70%</div>
-                        <div
-                            class="bar"
-                            style="height:70%"
-                        ></div>
-                        <div class="bar-label">
-                            Problem Solving
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div class="card">
-
-            <h2 class="section-heading">
-                🔥 Current Focus
-            </h2>
-
-            <p style="color:var(--muted);line-height:1.7">
-                Your next growth area should combine technical
-                knowledge with practical experience.
-            </p>
-
-            <br>
-
-            <div class="card"
-                 style="padding:18px;margin-bottom:12px">
-
-                <b>1. Build a project</b>
-
-                <p style="color:var(--muted);font-size:12px;margin-top:6px">
-                    Create something that demonstrates your skills.
-                </p>
-
-            </div>
-
-
-            <div class="card"
-                 style="padding:18px;margin-bottom:12px">
-
-                <b>2. Learn one advanced skill</b>
-
-                <p style="color:var(--muted);font-size:12px;margin-top:6px">
-                    Go deeper into one career-relevant technology.
-                </p>
-
-            </div>
-
-
-            <div class="card"
-                 style="padding:18px">
-
-                <b>3. Improve your profile</b>
-
-                <p style="color:var(--muted);font-size:12px;margin-top:6px">
-                    Keep your skills, interests and goals updated.
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     CAREER ROUTE MAP
-     ===================================================== -->
-
-<section id="route" class="page">
-
-    <h1 class="page-title">
-        Career <span class="gradient-text">Route Map</span>
-    </h1>
-
-    <p class="page-subtitle">
-        See your complete journey from education to career.
-    </p>
-
-
-    <div class="route-hero">
-
-        <h2>
-            🗺️ Your Career Journey
+        <h2 class="section-title">
+            📚 Online Learning Hub
         </h2>
 
-        <p>
-            A successful career is built through a series
-            of small steps — not one single decision.
+        <p class="section-sub">
+            Learn the skills required for your selected career.
+            Open a course, learn online and mark it complete here.
         </p>
 
     </div>
 
 
-    <div class="card route">
+    <div class="grid-3" id="courseContainer"></div>
 
-        <div class="route-line"></div>
+</section>
 
-        <div class="route-steps">
 
-            <div class="route-step">
+<!-- =====================================================
+PROGRESS
+===================================================== -->
 
-                <div class="route-icon">
-                    🎓
+<section id="progress" class="page">
+
+    <div class="progress-layout">
+
+        <div class="section-card">
+
+            <h2>
+                📊 My Progress
+            </h2>
+
+            <p class="section-sub">
+                Your completed courses are automatically reflected here.
+            </p>
+
+            <div
+            class="progress-circle"
+            id="progressCircle">
+
+                <div
+                class="progress-number"
+                id="progressNumber">
+                    0%
                 </div>
 
-                <h4>
-                    Education
-                </h4>
+            </div>
 
-                <p>
-                    Build your academic foundation
-                </p>
+            <p style="text-align:center;color:#777">
+                Overall Learning Progress
+            </p>
+
+        </div>
+
+
+        <div class="section-card">
+
+            <h2>
+                Learning Statistics
+            </h2>
+
+            <br>
+
+            <div class="bar-row">
+
+                <div class="bar-label">
+                    <span>Courses Completed</span>
+                    <b id="completedText">0 / 0</b>
+                </div>
+
+                <div class="progress-bar">
+                    <i id="courseProgressBar"
+                    style="width:0%">
+                    </i>
+                </div>
 
             </div>
 
 
-            <div class="route-step">
+            <div class="bar-row">
 
-                <div class="route-icon">
-                    🔎
+                <div class="bar-label">
+                    <span>Skills Development</span>
+                    <b id="skillProgressText">0%</b>
                 </div>
 
-                <h4>
-                    Explore
-                </h4>
-
-                <p>
-                    Discover career options
-                </p>
+                <div class="progress-bar">
+                    <i id="skillProgressBar"
+                    style="width:0%">
+                    </i>
+                </div>
 
             </div>
 
 
-            <div class="route-step">
+            <div class="bar-row">
 
-                <div class="route-icon">
-                    🧠
+                <div class="bar-label">
+                    <span>Career Preparation</span>
+                    <b id="careerProgressText">0%</b>
                 </div>
 
-                <h4>
-                    Skills
-                </h4>
-
-                <p>
-                    Develop relevant abilities
-                </p>
-
-            </div>
-
-
-            <div class="route-step">
-
-                <div class="route-icon">
-                    📚
+                <div class="progress-bar">
+                    <i id="careerProgressBar"
+                    style="width:0%">
+                    </i>
                 </div>
-
-                <h4>
-                    Learn
-                </h4>
-
-                <p>
-                    Take courses and practice
-                </p>
-
-            </div>
-
-
-            <div class="route-step">
-
-                <div class="route-icon">
-                    💻
-                </div>
-
-                <h4>
-                    Projects
-                </h4>
-
-                <p>
-                    Turn knowledge into experience
-                </p>
-
-            </div>
-
-
-            <div class="route-step">
-
-                <div class="route-icon">
-                    🚀
-                </div>
-
-                <h4>
-                    Career
-                </h4>
-
-                <p>
-                    Apply, grow and succeed
-                </p>
 
             </div>
 
@@ -3080,47 +1383,14 @@ body{
     </div>
 
 
-    <div class="route-details">
+    <div class="section-card">
 
-        <div class="card route-detail">
+        <h2>
+            Completed Courses
+        </h2>
 
-            <h3>
-                🌱 Start
-            </h3>
-
-            <p style="color:var(--muted);margin-top:8px;line-height:1.6">
-                Understand your academic background,
-                strengths and interests.
-            </p>
-
-        </div>
-
-
-        <div class="card route-detail">
-
-            <h3>
-                ⚡ Build
-            </h3>
-
-            <p style="color:var(--muted);margin-top:8px;line-height:1.6">
-                Learn relevant skills and demonstrate
-                them through practical projects.
-            </p>
-
-        </div>
-
-
-        <div class="card route-detail">
-
-            <h3>
-                🚀 Launch
-            </h3>
-
-            <p style="color:var(--muted);margin-top:8px;line-height:1.6">
-                Build your portfolio, prepare for opportunities
-                and move towards your target career.
-            </p>
-
+        <div id="completedCourses"
+        style="margin-top:15px">
         </div>
 
     </div>
@@ -3128,127 +1398,500 @@ body{
 </section>
 
 
-</main>
-
-
-
 <!-- =====================================================
-     CHAT
-     ===================================================== -->
+CAREER ROUTE MAP
+===================================================== -->
 
-<button
-    class="chat-button"
-    onclick="toggleChat()"
->
-    💬
-</button>
+<section id="route" class="page">
 
+    <div class="section-card">
 
-<div
-    class="chat"
-    id="chat"
->
+        <h2 class="section-title">
+            🗺️ Career Route Map
+        </h2>
 
-    <div class="chat-head">
-
-        <b>
-            Career Compass AI
-        </b>
-
-        <button
-            onclick="toggleChat()"
-            style="
-            background:none;
-            border:0;
-            color:white;
-            font-size:20px;
-            cursor:pointer"
-        >
-            ×
-        </button>
-
-    </div>
+        <p class="section-sub">
+            A clear visual journey from your education to your career.
+        </p>
 
 
-    <div
-        class="chat-body"
-        id="chatBody"
-    >
+        <div class="route">
 
-        <div class="message bot">
-            Hi 👋 I'm your Career Compass assistant.
-            Ask me about careers, skills, courses or your
-            career journey.
+            <div class="route-step">
+
+                <div class="route-circle">
+                    🎓
+                </div>
+
+                <h4>Education</h4>
+
+                <p>
+                    Complete your degree
+                </p>
+
+            </div>
+
+
+            <div class="route-arrow">
+                →
+            </div>
+
+
+            <div class="route-step">
+
+                <div class="route-circle">
+                    🎯
+                </div>
+
+                <h4>Career Match</h4>
+
+                <p>
+                    Find suitable roles
+                </p>
+
+            </div>
+
+
+            <div class="route-arrow">
+                →
+            </div>
+
+
+            <div class="route-step">
+
+                <div class="route-circle">
+                    🧠
+                </div>
+
+                <h4>Skills</h4>
+
+                <p>
+                    Build job skills
+                </p>
+
+            </div>
+
+
+            <div class="route-arrow">
+                →
+            </div>
+
+
+            <div class="route-step">
+
+                <div class="route-circle">
+                    📚
+                </div>
+
+                <h4>Courses</h4>
+
+                <p>
+                    Learn online
+                </p>
+
+            </div>
+
+
+            <div class="route-arrow">
+                →
+            </div>
+
+
+            <div class="route-step">
+
+                <div class="route-circle">
+                    💻
+                </div>
+
+                <h4>Projects</h4>
+
+                <p>
+                    Build portfolio
+                </p>
+
+            </div>
+
+
+            <div class="route-arrow">
+                →
+            </div>
+
+
+            <div class="route-step">
+
+                <div class="route-circle">
+                    🚀
+                </div>
+
+                <h4>Career</h4>
+
+                <p>
+                    Internship / Job
+                </p>
+
+            </div>
+
         </div>
 
     </div>
 
 
-    <div class="chat-input">
+    <div class="grid-3">
 
-        <input
-            id="chatInput"
-            placeholder="Ask about your career..."
-            onkeydown="
-            if(event.key==='Enter') sendChat()
-            "
-        >
+        <div class="info-card">
+            <div class="info-icon">1️⃣</div>
+            <h3>Learn</h3>
+            <p>
+                Complete courses related to your selected career.
+            </p>
+        </div>
 
-        <button onclick="sendChat()">
-            Send
-        </button>
+        <div class="info-card">
+            <div class="info-icon">2️⃣</div>
+            <h3>Build</h3>
+            <p>
+                Create practical projects that demonstrate your skills.
+            </p>
+        </div>
+
+        <div class="info-card">
+            <div class="info-icon">3️⃣</div>
+            <h3>Launch</h3>
+            <p>
+                Prepare your resume, portfolio and apply for opportunities.
+            </p>
+        </div>
 
     </div>
+
+</section>
+
+</main>
 
 </div>
 
 
+<div class="toast" id="toast"></div>
+
 
 <script>
 
-/* =========================================================
-   PAGE NAVIGATION
-   ========================================================= */
+/* =====================================================
+   DATA
+===================================================== */
 
-const pageNames = {
-    home:"Your personalized career journey",
-    profile:"Build your career profile",
-    match:"Personalized career recommendations",
-    academic:"Academic career opportunities",
-    courses:"Learn skills for your future",
-    progress:"Track your career preparation",
-    route:"Your complete career journey"
+const careers = {
+
+software:{
+    title:"Software Developer",
+    description:"Build applications, websites and software systems using programming and problem-solving skills.",
+    skills:[
+        "Programming",
+        "Python / Java",
+        "Data Structures",
+        "Git & GitHub",
+        "SQL",
+        "Problem Solving"
+    ],
+    projects:[
+        ["Student Management System","Build a CRUD application for managing student records."],
+        ["Career Guidance Website","Create a website with career recommendations."],
+        ["Task Management App","Build a simple application to create and track tasks."]
+    ],
+    courses:["Programming Fundamentals","Python Programming","Git & GitHub"]
+},
+
+data:{
+    title:"Data Analyst",
+    description:"Use data, statistics and visualization to discover useful business insights.",
+    skills:[
+        "Excel",
+        "Statistics",
+        "SQL",
+        "Power BI",
+        "Data Cleaning",
+        "Data Visualization"
+    ],
+    projects:[
+        ["Student Performance Dashboard","Analyze student marks and create an interactive dashboard."],
+        ["Sales Analysis","Analyze sales data and identify trends."],
+        ["Placement Analytics","Create a dashboard showing placement statistics."]
+    ],
+    courses:["Excel for Data Analysis","SQL Fundamentals","Power BI"]
+},
+
+embedded:{
+    title:"Embedded Engineer",
+    description:"Design software and hardware systems for microcontrollers and embedded devices.",
+    skills:[
+        "C Programming",
+        "Microcontrollers",
+        "Arduino",
+        "Embedded C",
+        "Sensors",
+        "RTOS"
+    ],
+    projects:[
+        ["Smart Fire Alarm","Build a fire and smoke detection system."],
+        ["Smart Home System","Control appliances using sensors and a microcontroller."],
+        ["Temperature Monitor","Create a real-time temperature monitoring device."]
+    ],
+    courses:["C Programming","Arduino","Embedded Systems"]
+},
+
+vlsi:{
+    title:"VLSI Engineer",
+    description:"Work with digital electronics, semiconductor technology and chip design.",
+    skills:[
+        "Digital Electronics",
+        "Verilog",
+        "VHDL",
+        "Computer Architecture",
+        "Semiconductor Basics",
+        "HDL"
+    ],
+    projects:[
+        ["ALU Design","Design and simulate an arithmetic logic unit."],
+        ["Traffic Light Controller","Build a digital controller using HDL."],
+        ["FIFO Memory","Design and simulate a FIFO memory system."]
+    ],
+    courses:["Digital Electronics","Verilog HDL","VLSI Design"]
+},
+
+iot:{
+    title:"IoT Engineer",
+    description:"Connect sensors, devices and software to build intelligent connected systems.",
+    skills:[
+        "Arduino",
+        "ESP32",
+        "Sensors",
+        "Python",
+        "MQTT",
+        "Cloud Basics"
+    ],
+    projects:[
+        ["Smart Agriculture","Monitor soil moisture and automate irrigation."],
+        ["IoT Weather Station","Collect temperature and humidity data."],
+        ["Smart Energy Monitor","Track electrical energy usage."]
+    ],
+    courses:["IoT Fundamentals","Arduino","Python"]
+},
+
+web:{
+    title:"Full Stack Developer",
+    description:"Build complete web applications using frontend, backend and database technologies.",
+    skills:[
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Python / Flask",
+        "SQL",
+        "Git"
+    ],
+    projects:[
+        ["College Website","Build a complete responsive college website."],
+        ["Career Portal","Create a career recommendation platform."],
+        ["Online Course Tracker","Build a course progress management system."]
+    ],
+    courses:["HTML & CSS","JavaScript","Web Development"]
+},
+
+business:{
+    title:"Business Analyst",
+    description:"Connect business needs with data, processes and technology.",
+    skills:[
+        "Excel",
+        "SQL",
+        "Communication",
+        "Problem Solving",
+        "Data Analysis",
+        "Power BI"
+    ],
+    projects:[
+        ["Business Dashboard","Create a business KPI dashboard."],
+        ["Market Analysis","Analyze a market and identify opportunities."],
+        ["Customer Analysis","Study customer behaviour using data."]
+    ],
+    courses:["Excel","SQL","Business Analytics"]
+},
+
+uiux:{
+    title:"UI/UX Designer",
+    description:"Design attractive, useful and user-friendly digital experiences.",
+    skills:[
+        "Figma",
+        "UI Design",
+        "UX Research",
+        "Wireframing",
+        "Prototyping",
+        "Design Thinking"
+    ],
+    projects:[
+        ["College App Design","Design a student college mobile application."],
+        ["Career App Prototype","Create a career guidance application prototype."],
+        ["E-commerce Redesign","Redesign an existing shopping experience."]
+    ],
+    courses:["UI/UX Fundamentals","Figma","Design Thinking"]
+}
+
 };
 
 
-function showPage(pageId,button){
+/* =====================================================
+COURSES
+===================================================== */
+
+const courses = [
+
+{
+id:"html",
+title:"HTML & CSS",
+platform:"freeCodeCamp",
+description:"Learn the fundamentals of creating modern web pages.",
+skills:"HTML • CSS",
+url:"https://www.freecodecamp.org/learn/2022/responsive-web-design/",
+career:"Full Stack Developer"
+},
+
+{
+id:"javascript",
+title:"JavaScript",
+platform:"freeCodeCamp",
+description:"Learn JavaScript programming and web development.",
+skills:"JavaScript • Programming",
+url:"https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures-v8/",
+career:"Full Stack Developer"
+},
+
+{
+id:"python",
+title:"Python Programming",
+platform:"freeCodeCamp",
+description:"Learn Python fundamentals and programming concepts.",
+skills:"Python • Programming",
+url:"https://www.freecodecamp.org/learn/scientific-computing-with-python/",
+career:"Software Developer"
+},
+
+{
+id:"sql",
+title:"SQL",
+platform:"freeCodeCamp",
+description:"Learn SQL and database fundamentals.",
+skills:"SQL • Databases",
+url:"https://www.freecodecamp.org/learn/relational-database/",
+career:"Data Analyst"
+},
+
+{
+id:"data",
+title:"Data Analysis",
+platform:"freeCodeCamp",
+description:"Learn data analysis concepts and practical techniques.",
+skills:"Python • Data Analysis",
+url:"https://www.freecodecamp.org/learn/data-analysis-with-python/",
+career:"Data Analyst"
+},
+
+{
+id:"microsoft",
+title:"Microsoft Learn",
+platform:"Microsoft Learn",
+description:"Explore interactive technical learning paths.",
+skills:"Technology • Cloud • Data",
+url:"https://learn.microsoft.com/training/",
+career:"Technology"
+},
+
+{
+id:"powerbi",
+title:"Power BI",
+platform:"Microsoft Learn",
+description:"Learn data visualization and business intelligence.",
+skills:"Power BI • Visualization",
+url:"https://learn.microsoft.com/training/powerplatform/power-bi/",
+career:"Data Analyst"
+},
+
+{
+id:"javascript2",
+title:"Web Development",
+platform:"Coursera",
+description:"Explore web development courses from recognised institutions.",
+skills:"Web • Programming",
+url:"https://www.coursera.org/courses?query=web%20development",
+career:"Full Stack Developer"
+}
+
+];
+
+
+/* =====================================================
+PAGE NAVIGATION
+===================================================== */
+
+const pageTitles = {
+
+home:[
+    "Home",
+    "Explore your future with clarity."
+],
+
+profile:[
+    "My Profile",
+    "Tell Career Compass about yourself."
+],
+
+match:[
+    "My Career Match",
+    "Find careers that fit your profile."
+],
+
+academic:[
+    "Academic Career Map",
+    "Explore careers based on your academic background."
+],
+
+courses:[
+    "Courses",
+    "Learn the skills required for your career."
+],
+
+progress:[
+    "My Progress",
+    "Track your learning journey."
+],
+
+route:[
+    "Career Route Map",
+    "Follow the journey from education to career."
+]
+
+};
+
+
+function showPage(id,button){
 
     document.querySelectorAll(".page")
-        .forEach(page=>{
-            page.classList.remove("active");
-        });
+        .forEach(p=>p.classList.remove("active"));
 
-    const page =
-        document.getElementById(pageId);
-
-    if(page){
-        page.classList.add("active");
-    }
+    document.getElementById(id)
+        .classList.add("active");
 
 
     document.querySelectorAll(".nav button")
-        .forEach(btn=>{
-            btn.classList.remove("active");
-        });
+        .forEach(b=>b.classList.remove("active"));
 
     if(button){
         button.classList.add("active");
     }
 
 
-    document.getElementById("pageLabel")
-        .textContent =
-        pageNames[pageId] || "Career Compass";
+    document.getElementById("pageTitle")
+        .textContent=pageTitles[id][0];
+
+    document.getElementById("pageSubtitle")
+        .textContent=pageTitles[id][1];
 
 
     window.scrollTo({
@@ -3257,62 +1900,43 @@ function showPage(pageId,button){
     });
 
 
-    if(pageId === "match"){
-        renderMatches();
+    if(id==="progress"){
+        updateProgress();
     }
 
-    if(pageId === "academic"){
-        renderAcademic();
+    if(id==="academic"){
+        showAcademicCareer();
     }
 
+    if(id==="courses"){
+        renderCourses();
+    }
+
+    if(id==="match"){
+        generateMatches();
+    }
 }
 
 
-/* =========================================================
-   PROFILE STORAGE
-   ========================================================= */
-
-function getProfile(){
-
-    try{
-
-        return JSON.parse(
-            localStorage.getItem("careerCompassProfile")
-        ) || {};
-
-    }catch(e){
-
-        return {};
-
-    }
-
-}
-
+/* =====================================================
+PROFILE
+===================================================== */
 
 function saveProfile(){
 
-    const profile = {
+    const profile={
 
-        name:
-            document.getElementById("name").value.trim(),
+        course:document.getElementById("profileCourse").value.trim(),
 
-        course:
-            document.getElementById("course").value.trim(),
+        skills:document.getElementById("profileSkills").value.trim(),
 
-        skills:
-            document.getElementById("skills").value.trim(),
+        interests:document.getElementById("profileInterests").value.trim(),
 
-        interests:
-            document.getElementById("interests").value.trim(),
+        goal:document.getElementById("profileGoal").value.trim(),
 
-        goal:
-            document.getElementById("goal").value.trim(),
+        projects:document.getElementById("profileProjects").value.trim(),
 
-        workstyle:
-            document.getElementById("workstyle").value,
-
-        about:
-            document.getElementById("about").value.trim()
+        lifestyle:document.getElementById("profileLifestyle").value.trim()
 
     };
 
@@ -3323,776 +1947,706 @@ function saveProfile(){
     );
 
 
-    updateProfileDisplay();
+    toast("Profile saved successfully ✨");
 
-
-    alert(
-        "✨ Profile saved successfully! Your Career Match is now personalized."
-    );
-
+    generateMatches();
 }
 
 
 function loadProfile(){
 
-    const p = getProfile();
-
-    if(!p) return;
-
-
-    document.getElementById("name").value =
-        p.name || "";
-
-    document.getElementById("course").value =
-        p.course || "";
-
-    document.getElementById("skills").value =
-        p.skills || "";
-
-    document.getElementById("interests").value =
-        p.interests || "";
-
-    document.getElementById("goal").value =
-        p.goal || "";
-
-    document.getElementById("workstyle").value =
-        p.workstyle || "";
-
-    document.getElementById("about").value =
-        p.about || "";
-
-
-    updateProfileDisplay();
-
-}
-
-
-function updateProfileDisplay(){
-
-    const p = getProfile();
-
-
-    const name =
-        p.name || "Student";
-
-    const course =
-        p.course || "Future Career Explorer";
-
-
-    document.getElementById("profileName")
-        .textContent = name;
-
-
-    document.getElementById("profileCourse")
-        .textContent = course;
-
-
-    document.getElementById("topName")
-        .textContent = name;
-
-
-    const skillArray =
-        splitValues(p.skills);
-
-    const interestArray =
-        splitValues(p.interests);
-
-
-    document.getElementById("skillCount")
-        .textContent =
-        skillArray.length;
-
-
-    document.getElementById("interestCount")
-        .textContent =
-        interestArray.length;
-
-}
-
-
-/* =========================================================
-   CAREER MATCH ENGINE
-   ========================================================= */
-
-const careerData = [
-
-    {
-        name:"Software Developer",
-        icon:"💻",
-        keywords:[
-            "coding",
-            "programming",
-            "python",
-            "java",
-            "javascript",
-            "software",
-            "technology",
-            "cse"
-        ],
-        base:76,
-        description:
-            "Build applications, websites and software systems.",
-        skills:
-            "Programming • Problem Solving • Git • APIs"
-    },
-
-    {
-        name:"Data Analyst",
-        icon:"📊",
-        keywords:[
-            "data",
-            "analytics",
-            "analysis",
-            "excel",
-            "sql",
-            "statistics",
-            "math",
-            "power bi"
-        ],
-        base:82,
-        description:
-            "Turn data into insights that help organizations make decisions.",
-        skills:
-            "Excel • SQL • Statistics • Power BI"
-    },
-
-    {
-        name:"Embedded Engineer",
-        icon:"⚙️",
-        keywords:[
-            "ece",
-            "embedded",
-            "electronics",
-            "microcontroller",
-            "arduino",
-            "iot",
-            "c",
-            "hardware"
-        ],
-        base:84,
-        description:
-            "Develop intelligent electronic and embedded systems.",
-        skills:
-            "C • Microcontrollers • Embedded Systems • IoT"
-    },
-
-    {
-        name:"UI/UX Designer",
-        icon:"🎨",
-        keywords:[
-            "design",
-            "creative",
-            "ui",
-            "ux",
-            "figma",
-            "creative",
-            "visual"
-        ],
-        base:73,
-        description:
-            "Design digital experiences that are useful and attractive.",
-        skills:
-            "Figma • UX Research • Design Thinking"
-    },
-
-    {
-        name:"Business Analyst",
-        icon:"💼",
-        keywords:[
-            "business",
-            "management",
-            "analysis",
-            "communication",
-            "excel",
-            "leadership",
-            "bba",
-            "bcom"
-        ],
-        base:79,
-        description:
-            "Connect business problems, data and practical solutions.",
-        skills:
-            "Excel • Communication • Analysis • Documentation"
-    },
-
-    {
-        name:"IoT Engineer",
-        icon:"🌐",
-        keywords:[
-            "iot",
-            "electronics",
-            "embedded",
-            "arduino",
-            "sensor",
-            "hardware",
-            "ece"
-        ],
-        base:81,
-        description:
-            "Connect sensors, devices and intelligent systems.",
-        skills:
-            "IoT • Sensors • Microcontrollers • Networking"
-    },
-
-    {
-        name:"Product Manager",
-        icon:"🚀",
-        keywords:[
-            "leadership",
-            "business",
-            "communication",
-            "management",
-            "strategy",
-            "product"
-        ],
-        base:71,
-        description:
-            "Guide products from ideas to solutions that users need.",
-        skills:
-            "Strategy • Communication • Leadership • Research"
-    },
-
-    {
-        name:"Cybersecurity Analyst",
-        icon:"🔐",
-        keywords:[
-            "security",
-            "cyber",
-            "network",
-            "technology",
-            "linux",
-            "programming"
-        ],
-        base:72,
-        description:
-            "Protect systems, networks and information from threats.",
-        skills:
-            "Networking • Linux • Security • Problem Solving"
-    }
-
-];
-
-
-function splitValues(text){
-
-    if(!text) return [];
-
-    return text
-        .toLowerCase()
-        .split(/[,;|]/)
-        .map(x=>x.trim())
-        .filter(Boolean);
-
-}
-
-
-function renderMatches(){
-
-    const profile =
-        getProfile();
-
-
-    const allText = (
-
-        (profile.course || "") +
-        " " +
-        (profile.skills || "") +
-        " " +
-        (profile.interests || "") +
-        " " +
-        (profile.goal || "") +
-        " " +
-        (profile.workstyle || "") +
-        " " +
-        (profile.about || "")
-
-    ).toLowerCase();
-
-
-    const results =
-        careerData.map(career=>{
-
-            let score =
-                career.base;
-
-
-            career.keywords.forEach(keyword=>{
-
-                if(allText.includes(keyword)){
-
-                    score += 3;
-
-                }
-
-            });
-
-
-            if(
-                profile.course &&
-                career.keywords.some(
-                    k =>
-                    profile.course
-                    .toLowerCase()
-                    .includes(k)
-                )
-            ){
-
-                score += 7;
-
-            }
-
-
-            return {
-                ...career,
-                score:Math.min(97,score)
-            };
-
-        });
-
-
-    results.sort(
-        (a,b)=>b.score-a.score
+    const profile=JSON.parse(
+        localStorage.getItem("careerCompassProfile") || "{}"
     );
 
 
-    const grid =
-        document.getElementById("matchGrid");
+    document.getElementById("profileCourse").value=profile.course || "";
 
+    document.getElementById("profileSkills").value=profile.skills || "";
 
-    grid.innerHTML =
-        results
-        .slice(0,6)
-        .map(career=>`
+    document.getElementById("profileInterests").value=profile.interests || "";
 
-            <div class="card match-card">
+    document.getElementById("profileGoal").value=profile.goal || "";
 
-                <div class="match-top">
+    document.getElementById("profileProjects").value=profile.projects || "";
 
-                    <div class="match-icon">
-                        ${career.icon}
-                    </div>
-
-                    <div class="match-score">
-                        ${career.score}%
-                    </div>
-
-                </div>
-
-                <h3>
-                    ${career.name}
-                </h3>
-
-                <p>
-                    ${career.description}
-                </p>
-
-                <div class="score-track">
-
-                    <div
-                        class="score-fill"
-                        style="width:${career.score}%"
-                    ></div>
-
-                </div>
-
-                <p>
-                    <b>Useful skills</b><br>
-                    ${career.skills}
-                </p>
-
-            </div>
-
-        `)
-        .join("");
-
+    document.getElementById("profileLifestyle").value=profile.lifestyle || "";
 }
 
 
-/* =========================================================
-   ACADEMIC CAREER MAP
-   ========================================================= */
+/* =====================================================
+CAREER MATCH
+===================================================== */
 
-const academicData = {
+function generateMatches(){
 
-    ECE:{
-
-        title:
-            "Electronics & Communication Engineering",
-
-        description:
-            "ECE opens opportunities in electronics, embedded systems, VLSI, IoT and communication.",
-
-        careers:[
-            ["⚙️","Embedded Engineer","Microcontrollers, C and embedded systems"],
-            ["💾","VLSI Engineer","Digital design and semiconductor technology"],
-            ["🌐","IoT Engineer","Sensors, microcontrollers and IoT"],
-            ["🤖","Robotics Engineer","Electronics, programming and automation"],
-            ["📡","Telecom Engineer","Communication and networking"],
-            ["🔧","Electronics Design Engineer","Circuit and hardware design"]
-        ]
-
-    },
+    const profile=JSON.parse(
+        localStorage.getItem("careerCompassProfile") || "{}"
+    );
 
 
-    CSE:{
-
-        title:
-            "Computer Science Engineering",
-
-        description:
-            "CSE provides pathways into software, data, cloud, cybersecurity and artificial intelligence.",
-
-        careers:[
-            ["💻","Software Developer","Programming and application development"],
-            ["📊","Data Analyst","SQL, Excel, statistics and dashboards"],
-            ["🤖","AI / ML Engineer","Machine learning and intelligent systems"],
-            ["☁️","Cloud Engineer","Cloud platforms and infrastructure"],
-            ["🔐","Cybersecurity Analyst","Networks and information security"],
-            ["🌐","Web Developer","Frontend and backend development"]
-        ]
-
-    },
+    const text=Object.values(profile)
+        .join(" ")
+        .toLowerCase();
 
 
-    EEE:{
+    if(!text.trim()){
 
-        title:
-            "Electrical & Electronics Engineering",
+        document.getElementById("matchContainer").innerHTML=`
 
-        description:
-            "EEE combines electrical systems, electronics, automation and energy technologies.",
+            <div class="empty">
 
-        careers:[
-            ["⚡","Electrical Engineer","Electrical systems and power"],
-            ["🤖","Automation Engineer","Control systems and automation"],
-            ["🔋","Power Systems Engineer","Energy and electrical networks"],
-            ["⚙️","Control Engineer","Industrial control systems"],
-            ["🌱","Renewable Energy Engineer","Solar and clean energy"],
-            ["🔌","Electronics Engineer","Electronic systems and devices"]
-        ]
+                <h2>No profile information yet</h2>
 
-    },
+                <p style="margin:10px 0 20px">
+                    Complete your profile first to generate personalised career matches.
+                </p>
 
+                <button
+                class="primary-btn"
+                onclick="showPage('profile',document.querySelectorAll('.nav button')[1])">
+                    Build My Profile
+                </button>
 
-    CIVIL:{
+            </div>
+        `;
 
-        title:
-            "Civil Engineering",
-
-        description:
-            "Civil engineering creates pathways across construction, infrastructure and planning.",
-
-        careers:[
-            ["🏗️","Site Engineer","Construction and project execution"],
-            ["🏢","Structural Engineer","Structural design and analysis"],
-            ["🛣️","Transportation Engineer","Roads and transportation"],
-            ["💧","Environmental Engineer","Water and environmental systems"],
-            ["📐","Planning Engineer","Project planning and scheduling"],
-            ["🏙️","Urban Planner","Cities and infrastructure"]
-        ]
-
-    },
+        return;
+    }
 
 
-    BSC:{
-
-        title:
-            "Science & Technology",
-
-        description:
-            "Science backgrounds can lead towards analytics, research, technology and education.",
-
-        careers:[
-            ["🔬","Research Associate","Research and scientific analysis"],
-            ["📊","Data Analyst","Data interpretation and visualization"],
-            ["🧪","Laboratory Analyst","Testing and laboratory work"],
-            ["💻","Technology Associate","Technology and digital roles"],
-            ["👨‍🏫","Science Educator","Teaching and training"],
-            ["📈","Research Analyst","Research and business insights"]
-        ]
-
-    },
+    let results=[];
 
 
-    BCOM:{
+    function addCareer(name,score,reason){
 
-        title:
-            "Commerce Career Map",
-
-        description:
-            "Commerce provides strong pathways into finance, accounting, analytics and business.",
-
-        careers:[
-            ["💰","Financial Analyst","Finance, reporting and analysis"],
-            ["📊","Business Analyst","Business data and decision making"],
-            ["🧾","Accountant","Accounting and financial operations"],
-            ["🏦","Banking Professional","Banking and financial services"],
-            ["📈","Investment Analyst","Markets and investment research"],
-            ["💼","Business Executive","Business operations and management"]
-        ]
-
-    },
-
-
-    BBA:{
-
-        title:
-            "Management Career Map",
-
-        description:
-            "Management education opens pathways in business, marketing, HR, operations and product roles.",
-
-        careers:[
-            ["💼","Business Analyst","Business problems and solutions"],
-            ["📣","Marketing Executive","Marketing and customer growth"],
-            ["👥","HR Professional","People and organizational development"],
-            ["📦","Operations Manager","Business operations and processes"],
-            ["🚀","Product Manager","Products, strategy and users"],
-            ["📊","Management Analyst","Business analysis and improvement"]
-        ]
+        results.push({
+            name,
+            score,
+            reason
+        });
 
     }
 
-};
+
+    if(
+        /python|java|programming|coding|software|computer|web|developer|technology/
+        .test(text)
+    ){
+        addCareer(
+            "Software Developer",
+            94,
+            "Your technical interests and programming-related skills strongly connect with software development."
+        );
+    }
 
 
-function renderAcademic(){
+    if(
+        /excel|sql|data|analytics|statistics|power bi|business|math/
+        .test(text)
+    ){
+        addCareer(
+            "Data Analyst",
+            92,
+            "Your profile shows signals for structured problem solving, data and analytical work."
+        );
+    }
 
-    const key =
-        document.getElementById("academicSelect").value;
+
+    if(
+        /iot|embedded|arduino|electronics|ece|microcontroller|rtos|sensor/
+        .test(text)
+    ){
+        addCareer(
+            "Embedded / IoT Engineer",
+            95,
+            "Your electronics, IoT or embedded interests connect directly with this career path."
+        );
+    }
 
 
-    const data =
-        academicData[key];
+    if(
+        /vlsi|verilog|digital|semiconductor|chip|hardware/
+        .test(text)
+    ){
+        addCareer(
+            "VLSI Engineer",
+            89,
+            "Your hardware and digital electronics interests make VLSI worth exploring."
+        );
+    }
 
 
-    document.getElementById("academicBanner")
-        .innerHTML = `
+    if(
+        /design|creative|ui|ux|figma|content/
+        .test(text)
+    ){
+        addCareer(
+            "UI/UX Designer",
+            87,
+            "Your creative and design interests match digital product design."
+        );
+    }
+
+
+    if(
+        /communication|leadership|people|hr|teach|help|team/
+        .test(text)
+    ){
+        addCareer(
+            "People & Leadership",
+            84,
+            "Your communication and people-focused strengths can translate into leadership-oriented roles."
+        );
+    }
+
+
+    if(results.length===0){
+
+        addCareer(
+            "Business Analyst",
+            78,
+            "A broad career option combining communication, problem solving and technology."
+        );
+
+        addCareer(
+            "Software Developer",
+            75,
+            "A strong option if you enjoy technology and building practical solutions."
+        );
+
+        addCareer(
+            "Data Analyst",
+            73,
+            "A useful pathway if you enjoy numbers, structured thinking and business problems."
+        );
+    }
+
+
+    results.sort((a,b)=>b.score-a.score);
+
+
+    document.getElementById("matchContainer").innerHTML=`
+
+        <div class="grid-3">
+
+            ${results.slice(0,6).map((r,index)=>`
+
+                <div class="match-card">
+
+                    <div class="match-top">
+
+                        <h3>
+                            ${index===0 ? "⭐ " : ""}
+                            ${r.name}
+                        </h3>
+
+                        <div class="match-score">
+                            ${r.score}%
+                        </div>
+
+                    </div>
+
+
+                    <div class="match-bar">
+                        <i style="width:${r.score}%"></i>
+                    </div>
+
+
+                    <p>
+                        ${r.reason}
+                    </p>
+
+
+                    <span class="chip">
+                        Explore skills
+                    </span>
+
+                    <span
+                    class="chip"
+                    onclick="openAcademic('${getCareerKey(r.name)}')"
+                    style="cursor:pointer">
+
+                        View pathway →
+
+                    </span>
+
+                </div>
+
+            `).join("")}
+
+        </div>
+    `;
+}
+
+
+function getCareerKey(name){
+
+    if(name.includes("Software")) return "software";
+
+    if(name.includes("Data")) return "data";
+
+    if(name.includes("Embedded")) return "embedded";
+
+    if(name.includes("IoT")) return "iot";
+
+    if(name.includes("VLSI")) return "vlsi";
+
+    if(name.includes("UI")) return "uiux";
+
+    if(name.includes("Business")) return "business";
+
+    return "software";
+}
+
+
+function openAcademic(key){
+
+    document.getElementById("careerSelect").value=key;
+
+    showPage(
+        "academic",
+        document.querySelectorAll(".nav button")[3]
+    );
+
+    showAcademicCareer();
+}
+
+
+/* =====================================================
+ACADEMIC CAREER MAP
+===================================================== */
+
+function showAcademicCareer(){
+
+    const key=document.getElementById("careerSelect").value;
+
+    const career=careers[key];
+
+    if(!career) return;
+
+
+    document.getElementById("academicContent").innerHTML=`
+
+        <div class="career-banner">
 
             <h2>
-                ${data.title}
+                🚀 ${career.title}
             </h2>
 
             <p>
-                ${data.description}
+                ${career.description}
             </p>
 
-        `;
+        </div>
 
 
-    document.getElementById("careerGrid")
-        .innerHTML =
+        <div class="path-section">
 
-        data.careers.map(c=>`
 
-            <div class="card career-card">
-
-                <div class="career-symbol">
-                    ${c[0]}
-                </div>
+            <div class="requirement-card">
 
                 <h3>
-                    ${c[1]}
+                    🧠 Skills Required
                 </h3>
 
+                <div class="skill-list">
+
+                    ${career.skills.map(skill=>`
+                        <span class="skill">
+                            ${skill}
+                        </span>
+                    `).join("")}
+
+                </div>
+
+
+                <h3 style="margin-top:25px">
+                    📚 Recommended Learning
+                </h3>
+
+                ${career.courses.map(c=>`
+
+                    <div class="project-item">
+
+                        <b>${c}</b>
+
+                        <span>
+                            Learn this skill through the Courses section.
+                        </span>
+
+                    </div>
+
+                `).join("")}
+
+
+                <button
+                class="primary-btn"
+                style="margin-top:10px"
+                onclick="showPage('courses',document.querySelectorAll('.nav button')[4])">
+
+                    Explore Courses →
+
+                </button>
+
+            </div>
+
+
+            <div class="requirement-card">
+
+                <h3>
+                    💻 Projects You Should Build
+                </h3>
+
+                ${career.projects.map(p=>`
+
+                    <div class="project-item">
+
+                        <b>
+                            ${p[0]}
+                        </b>
+
+                        <span>
+                            ${p[1]}
+                        </span>
+
+                    </div>
+
+                `).join("")}
+
+
+                <h3 style="margin-top:22px">
+                    🛣️ Suggested Path
+                </h3>
+
+                <div class="project-item">
+                    <b>Step 1 — Learn</b>
+                    <span>Complete the basic courses.</span>
+                </div>
+
+                <div class="project-item">
+                    <b>Step 2 — Practice</b>
+                    <span>Build small exercises.</span>
+                </div>
+
+                <div class="project-item">
+                    <b>Step 3 — Project</b>
+                    <span>Build at least one portfolio project.</span>
+                </div>
+
+                <div class="project-item">
+                    <b>Step 4 — Apply</b>
+                    <span>Prepare your resume and look for internships/jobs.</span>
+                </div>
+
+            </div>
+
+        </div>
+    `;
+}
+
+
+/* =====================================================
+COURSES
+===================================================== */
+
+function getCompleted(){
+
+    return JSON.parse(
+        localStorage.getItem("careerCompassCompleted")
+        || "[]"
+    );
+}
+
+
+function renderCourses(){
+
+    const completed=getCompleted();
+
+
+    document.getElementById("courseContainer").innerHTML=
+
+    courses.map(course=>{
+
+        const done=completed.includes(course.id);
+
+
+        return `
+
+        <div class="course-card">
+
+            <div class="course-head">
+
+                <h3>
+                    ${course.title}
+                </h3>
+
+                <small>
+                    ${course.platform}
+                </small>
+
+            </div>
+
+
+            <div class="course-body">
+
                 <p>
-                    ${c[2]}
+                    ${course.description}
                 </p>
 
-                <div class="skill-tags">
 
-                    <span class="skill-tag">
-                        Explore
+                <div class="course-meta">
+
+                    <span class="course-tag">
+                        ${course.skills}
                     </span>
 
-                    <span class="skill-tag">
-                        Skills
+                    <span class="course-tag">
+                        ${course.career}
                     </span>
 
-                    <span class="skill-tag">
-                        Projects
-                    </span>
+                </div>
+
+
+                <div class="course-buttons">
+
+                    <a
+                    class="learn-btn"
+                    href="${course.url}"
+                    target="_blank"
+                    rel="noopener noreferrer">
+
+                        Learn Online ↗
+
+                    </a>
+
+
+                    <button
+                    class="complete-btn ${done ? "done" : ""}"
+                    onclick="toggleCourse('${course.id}')">
+
+                        ${done ? "✓ Completed" : "Mark Complete"}
+
+                    </button>
 
                 </div>
 
             </div>
 
-        `).join("");
+        </div>
 
+        `;
+
+    }).join("");
 }
 
 
-/* =========================================================
-   CHATBOT
-   ========================================================= */
+function toggleCourse(id){
 
-function toggleChat(){
-
-    document
-        .getElementById("chat")
-        .classList.toggle("open");
-
-}
+    let completed=getCompleted();
 
 
-function addMessage(text,type){
+    if(completed.includes(id)){
 
-    const body =
-        document.getElementById("chatBody");
+        completed=completed.filter(x=>x!==id);
 
+        toast("Course removed from completed list");
 
-    const div =
-        document.createElement("div");
+    }else{
 
+        completed.push(id);
 
-    div.className =
-        "message " + type;
+        toast("Course marked complete 🎉");
 
-
-    div.textContent =
-        text;
+    }
 
 
-    body.appendChild(div);
-
-
-    body.scrollTop =
-        body.scrollHeight;
-
-}
-
-
-function sendChat(){
-
-    const input =
-        document.getElementById("chatInput");
-
-
-    const question =
-        input.value.trim();
-
-
-    if(!question) return;
-
-
-    addMessage(
-        question,
-        "user"
+    localStorage.setItem(
+        "careerCompassCompleted",
+        JSON.stringify(completed)
     );
 
 
-    input.value="";
+    renderCourses();
+
+    updateProgress();
+}
+
+
+/* =====================================================
+PROGRESS
+===================================================== */
+
+function updateProgress(){
+
+    const completed=getCompleted();
+
+    const total=courses.length;
+
+    const percent=
+        total===0
+        ?0
+        :Math.round((completed.length/total)*100);
+
+
+    document.getElementById("progressNumber")
+        .textContent=percent+"%";
+
+
+    const degrees=percent*3.6;
+
+
+    document.getElementById("progressCircle").style.background=
+        `conic-gradient(
+            #2457e6 0deg,
+            #7548e8 ${degrees*.7}deg,
+            #ef4f91 ${degrees}deg,
+            #eceef5 ${degrees}deg
+        )`;
+
+
+    document.getElementById("completedText")
+        .textContent=`${completed.length} / ${total}`;
+
+
+    document.getElementById("courseProgressBar")
+        .style.width=percent+"%";
+
+
+    /*
+       Skills progress is estimated from
+       completed courses.
+    */
+
+    const skillProgress=
+        Math.min(100,Math.round(percent*1.1));
+
+
+    document.getElementById("skillProgressText")
+        .textContent=skillProgress+"%";
+
+
+    document.getElementById("skillProgressBar")
+        .style.width=skillProgress+"%";
+
+
+    /*
+       Career preparation grows as learning
+       progress increases.
+    */
+
+    const careerProgress=
+        Math.min(100,Math.round(percent*.85));
+
+
+    document.getElementById("careerProgressText")
+        .textContent=careerProgress+"%";
+
+
+    document.getElementById("careerProgressBar")
+        .style.width=careerProgress+"%";
+
+
+    if(completed.length===0){
+
+        document.getElementById("completedCourses").innerHTML=`
+
+            <div class="empty">
+
+                📚 No courses completed yet.
+
+                <br><br>
+
+                Start learning and mark your courses as complete.
+
+            </div>
+
+        `;
+
+    }else{
+
+        document.getElementById("completedCourses").innerHTML=
+
+        completed.map(id=>{
+
+            const c=courses.find(x=>x.id===id);
+
+            if(!c) return "";
+
+            return `
+
+                <div
+                class="project-item"
+                style="display:flex;justify-content:space-between;align-items:center">
+
+                    <div>
+
+                        <b>
+                            ✓ ${c.title}
+                        </b>
+
+                        <span>
+                            ${c.platform} • ${c.skills}
+                        </span>
+
+                    </div>
+
+                    <span
+                    style="
+                    background:#dff7ee;
+                    color:#168b68;
+                    padding:7px 10px;
+                    border-radius:8px;
+                    font-size:12px;
+                    ">
+
+                        Completed
+
+                    </span>
+
+                </div>
+
+            `;
+
+        }).join("");
+    }
+}
+
+
+/* =====================================================
+TOAST
+===================================================== */
+
+function toast(message){
+
+    const t=document.getElementById("toast");
+
+    t.textContent=message;
+
+    t.style.display="block";
 
 
     setTimeout(()=>{
 
-        addMessage(
-            chatbotReply(question),
-            "bot"
-        );
+        t.style.display="none";
 
-    },500);
-
+    },2200);
 }
 
 
-function chatbotReply(question){
+/* =====================================================
+INITIAL LOAD
+===================================================== */
 
-    const q =
-        question.toLowerCase();
+loadProfile();
 
+showAcademicCareer();
 
-    const profile =
-        getProfile();
+renderCourses();
 
+updateProgress();
 
-    if(
-        q.includes("career") ||
-        q.includes("suit me") ||
-        q.includes("best career")
-    ){
-
-        const top =
-            careerData[0];
-
-        return `
-Based on the information in your profile,
-Career Compass recommends exploring ${top.name},
-Data Analyst and Embedded Engineer first.
-
-Open "My Career Match" to see your personalized scores.
-        `;
-
-    }
-
-
-    if(
-        q.includes("skill") ||
-        q.includes("learn")
-    ){
-
-        return `
-Start with one practical skill connected to
-your target career. Build a small project while
-learning so you have evidence of your ability.
-        `;
-
-    }
-
-
-    if(
-        q.includes("resume") ||
-        q.includes("job")
-    ){
-
-        return `
-For a strong fresher profile, show your skills
-through projects, internships, certifications and
-measurable work rather than only listing skills.
-        `;
-
-    }
-
-
-    if(
-        q.includes("ece") ||
-        q.includes("electronics")
-    ){
-
-        return `
-ECE students can explore Embedded Systems,
-VLSI, IoT, Robotics, Telecom and Electronics Design.
-Open Academic Career Map to explore these pathways.
-        `;
-
-    }
-
-
-    return `
-I can help you explore careers, skills, courses,
-projects and your career journey. Try asking:
-"What career suits me?" or "What skills should I learn?"
-    `;
-
-}
-
-
-/* =========================================================
-   INITIALIZATION
-   ========================================================= */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function(){
-
-        loadProfile();
-
-        renderMatches();
-
-        renderAcademic();
-
-    }
-);
+generateMatches();
 
 </script>
 
